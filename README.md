@@ -62,6 +62,15 @@ Although the names of programs and commands may be simple English words, they wi
 All untranslatable terms should be marked too, such as *wok* and *cook*, for example.
 
 
+## Read the Docs
+
+[![Documentation Status](https://readthedocs.org/projects/slitaz-wiki/badge/?version=latest)](https://slitaz-wiki.readthedocs.io/?badge=latest)
+
+  * [Read online]
+  * [Download HTML.zip]
+  * [Download PDF]
+
+
 [SliTaz wiki]:      http://doc.slitaz.org/
 [Dokuwiki]:         https://www.dokuwiki.org/dokuwiki
 [reStructuredText]: https://docutils.sourceforge.io/rst.html
@@ -73,3 +82,7 @@ All untranslatable terms should be marked too, such as *wok* and *cook*, for exa
 [Boot tree]:        http://doc.slitaz.org/en:guides:bootguide
 [draw.io]:          https://app.diagrams.net/
 [by-sa-4.0]:        https://creativecommons.org/licenses/by-sa/4.0/deed.en
+
+[Read online]:       https://slitaz-wiki.readthedocs.io/
+[Download HTML.zip]: https://slitaz-wiki.readthedocs.io/_/downloads/en/latest/htmlzip/
+[Download PDF]:      https://slitaz-wiki.readthedocs.io/_/downloads/en/latest/pdf/
