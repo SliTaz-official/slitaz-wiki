@@ -1,0 +1,29 @@
+
+====== An Application Cannot Find Libraries/Files ======
+
+===== Symptoms =====
+
+  *  When run in a Terminal, an application fails with the message:
+<code> [name]: error while loading shared libraries: [library].so.*: cannot open shared object file: No such file or directory</code>
+
+===== Explanation =====
+
+The program is missing some files it needs to run. This is caused by the package information missing a reference to another, or not including the file.
+
+===== Solution =====
+
+Check if the file required is available in another package. Use the package manager (TazPkg) to search for the file:
+  * start the package manager
+  * 'Recharge' the package lists, if necessary 
+  * click the "Search" tab 
+  * in the //Search// box, enter the file-name ([library].so) and click "Files"
+  * install the package (pick that with the closest name if there is more than one) by double-clicking the entry and clicking //Install Package//
+
+Alternatively, run the following command from a terminal:
+<code>tazpkg search-pkgname library.so</code>
+
+
+... and install the appropriate package with:
+<code> tazpkg get-install [package] </code>
+
+If no packages are given, report this as a bug over at the [[http://labs.slitaz.org|Labs]] as it needs to be included, or the dependency removed during the build.

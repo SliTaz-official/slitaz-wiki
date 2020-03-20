@@ -1,0 +1,111 @@
+====== Install the latest non-free Nvidia driver ======
+
+===== Required Reading =====
+
+    * Handbook - [[http://doc.slitaz.org/en:handbook:xwindow#xorg|Xorg Installation]]
+    * Quickstart Guide - [[en:guides:kernel|Build your own custom Linux Kernel]]
+
+===== Prepare =====
+
+    * Download the installer from the Nvidia [[http://www.nvidia.com/object/unix.html|website]]. Latest version 190.53
+    * Install the Xorg server
+
+<code>
+# tazpkg get-install xorg-server
+</code>
+
+    * Install the linux-source package and development tools. See [[en:guides:kernel|here]]
+
+<code>
+# tazpkg get-install linux-source
+</code>
+
+
+===== Install the driver =====
+For this part you're going to need a pencil and paper as we now have to work in text mode without a X-server running
+
+When you're ready press alt-ctrl-del, you should now see a command line:-
+
+    * Configure the X-server and copy the (generated) xorg.conf
+
+<code>
+# Xorg -configure
+# cp /root/xorg.conf.new /etc/X11/xorg.conf
+</code>
+
+    * Prepare the Kernel
+<code>
+# cd /usr/src/linux
+
+# make oldconfig && make prepare
+
+# make menuconfig (not required - but if you've come this far, you can take a peek)
+# make bzImage
+# make modules 
+# make modules_install
+</code>
+
+    * Now make executable and install the Nvidia driver, change to directory you installed to
+<code>
+ # chmod +x NVIDIA-Linux-x86-177.80.pkg1.run
+ # ./NVIDIA-Linux-x86-177.80.pkg1.run --kernel-source-path=/usr/src/linux
+</code>
+
+    * Copy the Kernel Image to /boot
+
+<code>
+# cd /usr/src/linux
+# cp arch/x86/boot/bzImage /boot
+</code>
+
+
+===== Restart =====
+
+    * Reboot into text mode
+<code>
+# reboot - Hard drive users
+# tazusb writefs gzip && reboot - USB users
+</code>
+
+Don't forget to pass the screen=text option at startup, (it may well boot into text mode anyway, if not just press alt-ctrl-del again)
+
+    * Load the nvidia module
+
+<code>
+# modprobe -v nvidia 
+</code>
+
+    * Edit Slim configuration file to load Xorg server
+
+<code>
+# vi /etc/slim.conf
+</code>
+<file>
+default_xserver     /usr/bin/Xorg
+#default_xserver     /usr/bin/Xvesa
+#xserver_arguments   -ac -shadow dpms +extension Composite -screen 1024x768x24
+</file>
+
+    * Restart Slim
+
+<code>
+# /etc/init.d/slim start
+</code>
+
+Err… that's it
+
+(If you want the nvidia module to persist, just add it to the LOAD_MODULES variable in /etc/rcS.conf)
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Low  |
+|Review| DELETEME |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Nvidia pkgs are in repos, no need to compile anymore|
+|::: | Missing "tazhw setup nvidia --non-free" |
+
+\\
+----

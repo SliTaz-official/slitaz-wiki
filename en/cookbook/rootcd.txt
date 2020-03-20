@@ -1,0 +1,115 @@
+====== Rootcd ======
+
+Descriptions of files contained on the cdrom. 
+
+===== Syslinux/isolinux =====
+
+Syslinux and the (SliTaz) main bootloader - we use the isolinux version to start the system contained on the CD-ROM. Simple effective and configurable, isolinux was installed during the creation of the base system. The binary is named isolinux.bin and uses the configuration file isolinux.cfg. Here's an example of an isolinux.cfg using isolinux.msg to post the splash image and displayable help files via F1, F2, F3 and F4. You will find the files help.txt, options.txt, etc in [[:en:cookbook:slitaztools|SliTaz tools]].
+
+<file>
+display isolinux.msg
+default slitaz
+label slitaz
+	kernel /boot/bzImage
+	append initrd=/boot/rootfs.gz rw root=/dev/null vga=788
+implicit 0	
+prompt 1	
+timeout 80
+F1 help.txt
+F2 options.txt
+F3 isolinux.msg
+F4 display.txt
+</file>
+
+===== Isolinux boot splash image =====
+
+We can configure isolinux to display a splash image when booting SliTaz or any other operating system. This image has a particular format .lss, suitable for Syslinux and must be indexed using the 16 color mode. You can use the official logo, ppmforge, imagemagick, GIMP or other tools to create your image.
+
+The Syslinux file (//sample/syslogo.lss//) provides an official logo which you can directly use by copying to the root of the CD-ROM. SliTaz provides a logo (//rootcd/boot/isolinux/splash.lss//) which you can find in [[:en:cookbook:slitaztools|SliTaz tools]]. To display a splash image when booting, it's necessary that the 'display' option calls the isolinux.msg file which loads the *.lss format image. Note that the //isolinux.msg// file uses 24 ASCII characters. Example using 'echo' and an isolinux.msg file incorporating a .lss splash image:
+
+<code> # echo -e "\24isplash.lss\n" > isolinux.msg </code>
+
+You can also add a text message underneath the splash image by modifying the file with your favorite text editor, echo or cat and so on.
+
+===== ISO bootable with isolinux =====
+
+To create a bootable ISO image using isolinux and genisoimage:
+
+<code>
+ # genisoimage -R -o slitaz-test.iso -b boot/isolinux/isolinux.bin \
+   	-c boot/isolinux/boot.cat -no-emul-boot -boot-load-size 4 \
+   	-V "SliTaz" -input-charset iso8859-1 -boot-info-table rootcd 
+
+</code>
+
+===== GRUB =====
+
+GRUB (GRand Unified Bootloader) is a bootloader distributed by the GNU project. This is used during installation to a hard drive; it can boot Linux, BSD, HURD and Window$. GRUB provides stage2_eltorito to start the ISO images. To find stage2_eltorito on your system, you need to have the GRUB package installed. Finally you copy stage2_eltorito to the root of the cdrom. Note that SliTaz provides a (.tazpkg) package grub-0.97 that you can find on the mirrors or you can rebuild grub-0.97 from sources. Example using a stage2_eltorito image from a Debian system or SliTaz:
+
+<code>
+ # mkdir -p rootcd/boot/grub
+ # cp /usr/lib/grub/i386-pc/stage2_eltorito \
+   	rootcd/boot/grub
+</code>
+
+The GRUB configuration file is called //menu.lst// and can be edited with your favorite text editor. Example:
+
+<file>
+# By default, boot the first entry.
+default 0
+
+# Boot automatically after 20 secs.
+timeout 20
+
+# Change the colors.
+color yellow/brown white/black
+
+title  SliTaz GNU/Linux 1.0 (vga 800x600) (Kernel 2.6.20)
+       kernel /boot/bzImage root=/dev/null vga=788
+       initrd /boot/rootfs.gz
+
+title  SliTaz GNU/Linux 1.0 (vga 1024x768) (Kernel 2.6.20)
+       kernel /boot/bzImage root=/dev/null vga=771
+       initrd /boot/rootfs.gz
+</file>
+
+===== ISO bootable with GRUB =====
+
+To create a bootable ISO image using GRUB and genisoimage or mkisofs:
+
+<code>
+ # genisoimage -R -o slitaz-test.iso -b boot/grub/stage2_eltorito \
+   	-no-emul-boot -V "SliTaz" -boot-load-size 4 -input-charset iso8859-1 \
+   	-boot-info-table rootcd
+</code>
+
+===== Memtest86 =====
+
+The application memtest86 is a tool to test random access memory (RAM). We download the utility into the src directory, decompress the archive, and copy the (precompiled) binary:
+
+<code>
+ # mkdir -v -p src
+ # cd src
+ # wget http://www.memtest86.com/memtest86-3.2.tar.gz
+ # tar xzfv memtest86-3.2.tar.gz
+ # cd memtest86-3.2
+ (# more README)
+ # cp precomp.bin ../../rootcd/boot/memtest
+ # cd ../..
+</code>
+
+Once installed, you can add the label for the memtest86 file to isolinux.cfg, specifing the path to the utility:
+
+<file>
+label memtest
+	kernel /boot/memtest
+</file>
+
+Or if you want to use GRUB, here's the line to launch memtest86:
+
+<file>
+title 	Memtest86 (Test system memory)
+kernel 	/boot/memtest
+</file>
+
+Once the lines are added, you can then create a new ISO and test. 

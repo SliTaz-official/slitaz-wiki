@@ -1,0 +1,100 @@
+====== Chroot environment ======
+
+This document describes the necessary steps to create a chrooted environment, in order to change the root of the system so that you can work. This makes it possible to compile, test and develop SliTaz without any risk to the host system you're working on. The host system can be SliTaz installed to a hard drive or any other GNU/Linux system such as Debian, Fedora, PCLinuxOS and so on. You can also create a chrooted environment in LiveCD mode associated with USB media. The only prerequisite is to have a SliTaz ISO image available and a little time. Note that all commands are carried out as system administrator (root).
+
+===== Prepare the environment =====
+
+To begin, we must extract the contents of the ISO image into the directory that will serve as our chroot. The directory can be created any place you choose, we'll use a directory ///home/slitaz/chroot-env//. To extract the contents of an ISO image, we must mount it in a loop directory and then copy the compressed root filesystem (rootfs.gz) into the chroot directory. Assuming the ISO is in the current directory:
+
+<code>
+ # mkdir /tmp/loop
+ # mount -o loop slitaz-cooking.iso /tmp/loop
+ # mkdir -p /home/slitaz/chroot-env
+ # cp /tmp/loop/boot/rootfs.gz \
+   /home/slitaz/chroot-env
+ # umount /tmp/loop
+</code>
+
+Now we have a copy of the compressed filesystem, we must extract and unpack it (this is a cpio archive compressed with either gzip or lzma). To complete this stage, we can remove the rootfs which is no longer required:
+
+<code>
+ # cd /home/slitaz/chroot-env
+ # (zcat rootfs.gz 2>/dev/null || lzma d rootfs.gz -so) | cpio -id
+ # rm rootfs rootfs.gz
+</code>
+
+If the unpacking of the rootfs compressed with lzma fails; you can use the following method:
+
+<code>
+ # unlzma rootfs.gz -S .gz 
+ # cat rootfs | cpio -id
+</code>
+
+===== Using the environment =====
+
+To begin using the chrooted environment, you just need to mount some virtual filesystems and use the chroot command. To simplify things, we can write a small script automating the process. Example using the chroot directory ///home/slitaz/chroot-env// and creating a script chroot_in_env.sh in ///home/slitaz//. On any systems other than SliTaz you can uncomment the lines about ///dev// and ///tmp// - Note to save typing you can copy and paste:
+
+<code> # cat > /home/slitaz/chroot_in_env.sh << "EOF" </code>
+
+<file>
+#!/bin/sh
+# Chroot in SliTaz to hack.
+#
+ROOTFS="/home/slitaz/chroot-env"
+
+# Mount virtual Kernel file systems and chroot.
+#
+#mount --bind /dev $ROOTFS/dev
+#mount --bind /tmp $ROOTFS/tmp
+mount -t proc proc $ROOTFS/proc
+mount -t sysfs sysfs $ROOTFS/sys
+mount -t devpts devpts $ROOTFS/dev/pts
+mount -t tmpfs shm $ROOTFS/dev/shm
+
+echo "Chrooting into $ROOTFS... "
+chroot $ROOTFS /bin/sh --login
+
+# Unmount virtual Kernel file systems on exit.
+#
+umount $ROOTFS/dev/shm
+umount $ROOTFS/dev/pts
+umount $ROOTFS/sys
+umount $ROOTFS/proc
+#umount $ROOTFS/tmp
+#umount $ROOTFS/dev
+
+echo "Exiting $ROOTFS chroot environment... "
+
+EOF
+</file>
+
+To finish and test the environment, you just make the script executable and run:
+
+<code>
+ # chmod +x /home/slitaz/chroot_in_env.sh
+ # sh /home/slitaz/chroot_in_env.sh
+</code>
+
+=== To activate the network ===
+
+In order to have the network up to download and install some development packages, just start the DHCP client on the correct interface. Example using eth1:
+
+ <code> # udhcpc -i eth1 </code>
+
+=== Installing packages ===
+
+If the network is functional, just reload the list of packages and use tazpkg get-install to install them. If a connection is not possible, you can download the packages from another system, copy them to the chrooted environment and install them with the tazpkg install command. To install the basic compilation tools:
+
+ <code> # tazpkg recharge
+ # tazpkg get-install slitaz-toolchain </code>
+
+Once the environment is configured, you can compile applications from source to create packages, test scripts, etc. The Cookbook should help you out here:
+
+=== Exit the environment ===
+
+To exit the chrooted environment, just type exit, the //chroot_in_env.sh// script will then end by unmounting the virtual filesystems from the Linux Kernel:
+
+<code>
+ # exit
+ #
+</code>

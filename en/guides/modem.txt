@@ -1,0 +1,17 @@
+====== Hardware Guides: Modems ======
+
+[[cricket-a600|Cricket A600 Broadband Modem]]: - How to install a Cricket a600 Broadband Modem
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Low  |
+|Review| Major Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: |  |
+
+\\
+----

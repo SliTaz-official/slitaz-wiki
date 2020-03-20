@@ -1,0 +1,108 @@
+====== Multimedia ======
+
+===== SliTaz sound and video =====
+
+SliTaz LiveCD mode provides sound support, but no video player, however you can watch YouTube by installing the get-flash-plugin package. To watch videos you can use Xine, it supports most formats such as avi, mov, mpeg, etc. Note Xine can also act as an audio player. At the sound level, you have a mixer (alsamixer) and audio player (alsaplayer), both installed by default on the standard LiveCD. SliTaz also provides tools to configure your sound card.
+
+===== Configure the sound card =====
+
+In LiveCD mode SliTaz automatically configures the sound card by launching a dialog. In most cases the sound card is instantly recognized and you just press ENTER to continue to login and have your sound working. However, sometimes your card is not recognized at startup or simply not supported. Before throwing in the towel, you can try to manually configure your card by asking for help on the mailing list or on the hardware support forum.
+
+=== Soundconf ===
+
+To configure or reconfigure a sound card, SliTaz provides a script (soundconf), this utility is used at startup and doesn't pose any questions, supports the right modules and automatically configures ///etc/rsS.conf// so that the right driver is loaded on each start. Soundconf will also automatically adjust volume levels, you can change the settings later through the mixer and alsactl. To start the sound configuration interface, you must have administrator priviledges and type:
+
+<code> # soundconf </code>
+
+=== Alsactl ===
+
+Alsactl controls alsa and can store settings or restore sound for example, to retain preferences for each start. When configuring sound with soundconf, volumes are automatically adjusted. You can use alsamixer as root to change the values and then launch alsactl to store the configuration.
+
+First, start alsactl:
+
+<code> # alsactl init </code>
+
+Then use alsamixer to set up sound levels according to your preferences (you can find them at //Applications// menu --> //Multimedia//). Lastly, use alsactl again to store your preferences:
+
+<code> # alsactl store </code>
+
+To restore the configuration you can use the alsactl restore command or to restore your preferences at each system startup you can edit /etc/init.d/local.sh with your favorite text editor or simply 'echo' the changes:
+
+<code> # echo 'alsactl restore' > /etc/init.d/local.sh </code>
+
+===== Alsamixer =====
+
+Alsamixer is the official mixer of the Alsa project. It is simple and effective and can be run from the menu or directly from a terminal. The volumes can be regulated with the up/down arrows or muted using the m key. To start from a Linux terminal:
+
+<code> $ alsamixer </code>
+
+===== Alsaplayer =====
+
+The audio player Alsaplayer is designed to be simple, clean and intuitive. Alsaplayer on SliTaz provides support for ogg, mp3 (via libmad) and wav files, playlists and viewers to accompany sound and the ability to adjust pitch and volume. Once launched from the menu, just click the play button or load a playlist to start.
+
+===== Asunder - Audio CD Ripper =====
+
+Asunder retrieves and encodes audio tracks from a CD. The toolkit is simple and easy to use, encoding songs into wav, ogg or mp3 (via lame package). It can search CDDB, create playlists and edit file names. You will find Asunder in the //Multimedia// category on the menu.
+
+===== mhWaveEdit - Audio editor and recorder =====
+
+mhWaveEdit is a graphical application for playing, recording and editing sound files. Supported formats: wav (default), and a few others. A variety of other formats can also be imported through Mplayer. To start from
+the menu, select //Multimedia -> mhWaveEdit//.
+
+===== MPD - Music Player Daemon =====
+
+MPD is a great little music player that uses the server/client architecture, this means it can be even run remotely without a X server operating. To install MPD on SliTaz: <code> # tazpkg get-install mpd</code> MPD on SliTaz drops root priviledges, so to start the server, just run:
+
+<code> $ mpd </code>
+
+And to stop it:
+
+<code> $ mpd --kill </code>
+
+Simply drag your music files into the //~/music// folder (or create a link) and then run //mpd --create-db// as root to update the database and you're ready to use one of the many clients. The //mpd --version// command lets you have a full list of available formats and outputs.
+
+===== MPC - Music Player Client =====
+
+MPC is a popular client for MPD, to load all the files into MPC from the MPD database and start to play them, simply install and run:
+
+<code> # tazpkg get-install mpc
+ $ mpc add /
+ $ mpc play </code>
+
+The command //mpc --help// gives you a full list of all the available options that allow you to edit the playlist, enable crossfade, adjust the volume and shuffle tracks, etc.
+
+===== mpg123 =====
+
+mpg123 is a command line audio player and file converter, this means that you can listen to music or convert files from a terminal. To install:
+
+<code># tazpkg get-install mpg123</code>
+
+To display help, use the //--help// option. To play a mp3 file, just launch mpg123 followed by the name of the audio file:
+
+<code> $ mpg123 sound.mp3 </code>
+
+mpg123 can also encode a file into another format, for example you can convert a //wav// file into a mp3 file. Example:
+
+<code> $ mpg123 -w sound.mp3 sound.wav </code>
+
+===== Mplayer =====
+
+Mplayer is a popular movie player for Linux suppporting many formats including, DVD, VCD, mpeg, wmv, realvideo, etc. It can also play various audio codecs such as aac, wma, realaudio, as well as ogg, flac, etc. Mplayer is configurable via a right click menu and customizable using various skins and GUIs that easily enable you to configure your own video drivers, output devices and so on. To install mplayer:
+
+<code># tazpkg get-install mplayer-svn</code>
+
+===== Xine =====
+
+Xine is a multimedia project providing various video viewers and audio players. SliTaz provides libraries and a media player contained in the package xine-ui. Xine uses a Xlib interface, a control panel, a right click configuration menu and various plugins. It can play ogg, mp3 and flac audio codecs, and mov, avi or mpg video formats. To install xine and its dependencies:
+
+<code> # tazpkg get-install xine-ui </code>
+
+Official Xine [[http://xinehq.de/index.php/home|website]] 
+
+===== VLC =====
+
+VLC media player is a highly portable multimedia player and multimedia framework  capable of reading most audio and video formats (MPEG-2, MPEG-4, H.264, DivX, MPEG-1, mp3, ogg, aac ...) as well as DVDs, Audio CDs VCDs, and various streaming protocols. To install vlc:
+
+<code> # tazpkg get-install vlc </code>
+
+Official VLC [[http://www.videolan.org/vlc/|website]] 

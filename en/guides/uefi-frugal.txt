@@ -1,0 +1,165 @@
+\\
+====== HOWTO do a frugal installation on a computer in UEFI boot mode ======
+\\
+===== 1. Introduction =====
+\\
+Arun Prakash Jana has [[http://tuxdiary.com/2014/04/13/boot-slitaz-in-uefi-mode/ | already described]] how to install SliTaz in frugal mode on an UEFI computer. But he did install the kernel and the rootfs in the ESP partition.\\
+IMHO, the ESP partition should be reserved for boot loaders and no operating system or software should be installed in it. This document explains how to do a frugal install of SliTaz Next (32bit) on the Windows partition, C:
+<note>
+All along this tutorial,
+  * the ESP partition will be noted **(ESP)**
+  * and the main partition of Windows **(C:)**.
+</note>
+\\
+=====2. Installing files on (C:)=====
+\\
+  * Start Windows and open the file manager.
+
+  * Select (C:) and create a new directory at root; say ''slitaz''.
+
+  * Open ''slitaz'' and create a directory, say ''next'' in it.
+
+  * Plug your EFI LiveUSB and copy the files ''bzImage'' and ''rootfs.gz'' from the \boot directory of the Live into the \slitaz\next directory of (C:).
+
+  * Copy the boot loader - ''bootia32.efi'' for a 32bit EFI system (or ''bootx64.efi'' for a 64bit EFI system) - from the \efi\boot directory of the Live into the \slitaz\next directory of (C:).
+
+<note>
+If you didn't copy files from your EFI LiveUSB but extracted them from an ISO file, pay attention that Windows may truncate files names or/and extensions and will use uppercase.\\
+It doesn't matter that the characters are uppercase or lowercase in NTFS or FAT partitions. But it'll be more consistent if you rename files with their exact name and extensions and respecting the case.
+</note>
+\\
+=====3. Installing the boot loader=====
+\\
+The boot loader must be installed in (ESP); this partition is not mounted at boot and is hidden.\\
+Mount (ESP) : from Windows 8/10, right-click on the **Home button** in the bottom left corner of the screen. In the context menu that opens, select **Windows PowerShell (admin)**. The //User Account Control// will warn you that Windows PowerShell wants to modify the system; confirm by clicking [ YES ].\\
+<note>
+Note that Windows
+  * uses ''\'' and ''/'' where Linux respectively uses ''/'' and ''-''
+  * and doesn't do any differences between uppercase and lowercase.
+</note>
+In the admin terminal, type:
+<code>
+mountvol s: /s
+</code>
+You can check (ESP) is correctly mounted listing the directories and files it contains:
+<code>
+dir s:
+</code>
+{{:en:guides:image:mountvol.png|}}
+\\
+\\
+Create a directory, say ''slitaz'', in the EFI directory of (ESP)
+<code>
+mkdir s:\efi\slitaz
+</code>
+Copy the boot loader into it.
+  * For a 32bit EFI computer, type:
+<code>
+move \slitaz\next\bootia32.efi s:\efi\slitaz\grubia32.efi
+</code>
+  * For a 64bit EFI computer, type:
+<code>
+move \slitaz\next\bootx64.efi s:\efi\slitaz\grubx64.efi
+</code>
+Note we have renamed the file; this is not a necessity but it'll help to you remind that SliTaz is launched with GRUB 2.
+\\
+\\
+=====4. Configuration file for GRUB 2=====
+\\
+Create a \boot\grub directory in (ESP)
+<code>
+mkdir s:\boot\grub
+</code>
+Create the configuration file:
+<code>
+notepad s:\boot\grub\grub.cfg
+</code>
+-Example-
+<file>
+### CONFIGURATION FILE FOR GRUB 2 ###
+#
+
+# Comment the line if you want SliTaz to start immediately or
+# change the value to define the time (seconds) to wait before booting.
+set TIMEOUT=-1
+
+# Menu 0: SliTaz Next (ISO 20170930 - kernel 4.9.30)
+menuentry "SliTaz Next - frugal install" {
+   set root=(hd0,3)
+   linux /slitaz/next/bzImage ro root=/dev/null video=-32 autologin
+   initrd /slitaz/next/rootfs.gz
+}
+</file>
+This config file considers (C:) is ''(hd0,3)'': the third partition of the first hard disk, this is generally the case. To verify what the main partition of Windows is, run the ''Diskpart'' utility; ask for the ''list'' of the disks, ''select'' the Windows disk and ''list'' its partitions:\\
+\\
+{{:en:guides:image:diskpart.png|}}
+\\
+\\
+Unmount (ESP):
+<code>
+mountvol s: /d
+</code>
+\\
+=====5. Disabling the fast startup=====
+
+<note warning>
+**Remember: you MUSN'T access (C:) as long as you haven't disabled the fast startup of Windows!**
+</note>
+Check if the fast startup is enabled (default); in the admin terminal, type ''powercfg /a'':\\
+\\
+{{:en:guides:image:powercfg-on.png|}}
+\\
+\\
+The fast startup is __enabled__.\\
+//(Sorry for french screens; feel free to replace them with english version. Thanks.)//\\
+\\
+To disable the fast startup, type ''powercfg /h off''. Check the fast startup is really disabled by typing ''powercfg /a'' again:\\
+\\
+{{:en:guides:image:powercfg-off.png|}}
+\\
+\\
+The fast startup is __disabled__.\\
+You didn't think it was possible but now yes, Windows will boot even more slowly than before...
+\\
+\\
+=====6. Configuring the computer (Setup)=====
+\\
+You don't have anything else to do than to disable the ''Secure Boot''. You've already did it when you created your EFI LIveUSB.\\
+If you came directly to this tutorial without doing an EFI LiveUSB, see step 5 of [[http://doc.slitaz.org/en:guides:uefi-live | HOWTO do a SliTaz LiveUSB for EFI computers]].
+\\
+\\
+=====7. Run SliTaz=====
+\\
+Reboot the computer and access the Multiboot mode. On the //**hp**// Laptop 17-bs032, press the **[F9]** key immediately after you've powered on the computer until the ''Boot Manager'' displays the list of the disks where it found a bootx64.efi file in a \EFI\BOOT of a FAT32 partition:\\
+\\
+{{:en:guides:image:boot-manager.png|}}
+\\
+\\
+Select ''Boot From EFI File''. The ''EFI File Explorer'' displays the list of the volumes found; select your hard disk then ''EFI'' > ''slitaz'' > ''grubx64.efi'' to run GRUB 2.\\
+\\
+{{:en:guides:image:file-explorer.png|}}
+\\
+<note>If you don't know how to access the Multiboot menu, have a look [[https://doc.ubuntu-fr.org/tutoriel/modifier_ordre_amorcage_du_bios#liste_des_touches_pour_acceder_au_bios_et_au_boot_menu|here]]).
+</note>
+Congratulations and Welcome to SliTaz Next!
+\\
+<note tip>
+**Want to test the latest ISOs of SliTaz without having to do changes to (ESP)?**\\
+Add a generic entry in your grub.cfg; ie:
+<file> 
+# Menu 1: boot Slitaz from ISO file
+menuentry "SliTaz - LiveISO" {
+   loopback taziso (hd0,3)/slitaz/slitaz.iso
+   linux (taziso)/boot/bzImage ro root=/dev/null video=-32 autologin
+   initrd (taziso)/boot/rootfs.gz
+}
+</file>
+Download the ISO to test in c:\slitaz, renaming it slitaz.iso.
+</note>
+\\
+We now know enough to proceed to a [[http://doc.slitaz.org/en:guides:uefi-full | full installation of SliTaz in dual boot with Windows 8/10]].
+\\
+\\
+\\
+|2018/05/10  |Creation |
+^  Date  ^  Modification  ^

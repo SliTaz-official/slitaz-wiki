@@ -1,0 +1,88 @@
+====== Prepare the experimental wok ======
+
+==== Warning ====
+
+Before using the experimental wok, it's advisable to read and understand the [[en:cookbook:advancedhg|Advanced usage of Mercurial]] as the experimental wok uses MQ to handle the patch queue.
+
+Please note that the source code, wok & packages use a lot of space, don't store all of that in your RAM unless you're sure that it will run fine. If you use a live system, you can use a physical disk to store data using the boot option home=. You can also mount the disk (i.e.: on /mnt).
+
+==== Enabling Mercurial Queue ====
+
+The experimental wok is shared as patches which can't be integrated into the cooking wok for now. To use them, you need the extension MQ. So your ~/.hgrc should contain these lines:
+
+<code>
+[extensions]
+mq =
+</code>
+
+==== Download cooking wok & patch it ====
+
+First check that the destination disk is mounted. In the directory which contains the data, create a repository called experimental and enter in it:
+<code>
+cd destination
+mkdir experimental
+cd experimental
+</code>
+
+
+Download the wok:
+<code>
+hg clone http://hg.slitaz.org/wok wok
+</code>
+
+If you were root, enable read/write permissions to your normal account; then exit the root one:
+<code>
+chown tux.tux -R wok
+</code>
+
+The patches will apply well on the revisions for which they was created, but problems can appear with the other revisions. The revisions correlated to the last update of the patches can be found here: http://hg.slitaz.org/wok-experimental.
+Update the wok to the good revision:
+<code>
+hg update -C rev
+</code>
+
+Download experimental patches:
+<code>
+cd .hg
+hg clone http://hg.slitaz.org/wok-experimental patches
+</code>
+
+Apply patches:
+<code>
+cd ..
+hg qpush -a
+</code>
+
+==== Update the experimental wok ====
+
+Go into the wok:
+<code>
+cd ?/wok
+</code>
+
+Unapply patches (doesn't work if modifications are uncommitted):
+<code>
+hg qpop-a
+</code>
+
+Update cooking wok:
+<code>
+hg pull
+</code>
+
+Check the revision to use at http://hg.slitaz.org/wok-experimental and update the working directory to this revision:
+<code>
+hg update -C rev
+</code>
+
+Update patches repository:
+<code>
+cd .hg/patches
+hg pull -u
+</code>
+
+Apply the new patches:
+<code>
+cd ../..
+hg qpush -a
+</code>

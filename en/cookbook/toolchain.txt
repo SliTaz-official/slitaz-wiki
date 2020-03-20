@@ -1,0 +1,15 @@
+====== Toolchain ======
+
+The Toolchain is the set of packages used to build the entire system. It consists of Binutils, GCC, Linux API headers and the GNU libc aka Glibc. SliTaz has an annual development cycle, so the toolchain gets a huge update once a year just after a stable release. When the toolchain changes we must rebuild all packages to ensure quality and consistency. 
+
+On SliTaz you have 2 ways to rebuild a toolchain from scratch: Cookutils and Tazwok. Tazwok is historically the first packages builder for SliTaz and over time has evolved into a powerful tool that can rebuild the full system from scratch. More info: http://doc.slitaz.org/en:devnotes:new-tazwok-illustrated. (Tazwok has been deprecated since SliTaz v4).
+
+Cookutils are the new tools, written from scratch as before and for SliTaz 4.0. The build tools needed a huge improvement since they were first written when SliTaz had 400-500 packages, when Cookutils was started SliTaz had 2960 packages, so the way to handle all these packages is even more complex than at the beginning of the project. Also the Cookutils have been written with simplicity and speed in mind and are used on the official SliTaz build host aka Tank. 
+
+To rebuild the official toolchain with Cookutils you must use the package slitaz-toolchain. This package is used to install the toolchain in a development environment and builds the Toolchain in the correct order with 2 passes for binutils and GCC. You will find some info in the slitaz-toolchain receipt itself and after building we keep a note in /usr/share/doc/slitaz/toolchain.txt 
+
+Recooking the full toolchain can be slow:
+
+<code>
+# cook slitaz-toolchain
+</code>

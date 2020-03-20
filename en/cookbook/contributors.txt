@@ -1,0 +1,23 @@
+(Work in progress...)
+
+===== How to contribute =====
+
+  * Documentation
+  * Translation
+  * Web design
+  * Art work
+  * Improve usability / simplicity
+  * Package set selection
+  * Package development
+
+===== SliTaz network =====
+
+  * Restricted web acces
+<note>
+$ htpasswd -nb YourUsername YourPassword
+</note>
+
+  * unix accounts
+<note>
+# grep ^YourUsername /etc/shadow
+</note>

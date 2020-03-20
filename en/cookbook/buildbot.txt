@@ -1,0 +1,4 @@
+====== Build Bot - Cooker ======
+
+\\
+See Cookutils documentation and http://cook.slitaz.org/

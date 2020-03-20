@@ -1,0 +1,69 @@
+====== Frequently Asked Questions ======
+
+Listed here are the most frequently asked questions from the user forums. Please check here to see if your problem has been fixed before starting a new forum thread.
+
+These are organised into per-scenario groups - from  system-level through to the desktop. Within each, a symptom describes a give-away identification of the problem; a widely-working solution is then outlined.
+
+\\
+===== General  =====
+  * [[faq-login|Log-In Problems]]
+  * [[faq-slim|Shutdown via slim]]
+  * [[faq-terminal|Terminals (Copy/Paste etc.)]]
+
+\\
+
+===== Package or Software  =====
+  * [[faq-dependency| An Application Cannot Find Libraries/Files ]]
+  * [[faq-programfailstorun | A Program Doesn't Run or Quits Unexpectedly ]]
+  * [[faq-pkgconv | Can I install a package on SliTaz from another distribution? ]] 
+
+\\
+
+===== Hardware  =====
+  * [[faq-mouse|Mouse]]
+
+\\
+
+===== Questions Still Unanswered? =====
+
+No problem! We are happy to hear your question over at our [[http://forum.slitaz.org/|Support Forum]] -- or even the [[http://www.slitaz.org/en/mailing-list.html|Mailing List]] if it is a more lengthy discussion -- once you have looked through our [[http://doc.slitaz.org/en:start|documentation]]!
+
+Answering questions takes time however, to answer them well slightly longer. This time could be better spent for other necessary things, like improving SliTaz or writing documentation.
+
+** Your first post should include the following things: **
+
+  * detailed information about your hardware
+    *  e.g the manufacturer and model of your computer, motherboard or (even better) detailed chip information. The latter can be found by running the following command and uploading the generated //SysInfo.txt// file:
+ 
+<code>
+echo '=== PCI Devices: ===' >> SysInfo.txt && lspci >> SysInfo.txt && echo '=== USB Devices: ===' \ 
+>> SysInfo.txt && lsusb >> SysInfo.txt && echo '=== Kernel Modules: ===' >> SysInfo.txt && lsmod >> SysInfo.txt
+</code>
+
+  * precise information about your SliTaz installation:
+    *  which version to you have? Stable or Cooking?
+    *  are you using the standard ISO or a specific flavor (XVESA, Lo-RAM etc.)?
+    *  is it installed on a HD or on an USB stick?
+    *  do you know which file-system you used?
+
+  * identify when your problem appeared:
+    *  was it just after installation or after an update?
+    *  were there any changes to your normal usage pattern or configuration?
+
+This should provide enough system information for help to be provided.
+
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Low  |
+|Review| Major Updates FIXME  |
+|Priority| High |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly, e.g.,|
+|::: | [[en:guides:start | Add link]]|
+|::: | Add new rows like this ;-)  |
+
+\\
+----

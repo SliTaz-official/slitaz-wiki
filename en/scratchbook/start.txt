@@ -1,0 +1,50 @@
+====== Scratchbook ======
+
+Index of documents, step by step construction of a mini GNU/LINUX LiveCD and installation instructions. 
+
+===== Introduction =====
+
+The scratchbook allows you to track the creation of the first public release of SliTaz and make a trip to the heart of GNU/LINUX. You'll be able to customize your new system or create your own autonomous distro running in system memory (RAM) that's fully installable on a hard drive or USB key. Once started you'll be able to remove the CD-ROM and still have SliTaz working. SliTaz can also be used as an environment in which we can chroot or use the cdrom for multitasking. The only prerequisite is a host distribution in which you can store libraries, use a compiler and development tools, etc. The host system can be a chrooted development environment, a minimal distro, SliTaz installed on a hard drive or a 'general' distro such as Debian, Slackware, Fedora, Gentoo, Mandriva, Arch, etc. Note that nothing is installed in the host system by our commands.
+
+SliTaz uses the 'Swiss Army Knife' BusyBox as the basis of the system and the Linux Kernel, it runs embedded using a small memory footprint and provides many files. BusyBox is our main source of information and it's a utility of the Debian project which we use and cherish.
+
+SliTaz uses the Syslinux bootloader and an archived initramfs compressed with cpio. This archive is then decompressed in memory at boot by the kernel into a system of no fixed size, retaining control over init. At the time of compilation or copying of applications, we use strip to clean the repositoiries. The system commands genisoimage or mkisofs are used to create the iso images. To finish, you can test the iso image with Qemu or engrave the generated iso on to a rewritable cdrom. 
+
+===== Organize a working directory =====
+
+To create SliTaz, we need a working directory and several subdirectories Whether you have a chrooted environment for developing or a host system, we advise to use a directory named //distro/// in which to work. The distro/ directory can be a simple folder or a partition, but you are obviously free to put all of this elsewhere.
+
+=== distro/ ===
+
+Contents of a working directory:
+
+    * rootfs/ --> The root filesystem - this is the root system, designed to operate in RAM, it is used to generate the initramfs image.
+    * rootfs.gz --> The initramfs image of our system - a cpio archive compressed with gzip.
+    * rootcd/ --> The rootcd. This is the root of the cdrom files.
+    * src/ --> The sources, Kernel, Syslinux, Busybox, Dropbear, etc (it can also be a symbolic link).
+
+Thereafter, the initramfs and bootable ISO image (slitaz-cooking.iso) will be created in the root directory of our work named SliTaz/.
+
+=== Option: rootfs.ext2 - using a virtual hard drive ===
+
+Option: rootfs.ext2 (root filesystem in ext2) is a virtual hard disk formatted with ext2 and mounted on a (rootfs) loop. A device loop allows a file to be used as a standard device (hard drive, floppy, etc) to build a filesystem inside. This file can be any number of megabytes, we propose 20,480, which corresponds to 20MB:
+
+<code> # dd if=/dev/zero of=rootfs.ext2 bs=1k count=20480 </code>
+
+Create a //ext2// filesystem named //rootfs.ext2//, the option //-F// formats the file. Note that the //-m 0// option doesn't allocate any space for the user root - by default it occupies approximately 5% and the //-t// option defines the type of filesystem to be used, such as ext2 or ext3:
+
+<code> # mkfs -t ext2 -F -m 0 rootfs.ext2 </code>
+
+We can now assemble //rootfs.ext2// with a loop, thanks to the //-o loop option// provided by the mount utility in the //rootfs/// directory. You can check if the assembly went well with the //df-h// command:
+
+<code>
+ # mkdir rootfs
+ # mount -o loop rootfs.ext2 rootfs
+ # df -h
+</code>
+
+At the end of the session, you can dismount the volume with umount:
+
+<code> # umount rootfs </code>
+
+Now we can proceed to the construction of the [[base-system|Base SliTaz system]]. 

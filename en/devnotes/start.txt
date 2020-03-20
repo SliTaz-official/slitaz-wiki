@@ -1,0 +1,18 @@
+====== Development Notes ======
+
+This page contains development information about the cooking version. Some pages will go into the guides or books when the next stable version is released. Others are temporary pages which coordinate development work.
+
+===== Information for users ===== 
+
+  * [[xorgserver-user|xorg-server-1.8]] - Update configuration
+
+===== Information for contributors =====
+
+  * [[xorgserver-contrib|xorg-server-1.8 ]] - Drivers pre-configuration
+  * [[en:devnotes:prepare-experimental|Prepare the experimental wok]] - Howto use the experimentals patches with MQ
+  * [[en:devnotes:ash-benchmarks|Ash benchmarks]] - How-to optimize ash scripts 
+  * [[https://oldpapyrus.wordpress.com/2013/08/17/quick-guide-to-start-cooking-slitaz-packages/|Quick guide to start cooking SliTaz packages]]
+
+===== Deprecated Stuff =====
+
+  * [[en:devnotes:new-tazwok-illustrated|New Tazwok]]

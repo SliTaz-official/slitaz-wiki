@@ -1,0 +1,12 @@
+====== Dropbear SSH ======
+
+Dropbear is a small SSH server and client written by Matt Johnston
+
+https://matt.ucc.asn.au/dropbear/dropbear.html
+
+By default SliTaz will not start the SSH server at boot. To be launched automatically, dropbear must be added to the variable RUN_DAEMONS in the /etc/rcS.conf file.
+(Normally Dropbear logs in /var/log/messages, but in SliTaz it logs in /var/log/auth.log)
+
+More info: http://doc.slitaz.org/en:handbook:ssh
+
+A good doku of dropbear is on OpenWRT -  http://wiki.openwrt.org/doc/uci/dropbear 

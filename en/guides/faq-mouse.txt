@@ -1,0 +1,41 @@
+====== Mouse ======
+
+===== I can't change the mouse for left-handed people =====
+
+=== Symptoms ===
+I can't change the mouse for left-handed people using the computer.
+ 
+=== Explanation ===
+
+You need to install the ''xorg-xmodmap'' package to configure the mouse buttons.
+
+=== Solution ===
+
+Install the ''xorg-xmodmap'' package. In a terminal, type:
+  # tazpkg -gi xorg-xmodmap
+
+To configure the mouse for left-handed:
+  # xmodmap -e "pointer = 3 2 1"
+
+To configure the mouse for right-handed:
+  # xmodmap -e "pointer = 1 2 3"
+
+To check the configuration of your mouse:
+  # xmodmap -pp
+
+To make the changes permanent for your user, create a new file called ''xmodmap.desktop'' in the ''~/.config/autostart'' directory with the following content:
+<file>
+[Desktop Entry]
+Type=Application
+Name=Left hand mouse
+Exec=xmodmap -e "pointer = 3 2 1"
+NotShowIn=XFCE;Razor;LXDE;
+</file>
+
+Logout and Login to X session and the mouse buttons are configured for left-handed people. 
+
+To make the changes permanent for all users at the same time, repeat the procedure above as //root//, creating a new ''xmodmap.desktop'' file in the ''/etc/xdg/autostart'' directory.
+
+
+References:\\ [[http://forum.slitaz.org/topic/mouse-left-handed|Mouse left-handed]]\\
+[[http://forum.slitaz.org/topic/help-configure-left-handed-mouse#post-1792|Configure left-handed mouse]]

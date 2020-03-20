@@ -1,0 +1,48 @@
+# The Bar && Font
+i: /usr/share/wbar/iconpack/osxbarback.png
+t: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans/14
+c:
+
+i: /usr/share/pixmaps/sakura.png
+c: /usr/bin/sakura
+t: Terminal emulator
+
+i: /usr/share/pixmaps/firefox.png
+c: /usr/bin/firefox
+t: Web browser
+
+i: /usr/share/pixmaps/sylpheed.png
+c: /usr/bin/sylpheed
+t: Mail client
+
+i: /usr/share/pixmaps/emelfm2.png
+c: /usr/bin/emelfm2
+t: 2 pan file manager
+
+i: /usr/share/pixmaps/leafpad.png
+c: /usr/bin/leafpad
+t: Text editor
+
+i: /usr/share/icons/hicolor/48x48/apps/geany.png
+c: /usr/bin/geany
+t: Light IDE
+
+i: /usr/share/pixmaps/alsaplayer.png
+c: /usr/bin/alsaplayer
+t: Audio player
+
+i: /usr/share/pixmaps/abiword.png
+c: /usr/bin/abiword
+t: Word processor
+
+i: /usr/share/pixmaps/mitter.png
+c: /usr/bin/mitter
+t: Twitter client
+
+i: /usr/share/pixmaps/tazctrlbox.png
+c: /usr/bin/subox tazctrlbox
+t: SliTaz Control box
+
+i: /usr/share/pixmaps/nitrogen.png
+c: /usr/bin/nitrogen $HOME/Images/Wallpapers
+t: Wallpaper settings

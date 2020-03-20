@@ -1,0 +1,123 @@
+.. http://doc.slitaz.org/en:guidelines
+.. en/guidelines.txt · Last modified: 2011/04/23 23:24 by domcox
+
+.. _guidelines:
+
+SliTaz Documentation Guidelines
+===============================
+
+This document provides guidelines on writing a wiki article and the tasks to be performed to make SliTaz documentation up-to-date.
+
+
+Summer of Documentation
+-----------------------
+
+#. Centralization of all documentation to http://doc.slitaz.org
+#. <del>Complete migration of Handbook and Cookbook (Scratchbook, if possible)</del>
+#. Translation of Handbook and Cookbook
+#. Link or translate the wiki articles on the `labs website <http://labs.slitaz.org>`_
+#. Review and update Handbook and Cookbook as of 3.0
+#. Add new guides.
+   A wishlist of guides has been predefined on the :ref:`guides page <guides>` as a starting reference
+#. Review and update existing guides
+
+
+General Instructions
+--------------------
+
+* **Add**: Feel free to add any pages to the wiki
+
+  * **Namespaces or Documentation Hierarchy**: Documentation Hierarchy structure has been defined for the English language.
+    Please follow it as a standard while creating pages.
+    Some examples:
+
+    * ``en:handbook:start``: Handbook start page
+    * ``en:handbook:desktop``: Desktop is a page link on the handbook start page.
+      All handbook pages should have the namespace "en:handbook:"
+    * ``en:guides:faq``: All guides pages should have namespaces "en:guides".
+      To create a faq page, simply do ``[[faq | FAQ]]``.
+      This will automatically create a faq page with the en:guides:faq namespace
+    * ``Index``: Links can be used to see the hierarchy structure
+
+  * **Add Images**: Use the toolbar and add images to the relevant namespaces
+
+* **Delete**: Simply remove all the contents of the pages to delete a page
+* **Review**:  Each page should contain a review section.
+  For example, :ref:`see the bottom of this page <guidelines formatting>`.
+  A review section is just a wiki table.
+  You are free to edit the table and/or add extra rows to the table.
+  You can translate it into your own language.
+  You can also copy and paste the page review table on this page to any of the wiki pages and edit accordingly
+
+
+Page Layout
+-----------
+
+There are some definite styles of pages to which we can bring a consistent layout.
+
+
+FAQ
+^^^
+
+This applies to one page, :ref:`faq`.
+
+#. **Error Message** — title the individual FAQ with the most likely description, usually the error message displayed.
+#. **Symptoms** — a brief description of what the user may experience when this FAQ applies.
+   There may be more than one.
+   Use correct formatting when describing on-screen messages, keystrokes etc.
+   Hopefully, Google results will pick this up.
+#. **Explanation** — a not-very-technical explanation of the error message.
+   Users will be able to understand the problem and how it can be resolved in a high-level sense.
+#. **Solution** — how to solve the problem, technically.
+   Include brief descriptions of the steps needed rather than merely a list of commands; this is important to understand what the user needs to do.
+   Individual problems have slightly different solutions — use levels of bullet points etc. to organise it.
+
+
+Guides
+^^^^^^
+
+These resides under the ``<lang>:guides:<topic>`` name-space.
+They describe a process to get something working.
+
+#. **Introduction** — Summarize the article
+#. **Graphical Way**
+
+   * Instructions — How to use the graphical tool (if it exists)
+   * Screenshots — A picture is worth a thousand words
+
+#. **Manual Way**
+
+   * Installation — Define the packages required and how to install them
+   * Configuration — Explain how to configure files for the proper functioning of packages
+   * Summarize — If possible, summarize all commands in one single script for troubleshooting
+
+#. **Examples and Tips** — Add some examples and advanced tips
+#. **FAQ/Troubleshooting** — Some DIY instructions or a sub-section on problems/symptoms/solutions/notes or a link to forum posts.
+   Link to FAQ if answered there
+#. **References** — Other good reference material on the Internet.
+   If there aren't any, consider a message asking for some!
+
+
+Handbook
+^^^^^^^^
+
+These reside under the ``<lang>:handbook:<topic>`` namespace.
+They brief the reader on what SliTaz can offer on a particular topic.
+They are an overview and description and not a guide, though they may contain (very) few steps on how to get up-and-running.
+
+#. **Blurb** — describes the content of the page, in terms of scope.
+#. **Topic** — what the user expects to achieve, e.g. 'Image Processing' or 'Desktop Themes'
+#. **Body Text** — an overview of the topic, with links to relevent Guides or external web pages.
+#. **Tips** (optional) — any problems the user may experience. Link to FAQ if answered, forum posts, good problem-solving web pages etc.
+
+
+.. _guidelines formatting:
+
+Formatting
+----------
+
+Please use correct formatting wherever possible.
+It aids readability and often lessens ambiguity between commands that should be entered vs. output etc.
+
+* Learn `wiki syntax <http://doc.slitaz.org/wiki:syntax?s[]=playground>`_.
+  For testing wiki syntax, just use the `Playground <http://doc.slitaz.org/en:guides:playground>`_ page.

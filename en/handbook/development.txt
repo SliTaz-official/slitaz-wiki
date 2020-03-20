@@ -1,0 +1,149 @@
+====== Development ======
+
+===== About Development =====
+
+SliTaz provides development tools for web design, editing scripts and source code. On the website, the Development page will give you general information about the developers and opportunities for involvement.
+
+===== SHell scripts =====
+
+Writing SHell scripts is the easiest way to start coding, they can provide quick results and the only prerequisites are being able to open a terminal and using a text editor such as Nano, Leafpad or Geany. SHell scripts can do many things on a GNU/Linux system - initialize the system, make backups, perform repetitive tasks, display system information, create or modify files and so on. In a SHell script you can use variables, functions or calls to include a file. Note that you can name your script as you see fit and the .sh extension is widely used.
+
+=== Create a SHell script ===
+
+Before starting a new SHell script, you must pay attention to the interpreter used. Most SHell scripts use ///bin/sh//, because it's more portable, but there are scripts that rely on ///bin/bash// and this must be installed on the system. For a SHell script to function it must be made executable by changing permissions on the command line using the chmod tool. To create a script.sh and make it executable:
+
+<code> $ touch script.sh
+ $ chmod +x script.sh
+</code>
+
+Now that you have a new executable file, you can edit it. You can continue to stay in the terminal and use the Nano editor (Ctrl + x to save & exit) or IDE Beaver to edit:
+
+<code>
+ $ nano script.sh
+ Or :
+ $ beaver script.sh &
+</code>
+
+Here's a script that contains a variable NAME and displays the value with the echo command:
+
+<file>
+#!/bin/sh
+
+NAME="kayam"
+
+echo "$NAME is nice."
+</file>
+
+Once you have created/modified your script.sh, you can execute it to see the result:
+
+ <code> $ ./script.sh </code>
+
+So much for this brief introduction to SHell scripts. The Web is full of information if you wish to explore further.
+
+===== Dialog =====
+
+Dialog can create GUI-based consoles such as the SliTaz 'installer'. The configuration files are ///etc/dialogrc// and/or //~/dialogrc// for each user. Here's a simple example of using dialog via a console or terminal:
+
+<code> $ dialog --title "Hello $USER" \
+   --msgbox "Message made by dialog." 5 54 </code>
+
+You can find plenty of example scripts in the ///sample// directory inside the source code of dialog which can be downloaded from: http://invisible-island.net/dialog/dialog.html. Download sources and decompress:
+
+<code> $ wget ftp://invisible-island.net/dialog/dialog.tar.gz
+ $ tar xzf dialog.tar.gz
+</code>
+
+===== Beaver =====
+
+Beaver is a simple, lightweight and fast code editor offering syntax. Beaver can be found in the Menu -> Development -> Code Editor. Once launched for the first time you can adjust your preferences through the Edit button. You can run it through a X terminal with the following command:
+
+<code> $ beaver & </code>
+
+===== Geany IDE=====
+
+Geany is an IDE, or Integrated Development Environment. It is a simple, small and lightweight application, offering syntax, tabs and self-completion.
+
+==== Executing Geany ====
+
+You can install Geany: 
+
+<code># tazpkg get-install geany</code>
+
+After it runs for the first time, you can set your preferences through the menu //Edit// --> //Preferences// option. It is also possible to run Geany via terminal:
+
+<code>$ geany &</code>
+
+Note: when compiling source code, the //./configure// script offers the //-enable-the-force// option, which you could use if you feel the need to became a Jedi warrior!
+
+===== Perl or Microperl - Code/use Perl scripts =====
+
+On SliTaz you can use the powerful scripting language Perl via the perl or microperl binary. Microperl is a streamlined version of perl compiled from official sources, Perl scripts running Microperl are compatible with the complete version of Perl. One of Perl's strengths is its portability, it can be used on any system and it's an interpreted language, which means that the code doesn't need to be compiled and can be used directly. On SliTaz, Perl and Microperl are not installed by default on the LiveCD: you can either rebuild your ISO or install through the package manager. Note: Microperl is only 1 MB and provides no modules:
+
+<code>
+ # tazpkg install perl
+ Or :
+ # tazpkg install microperl
+</code>
+
+=== Hello world! ===
+
+The purpose of this script is to display Hello World. You can start by creating the file and making it executable on the command line and then editing with Beaver. Note the script is called hello.pl, but you can name it as you see fit, with or without the .pl extension:
+
+<code>
+ $ touch hello.pl
+ $ chmod +x hello.pl
+ $ beaver hello.pl &
+</code>
+
+The first line of a Perl script begins by defining the path to the Perl interpreter, usually ///usr/bin/perl// and to display text, just use the print command. It should be noted that Perl is case sensitive and a line of code should always end with a semicolon. Example code (you can copy and paste):
+
+<file>
+#!/usr/bin/perl
+#
+
+print "Hello World!\n";
+
+</file>
+To execute and test the script:
+
+<code> $ ./hello.pl </code>
+
+=== CGI Scripts and Perl ===
+
+CGI scripts are designed to display dynamically generated web pages. The Perl language associated with the LightTPD web server allows you to use CGI scripts through your public space or via virtual hosts. Perl is quite adapted to Web 2.0 and can generate xHTML pages. On SliTaz you must have Perl or Microperl installed and the LightTPD server configured before you can use CGI scripts coded in Perl. Note that by default SHell scripts (.sh) can be placed in /cgi-bin/.
+
+Once the server is properly configured, you can put your CGI in your //$HOME/Public/cgi-bin// using the //.pl// or //.cgi// extension and view them either locally or remotely. Example of using a Perl CGI script:
+
+<file>
+#!/usr/bin/perl
+#
+print "content-type : text/html\n\n";
+
+print "Hello World!\n";
+</file>
+
+===== Python =====
+
+The Python programming language is available as an installable package. Once installed, you can create your own scripts/programs and use CGI applications with the LightTPD web server, taking care to configure the server properly. The official SliTaz Mercurial repositories are provided by a CGI/Python web interface - a solution suited to a product that's reliable and robust. To install the python package with tazpkg:
+
+<code> # tazpkg get-install python </code>
+
+===== Ruby =====
+
+The Ruby programming language is available as an installable package. Ruby is (to quote the official website):- "A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write". Ruby handles exceptions, supports Object-Orientated Programming (OOP), automatic memory management and is highly portable. To install the ruby package with tazpkg:
+
+<code> # tazpkg get-install ruby </code>
+
+===== Toolchain - Libraries, C compiler and tools =====
+
+To compile software from sources or your own code, you need at least the basic toolchain, comprising of Binutils, Glibc, C compiler, Kernel headers and the Make utility. Note that the toolchain is used by the SliTaz developers to compile the entire system from source. To install the meta package and all dependencies:
+
+<code> # tazpkg get-install slitaz-toolchain </code>
+
+The installation of the toolchain can now compile basic applications in console mode without a problem using the Busybox Ash SHell, but some other packages will not compile without Bash. GNU Bash is available as a package along with various other development tools such as Flex, M4, Bison or Pkg-config. If you are looking for pkg-config for example:
+
+<code> $ tazpkg search pkg-config </code>
+
+If you would like to compile applications utilizing the Ncurses library, you must install the ncurses-dev package. Note the ncurses package also provides a variety of small programs such as tic or tac:
+
+<code> $ tazpkg search ncurses </code>

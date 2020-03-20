@@ -1,0 +1,73 @@
+====== Virtual Private Network =======
+
+A VPN binds isolated networks with tunnels over the Internet network. A tunnel encrypts and encapsulates network frames.
+
+    * frames are hidden (data and header, including routing info)
+    * encapsulation sets tunnel ends as source and destination
+    * only traffic volume is visible. But you can send dummy frames
+
+===== Tunnel using SSH and PPP =====
+
+Slitaz can build such tunnels out of the box (without additional packages) with menu system / netbox.
+You need on remote server:
+
+    * a user account
+    * a ssh access
+    * pppd launch rights (group rights or setuid bit)
+    * remote stations know how to route frames to the tunnel (peer is the default router or is running routing protcols such as rip, ospf, …)
+
+===== Tunnel setup =====
+
+    * launch system / netbox
+    * select VPN tab
+    * fill Peer and update Route(s) fields. Routes are the local area networks on peer side you want to reach. You only need to update Local IP and Remote IP when you create multiple tunnels. They are tunnel end IP points
+    * click Send Key and enter password
+    * click Connect
+
+===== Limitations =====
+
+    * This tunnel should not be used for real time traffic like VoIP. Based on TCP, the tunnel tries to avoid data loss instead of respecting timing. VoIP should use UDP based tunnels
+    * Only the Slitaz box can see the remote network. Other stations on the lan can't, until you add your lan routes to peer (assuming Slitaz is the default router or is running routing protcols)
+
+===== OpenSSH =====
+
+The openssh package is available on the mirror and provides TCP based tunnels:
+
+<code> # yes y | tazpkg get-install openssh </code>
+
+See http://www.openbsd.org/cgi-bin/man.cgi?query=ssh&sektion=1#SSH-BASED+VIR...
+
+===== OpenVPN =====
+
+The //openvpn// package is available on the mirror:
+
+<code> # yes y | tazpkg get-install openvpn </code>
+
+See documentation at http://openvpn.net/
+
+===== Cisco EasyVPN =====
+
+The //vpnc// package is available on the mirror:
+
+<code> # yes y | tazpkg get-install vpnc </code>
+
+See documentation at http://www.unix-ag.uni-kl.de/~massar/vpnc/
+
+===== Others VPN =====
+
+SliTaz packages search tool shows every VPN supported by SliTaz:
+http://pkgs.slitaz.org/search.sh?tags=vpn
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Any new changes in the process? |
+|::: |  |
+
+\\
+----

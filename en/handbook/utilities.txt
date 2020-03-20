@@ -1,0 +1,79 @@
+====== Utilities ======
+
+===== Galculator =====
+Galculator is a simple GTK 2 based calculator that features basic, paper (cmdline) and scientific modes. You can easily switch number bases between decimal, hexadecimal, binary, etc and it supports ordinary notation/reverse polish notation. To locate from the menu, select //Utilities -> Scientific Calculator//.
+
+===== Cdrkit - Burn and manipulate CD/DVD-R or RW =====
+
+To burn and handle CD/DVD-R or RW, SliTaz provides the //cdrkit// utility and a graphical interface burnbox which you will find in the menu. The tools in wodim make it possible to burn CD/DVD and erase CD/DVD-RW. When used with genisoimage, it can also create images in the ISO 9660 format. Burning on the command line requires us to know the device/writer (dev) name and wodim provides several possibilities to know which drive to use and specify it when burning to optical media. If you run wodim with the -devices option, it will automatically search for a good device and display it, the -checkdrive option allows you to check the recognized device and -scanbus will display in relation to the system bus. Examples (as root):
+
+<code>
+ # wodim -devices
+ Or:
+ # wodim -checkdrive
+ For the bus: 
+ # wodim -scanbus
+</code>
+
+=== Create an ISO 9660 image ===
+
+To burn data on to a CD/DVD, you must first have an ISO image. To begin we must create a directory to contain all the files to be burned. You can copy your files on the command line with cp, the file manager Clex or graphically with PCManFM2. To create a directory named iso/ in the root of user space and copy all the files contained in Documents/:
+
+<code>
+ $ mkdir ~/iso
+ $ cp -a Documents/* ~/iso
+</code>
+
+Create an ISO image named image.iso, using the genisoimage tool and specify the root directory containing the files to be included in the ISO:
+
+<code> $ genisoimage -o image.iso ~/iso </code>
+
+Note that there are many options that you can use to create ISOs, one of the most widely used is the extension -R, signifying Rock ridge, this allows the use of names of up to 255 characters (with a few exceptions), it also supports symlinks and file permissions. To see all the available options, simply type -help. Example of creating an ISO image using the //-R// option:
+
+<code> $ genisoimage -o image.iso -R ~/iso </code>
+
+=== Burn an ISO image ===
+
+To burn an ISO image in the 9660 format either created by yourself or downloaded from the web, you must use wodim specifying the proper device (dev) to burn the CD/DVD. Example using the verbose mode (-v), with the device hdc and data contained in an ISO image named image.iso:
+
+<code> # wodim -v dev=/dev/hdc image.iso </code>
+
+Another example setting the (speed) to burn as 8x :
+
+<code> # wodim -v speed=8 dev=/dev/hdc image.iso </code>
+
+=== Erase CD-RW/DVD-RW ===
+
+You can quickly erase a CD-RW/DVD-RW using wodim with the //blank=fast// option. Example using the device hdc in verbose mode:
+
+<code> # wodim -v blank=fast dev=/dev/hdc </code>
+
+Or you can have a full erase using the //blank=all// option (this will take a bit longer):
+
+<code> # wodim -v blank=all dev=/dev/hdc </code>
+
+===== Nano =====
+
+The default text editor in SliTaz is nano. Once launched you can use <Ctrl + g> for the help menu. To start nano, you can type nano from a console, a xterm terminal, or from the //menu --> Editors --> Nano//.
+
+The initialization file ///etc/nanorc// includes the files of colored syntax found in ///usr/share/nano//. The user configuration file is //~/nanorc//. To edit a file directly, just launch nano proceeded by the name of the file. Example (<Ctrl+x> to save & quit):
+
+<code> $ nano Templates/script-shell.sh </code>
+
+===== LeafPad =====
+
+Leafpad is an ultra light and quick graphical text editor, handy for taking notes or editing configuration files. You will find it in the menu or you can run it directly on a file via a terminal:
+
+<code> $ leafpad Templates/script-shell.sh </code>
+
+===== ISO Master - Create and edit ISOs =====
+
+ISO Master is a graphical tool allowing you to edit, manipulate and create ISO images which you can later store and burn, It's simple and intuitive and lets you create ISO images the size you want.
+
+Website : http://littlesvr.ca/isomaster/
+
+===== Xpad - Mini note-taking application =====
+
+Xpad is a small application that can take quick notes via a 'sticky note' displayed on the desktop. Each consists of a note pad that you can hide and customise via a right click on the window in question. Once launched you can close Xpad via the dock located on the window manager taskbar. The notes are stored in your local directory and are available at each session (if you use USB media with the LiveCD or on an installed system). To install Xpad:
+
+<code> # tazpkg get-install xpad</code>

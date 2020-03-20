@@ -1,0 +1,38 @@
+====== Tazwoktips ======
+
+You must read the [[http://doc.slitaz.org/en:cookbook:start|Cookbook]] first - it's a great collection of documents. This guide supplements the cookbook with some tips that you are most likely to face while compiling packages for SliTaz. Note that it should be mentioned that Tazwok has been deprecated since SliTaz v4 (switched in favor for Tazlito, the ISO hacking method and [[en:cookbook:toolchain|Cookutils]]).
+
+===== Tips =====
+
+  - Add the "slitaz-dev-pkgs" package - it's a meta package that adds some of the useful *-dev packages
+  - Compilation Errors like 
+        * checking for $PKG... configure: error: Couldn't find $PKG >= 1.0.0,
+        * configure: error: Couldn't find $FILENAME
+        * use: "tazpkg search-pkgname $FILENAME" to find the package with the missing file; Add this package to the BUILD_DEPENDS in the receipt
+  - Read receipts of the other packages for standardization. The problems you face may already have a solution in one of these receipts. Some example receipts include: 
+       * xorg-libSM (or any xorg-*) : to use a $SOURCE variable
+       * cups : to strip files other than .so in usr/lib, and to compress some driver files
+       * ndiswrapper-driver or broadcom-wl : to cook linux modules
+       * mplayer-svn : to create packages from a svn/git repository
+       * 915resolution or busybox : to add patches
+       * nvidia : to create non-free packages that need the linux package for compiling modules
+       * get-* : to create non-free packages
+       * *-dev : to see how to create a dev receipt
+  - Create lighter packages. Always remember to disable gnome dependencies or any other dependencies that are not so useful. Always use "configure --help" to see the compile options. Many packages have auto-dependency tracking, i.e., if it finds a corresponding *-dev package installed on the system, it will auto-enable an option. So, if you don't disable an unwanted dependency, then when a package is cooked on the SliTaz tank server, it is likely that the package won't run properly because of the missing dependency. The missing dependency problems that are often reported on the forum are caused due to this problem. 
+  - Missing .pc files : Sometimes a dev package created upstream misses .pc files, so pkg-config cannot locate the corresponding dev files correctly. This can play havoc sometimes as you expect the upstream packages to be properly distributed. firefox-dev is one such example.
+  - gcc4.4 patches : The new stricter format of gcc4.4 breaks many packages. This is quite a common problem. You need to either create a simple patch or see if a new upgrade is available upstream. See mplayerplug-svn. 
+  - Use a chroot environment and keep it clean so that you can submit the receipt with the correct BUILD_DEPENDS. 
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: |  |
+
+\\
+----

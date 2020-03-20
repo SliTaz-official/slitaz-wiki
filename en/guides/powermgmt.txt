@@ -1,0 +1,40 @@
+====== ACPI (Advanced Configuration and Power Interface) ======
+
+To install the acpi daemon and modules:
+<code>
+# tazpkg get-install acpid
+# tazpkg get-install linux-acpi
+</code>
+
+The acpi daemon needs to be started before dbus and hal,
+so edit your ///etc/rcS.conf// to look like this:
+<file>
+RUN_DAEMONS="acpid, dbus, hald, etc..."
+</file>
+
+Or, to start manually:
+<code>
+# /etc/init.d/hald stop
+# /etc/init.d/dbus stop
+# /etc/init.d/acpid start
+# /etc/init.d/dbus start
+# /etc/init.d/hald start
+</code>
+
+To check it's working, just:
+<code>
+$ cat /proc/acpi/battery/{BAT0}/info
+</code>
+
+You can find some example scripts in ///etc/acpi//.
+
+
+
+
+
+
+
+
+
+
+

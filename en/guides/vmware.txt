@@ -1,0 +1,32 @@
+====== VMWare ======
+
+===== Test SliTaz GNU/Linux with VMware =====
+
+What you will need:
+
+    * [[http://dl.free.fr/getfile.pl?file=/Dz6bYtdE/slitaz.7z|SliTaz GNU/Linux Virtual Appliance]] The Virtual appliance file.
+    * [[http://www.7-zip.org/fr/download.html|7-Zip]] Needed to decompress the file.
+    * [[http://www.vmware.com/products/player/overview.html|VMware Player]] Run the virtual machine on your Windows system.
+
+   -  Download and install 7-Zip.
+   -  Download and install the VMware Player.
+   -  Download the SliTaz GNU/Linux file and decompress it with 7-zip.
+   -  Now you can run the SliTaz virtual machine ( slitaz.vmx ) with VMware Player.
+
+<note>
+When starting the virtual machine for the first time, VMware Player detects that files have been moved from another location. Keep the default option in the dialog box and click on the [Ok] button.
+</note>
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Low  |
+|Review| Major Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve|Are instructions still valid? Some link don't work |
+|::: | How about creating get-VMWare pkg?? |
+
+\\
+----

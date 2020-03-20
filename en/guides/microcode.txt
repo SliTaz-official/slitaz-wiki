@@ -1,0 +1,130 @@
+=====Updating the processor microcode=====
+
+<note important>
+Updating the microcode of your processor can help to preserve your system against Spectre, a vulnerability that affects most of the modern processors.\\
+For more information about Spectre (and Meltdown), read [[http://forum.slitaz.org/topic/-important-info-about-meltdown-and-spectre-|this topic]].
+</note>
+
+In the normal way, the microcode is loaded on boot from the BIOS. However it is possible to update it on Linux; this must be repeated on every boot.
+This document decribes how to proceed for Intel processors.
+\\
+\\
+====1. Install the intel-ucode package====
+
+First of all, update your system:
+<code>
+# tazpkg up
+</code>
+Then get-install the intel-ucode package:
+<code>
+# tazpkg -gi intel-ucode
+</code>
+
+The package manager installs microcodes for Intel processors in ''/lib/firmware/intel-ucode''; files are stored with names in the format XX-YY-ZZ.
+\\
+\\
+====2. Which microcode for your processor====
+
+The command
+<code>
+head -n7 /proc/cpuinfo
+</code>
+should return something like this:\\
+\\
+{{ :en:guides:image:head-n7_0.png }}
+\\
+Convert the cpu ''family''**-**''model''**-**''stepping'' numbers in 3 pairs of hexadecimal values.\\
+From the example above,
+  * cpu family= 6 -> 06,
+  * model= 60 -> 3c and
+  * stepping=3 -> 03.
+The microcode for the processor is 06-3c-03.\\
+If you don't find your XX-YY-ZZ file in ''/lib/firmware/intel-ucode'', this means there is no microcode available for your processor; if there is one, force its loading:
+<code>
+# echo 1 > /sys/devices/system/cpu/microcode/reload
+</code>
+Check if the revision of the microcode has changed:
+<code>
+dmesg | grep microcode
+</code>
+{{ :en:guides:image:late-loading.png }}
+\\
+If the revision hasn't changed, then there is no update for your processor; if it did change, then continue with this procedure.
+\\
+\\
+====3. Loading the microcode at boot====
+
+The best thing consists of loading the microcode as soon as possible at boot, before the userspace has started. This is done by adding an initrd in the GRUB configuration file.\\
+\\
+Create the appropriate environment (no matter where you do it):
+<code>
+mkdir -p initrd/kernel/x86/microcode
+</code>
+Change in initrd:
+<code>
+cd initrd
+</code>
+Copy your microcode (//replace ''XX-YY-ZZ'' with your microcode file name//):
+<code>
+cp -v /lib/firmware/intel-ucode/XX-YY-ZZ kernel/x86/microcode/GenuineIntel.bin
+</code>
+Create the initrd:
+<code>
+# find . | cpio -o -H newc > /boot/microcode.img
+</code>
+Add the following line in your /boot/grub/menu.lst (or grub.cfg):
+<code>
+initrd /boot/microcode.img
+</code>
+If you already use an initrd to boot your system, you must load the microcode first; below an example to start SliTaz Rolling in frugal mode:
+<file>
+#title SliTaz Rolling core64 - frugal install (kernel 3.16.55)
+   root (hd0,2)
+   kernel /slitaz/boot/vmlinuz-3.16.55-slitaz64 root=/dev/null autologin
+   initrd /slitaz/boot/microcode.img /slitaz/boot/rootfs.gz
+</file>
+Reboot the computer and check the microcode has been loaded:\\
+\\
+{{ :en:guides:image:head-n7_1.png }}
+
+If you are using a 32bit kernel, it is possible that the CPUs aren't all updated; this is not a problem because the kernel doesn't use them.
+Below, an example with Rolling Core:\\
+\\
+{{:en:guides:image:early-loading32.png }}
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+CPU2 and CPU3 are not updated.\\
+\\
+The same computer with Rolling Core64:\\
+\\
+{{:en:guides:image:early-loading64.png }}
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+CPU2 and CPU3 are updated.
+\\
+\\
+====4. Update the processor microcode regularly====
+
+Intel provide frequent updates of their microcodes. You can download the latest version of the Intel microcodes at https://downloadcenter.intel.com/download/27591/Linux-Processor-Microcode-Data-File.
+
+As the root user, uncompress the downloaded ''microcode-YYYYMMDD.tgz'' file in ''/lib/firmware''.
+<code>
+# tar -xzf microcode-YYYYMMDD.tgz /lib/firmware/
+</code>
+Then follow this HOWTO from step 2.
+\\
+\\
+|2018/04/24  |Creation |
+^  Date  ^  Modification  ^

@@ -1,0 +1,87 @@
+
+----
+
+====== Conky ======
+
+===== Introduction =====
+
+Conky is a highly customizable, lightweight system monitor that sits on the desktop. It is able to show loads of information about your computer, such as CPU usage, RAM, disk usage, CPU temperature, and also the weather or the number of new messages in your email. It allows color graphical formatting of its indicators, offering a stylish look to the desktop.
+
+----
+
+===== Installation =====
+
+Installation is made through TazPkg:
+
+  # tazpkg -gi conky
+
+----
+
+===== Basic Configuration =====
+
+To set up your Conky, first copy the file /etc/conky/conky.conf to your folder  //home// and rename it to //.conkyrc//. Now, you can modify the //.conkyrc// file as you like; if you want to return to the original settings, simply repeat this procedure.
+
+To start Conky, open a terminal and type:
+
+  $ conky
+
+Note that the Conky window appears at the top-right of the screen, with a black background.
+
+Conky should start automatically when you turn on/restart your computer. If it doesn't, go to the Applications menu -> Preferences -> Desktop Session Settings - on the "Automatically Started Applications" tab, select "Conky" box to boot with Linux.
+
+----
+
+===== Appearance and meters settings  =====
+
+The appearance of Conky and the items it monitors are highly configurable. For a complete list of configuration options, access the  [[http://conky.sourceforge.net|official Conky site]], "Documentation" link.
+
+<note tip>There are several websites that offer custom settings ready for download. Just pick one and copy it to your //~/.conkyrc//.</note>
+
+For example, to get your Conky window transparent, allowing you to see the wallpaper behind it instead of the default black background, there are two ways:
+
+**1.** Change the following line of your file //.conkyrc//:
+
+  own_window_transparent no
+
+... to:
+
+  own_window_transparent yes
+
+This creates a simple transparency effect, forcing Conky to copy the wallpaper as its background image.
+
+**2.** For a more sophisticated effect, in which you can control the level of transparency of the Conky window, change your //.conkyrc// as follows:\\ 
+After this line:  
+  own_window_transparent no
+  
+... add these two:
+  own_window_argb_visual yes
+  own_window_argb_value 150
+
+The added two lines make Conky use the Linux composite (by default __//Xcompmgr//__) to create the transparency effect.
+
+Note that you must activate the composite at Linux boot to get this effect working. To do this, go to the Applications menu -> Preferences -> Desktop Session Settings - on the "Automatically Started Applications" tab, select "Desktop effects with Xcompmgr" box to boot with Linux. Now right-click in an empty area of your desktop, select "Desktop effects" -> "Activate composite". You should be able to see the semi-transparent Conky window.
+
+To control the level of transparency, change the end of the line:
+
+  own_window_argb_value 150
+
+... entering any value between 0 and 255, according to your preference.
+
+----
+
+===== References =====
+\\ 
+[[http://conky.sourceforge.net|official Conky site]]
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality|   |
+|Revision|   |
+|Priority|  |
+|Problems| |
+|How to improve| |
+
+
+\\
+

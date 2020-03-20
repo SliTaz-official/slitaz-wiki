@@ -1,0 +1,65 @@
+====== Server applications ======
+
+===== Dokuwiki =====
+
+Dokuwiki (http://www.dokuwiki.org/) is a light and powerful Wiki engine using PHP and flat files as a backend; so no database server is needed. To use Dokuwiki you just need to install a web server (lighttpd or apache) and PHP.
+
+===== Drupal =====
+
+Drupal is a powerful CMS (Content Management System) using PHP server side language and a MySQL database. To install Drupal and have it running in a few minutes you must first install the web server (lighttpd), PHP and MySQL:
+
+<code>
+# tazpkg get-install lighttpd
+# tazpkg get-install php
+# tazpkg get-install mysql
+</code>
+
+Download the latest version from http://drupal.org/ and create a virtual host or go into your public directory and untar the Drupal sources:
+
+<code>
+$ mkdir ~/Public && cd Public
+$ tar xzf drupal-*
+</code>
+
+Now we have to modify some file permissions so that Drupal can write to the filesystem during the installation process and when running:
+
+<code>
+$ cd drupal-*/sites
+$ chmod 777 default
+$ cp default/default.settings.php default/settings.php
+$ chmod 666 default/settings.php
+</code>
+
+Create a MySQL database and then use your favorite web browser to install Drupal through the web interface. When the installation process has ended you must modify file permissions and can start to customize the application. Change permissions for production and clean-up:
+
+<code>
+$ cd ..
+$ chmod 755 sites/default
+$ chmod 644 sites/default/settings.php
+</code>
+
+To ensure easy upgrades of your Drupal core installation you should put all additional modules and themes into the directory: site/all/. So to prepare the addition of any future modules and themes:
+
+<code>
+$ mkdir sites/all/modules
+$ mkdir sites/all/themes
+</code>
+
+==== Online ====
+
+    * Drupal Modules: http://drupal.org/project/modules
+    * Drupal Themes: http://drupal.org/project/themes
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: |  |
+
+\\
+----

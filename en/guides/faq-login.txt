@@ -1,0 +1,39 @@
+====== Cannot Login to Desktop ======
+
+===== Symptoms =====
+
+  * Slim, the SliTaz Login Manager, fails with the message:
+<code> failed to execute login command </code>
+
+<note warning>Verify the SliTaz install partition is not full and formated with a linux filesystem such as ext3.
+Using fat32 or ntfs filesystems cause login failure.</note>
+===== Explanation =====
+
+The following files must exist, this can be verified with the ''ls -la'' command:
+  * .Xdefaults
+  * .xinitrc
+  * something else?
+
+===== Solution =====
+You should copy the default files from the template located in the /etc/skel directory. This happens automatically when a new user is created with the SliTaz Control Box, but not when using the command-line utilities. Occasionally users experience these files being removed or modified/broken.
+
+Switch to the root (super) user:
+<code> su root </code>
+Change to the affected users /home directory:
+<code> cd /home/USERNAME </code>
+Set the shell options to allow the dot (.) to be included in file names:
+<code> shopt -s dotglob </code>
+Copy all files, recursively:
+<code> cp -r /etc/skel/* /home/USERNAME </code>
+Change ownership of all files and directories in the user's home to that of the affected user:
+<code> chown -R USERNAME:USERGROUP /home/USERNAME/* </code>
+Restore the shell options:
+<code> shopt -u dotglob </code>
+The essential files should now be restored!
+
+EDIT:
+
+<code> shopt -u dotglob </code>
+is not working in slitaz-3.0.iso - instead of this run in addition:
+<code> chown -R USERNAME:USERGROUP /home/USERNAME/.[a-zA-Z0-9]*</code>
+----

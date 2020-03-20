@@ -1,0 +1,31 @@
+======= Testing Applications =======
+<note important>Not started yet - this is only a suggestion to discuss in the forum</note>
+
+As a result of [[http://forum.slitaz.org/index.php/discussion/668/testing-packages/#Item_23|discussions in the forum]], this is the page for documentation - please take part and report any troubles with packages here.
+
+===== system-tools =====
+
+^  Package  ^  Maintainer  ^ Tester ^  Status  ^  Problems  ^  Link ^
+|Midnight Commander|~|kultex|tested|ok|~|
+|pcmanfm|~|~|not tested|~|~|
+
+===== x-window =====
+
+^  Package  ^  Maintainer ^ Tester ^  Status  ^  Problems  ^  Link  ^
+|xorg-xf86-video-intel|~|kultex|tested|should be updated to 2.7.1\\ update in progress|http://hg.slitaz.org/wok/rev/c86710039a5f|
+|xorg-xf86-video-nv|~|kultex|started|~|~|
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Poor FIXME |
+|Review| Major Updates or DELETEME |
+|Priority| Low |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly, e.g.,|
+|::: |  [[http://labs.slitaz.org/wiki/packages | New test guidilines are here]]|
+|::: | Add new rows like this ;-)  |
+
+\\
+----

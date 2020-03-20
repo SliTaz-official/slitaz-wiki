@@ -1,0 +1,126 @@
+====== Advanced usage of Mercurial ======
+
+==== Use an external tool to merge ====
+
+If you want to use tools presented on this page, MQ particularly has a tool to manage merges (when several commits overwrite each other and you have to edit the result manually) which will probably be useful to you. SliTaz proposes Meld, a light software that can do that well. After installation, tell  Mercurial to use it if necessary by putting it in your ~/.hgrc:
+
+<code>
+[ui]
+merge = meld
+</code>
+
+==== Useful extensions ====
+
+To add an extension, you can use the ~/.hgrc file:
+<code>
+[extensions]
+name = adress
+</code>
+Some extensions are packed within Mercurial, so it's not necessary to give them addressess. It's the case of the four following:
+
+**color**
+Add color in Mercurial. Useful when displaying differences between several versions of a file.
+
+**hgext.fetch**
+Add the command hg fetch, which regroups hg pull && hg merge && hg update.
+
+**hgext.graphlog**
+Add the command glog, which displays the revision tree along with the log. It's advised to limit the length of the log with option -l (i.e.: -l 10). Option -p displays the detail of differences introduced at each commit.
+
+**mq**
+This tool is explained in detail below. It allows you to manage a patch-list for a Mercurial repository: apply them, unapply, update, etc. This extension adds several commands which generally start with 'q'. Some webpages detail this tool, search: mercurial mq.
+
+
+==== Basic functionality of MQ ====
+In a mercurial repository, create a patch repository with a controlled revision; it's a repository of patches into which the changes can be committed using Mercurial, like a repository within a repository:
+<code>hg qinit -c</code>
+
+After modifications, save them as a patch instead of committing them:
+<code>hg qnew nom_du_patch</code>
+
+List applied/unapplied patches:
+<code>hg qseries -v</code>
+
+Add changes to the current patch (the last one applied):
+<code>hg qrefresh</code>
+
+Apply the next patch from the queue:
+<code>hg qpush</code>
+
+Apply all patches:
+<code>hg qpush -a</code>
+
+Unapply current patch:
+<code>hg qpop</code>
+
+Unapply all patches:
+<code>hg qpop -a</code>
+
+Go to a given patch in the queue:
+<code>hg qgoto patch</code>
+
+Add a message to the current patch (before committing it):
+<code>hg qrefresh -m "Message"</code>
+
+Transform a patch into a commit:
+<code>hg qfinish patch</code>
+
+Commit changes made in the patch repository:
+<code>hg qcommit -m "Message de commit"</code>
+
+Note: Patches are saved into .hg/patches. The file .hg/patches/series can be manually edited to change the application order of the patches; but take care if several patches have the same target file: it can create problems.
+
+==== MQ & Merge ====
+
+**General idea**
+
+Patches can be updated using the merge tool of Mercurial: it's easier than editing them manually. To do this, it's necessary to have two heads in the repository. One being the repository with patches applied ontop; the other the repository with the new commits/updates/etc:
+
+<code>
+o New repository revision
+|
+|
+| o Patches
+| |
+| /
+|
+o Repository before patch application
+</code>
+
+The patches branch will next be merged into the new branch and MQ will use the merge function from Mercurial to update the patches. Please note that using an external merge tool (such as meld proposed previously) is highly recommended.
+
+Create the head patches:
+<code>
+qpush -a
+hg tags  # Remember/Note the number of the revision qparent
+qsave -e -c # Save the status of the patches, this save will be used during the merge. (Remember/Note the number at the end of patches.N; it's generally 1)
+</code>
+
+Create the new head:
+<code>
+hg update -C <N°qparent> # Go to the revision noted before.
+
+# Next, do what you planned to:
+# Update:
+hg pull -u
+# Commit new changes, make the modifications then:
+hg commit -m "message"
+# Edit a patch:
+hg qgoto patch # Then do the modifications and:
+hg qrefresh</code>
+
+To launch the merge:
+<code>hg qpush -a -m</code>
+
+Clean the repository:
+<code>
+hg qpop -a
+hg qpop -a -n patches.N
+rm -r .hg/patches.N
+</code>
+
+Save the changes made into the patch repository:
+<code>hg qcommit -m "Updated to match rev???"</code>
+
+Re-apply the patch queue:
+<code>hg qpush -a</code>

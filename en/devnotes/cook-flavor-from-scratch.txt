@@ -1,0 +1,186 @@
+====== Cook a flavor from scratch ======
+
+===== Introduction =====
+
+Welcome to this howto! it's the base for a second scratchbook which explains how to recompile SliTaz entirely from scratch including the toolchain. All jobs will be done using tazwok-experimental (actually in Alpha state). Even if the scripts have some major issues, the steps explained here should do the job without too many problems. Please report any problems to the author (tazpkg info tazwok-experimental gives you my mail).
+
+Having some knowledge about how the legacy SliTaz tools and basic commands work will help you to understand what's going on in this howto. However, simply copying/pasting the given command lines will probably work.
+
+==== Explanation ====
+
+Tazwok now provides tools to cook the [[en:terms:W?&#wok|wok]] from scratch using a minimal chroot. You have to use a special version of the wok called wok-experimental. It contains the needed patches which should be applied on top of the cooking wok. Explanations about how to obtain the wok experimental are here:  [[en:devnotes:prepare-experimental|Prepare experimental wok]].
+
+**Tools needed**
+  * A functional cooking system (live or installed), you also can use the [[http://people.slitaz.org/~gokhlayeh/experimental/iso/slitaz-experimental-base.iso|slitaz-experimental-base]] ISO.
+  * tazwok-experimental-0.0.2, tazchroot-0.0.1 and libtaz-0.0.1. Note: installing tazwok-experimental removes tazwok legacy.
+  * An internet connection to download sources.
+
+**Steps**
+  * Make the chroot (in this how-to we use the packages of the new toolchain from the experimental repository; but this should work with the cooking toolchain).
+  * Cook a temporary toolchain: it's a cross-compiled toolchain which will cook the "real" toolchain (the packaged one) without linking anything to the host system.
+  * Cook the definitive toolchain.
+  * Cook some of the other packages of one of the SliTaz flavors.
+  * Create the iso.
+  * Burn, boot & enjoy :).
+
+
+==== Install the tools ====
+
+<note tip>Note: all the following commands should be executed as root. You don't have to add the experimental repository if you wish to use the cooking toolchain.</note>
+
+Add the cooking-experimental repository as undigest:
+<code>
+tazpkg add-undigest experimental http://people.slitaz.org/~gokhlayeh/experimental/packages
+</code>
+
+Give it priority over the main repository:
+<code>
+echo experimental > /var/lib/tazpkg/priority
+</code>
+
+Install the cooking tools:
+<code>
+tazpkg get-install tazwok-experimental
+tazpkg get-install tazchroot
+</code>
+
+==== Cook toolchain ====
+
+<note tip>The following command-lines work for a wok at: /home/slitaz/experimental/wok. If you put the wok elsewhere, you can use the option --SLITAZ_DIR=address; where the address is equivalent to /home/slitaz. This option must be used each time --SLITAZ_VERSION is used. You can also define SLITAZ_VERSION & SLITAZ_DIR globally using /etc/slitaz/slitaz.conf.</note>
+
+Configure the //chroot//:
+<code>
+tazwok configure-chroot --SLITAZ_VERSION=experimental
+</code>
+
+If you have at least 1GB RAM free you can put the minimal chroot in RAM speeding-up the cooking process:
+<code>
+sed 's~chroot_dir=.*~chroot_dir=/tmp/chroot-experimental~' -i /home/slitaz/experimental/tazchroot.conf
+</code>
+
+All-in-one command to cook the toolchain packages:
+<code>
+tazwok cook-toolchain --SLITAZ_VERSION=experimental
+</code>
+
+At the end of this operation the chroot should be removed. If you have modified its address before, you have to do this manually:
+<code>
+rm -r /tmp/chroot-experimental
+</code>
+
+Toolchain packages are now ready to be used. They're actually are in the packages-incoming repository. If all was cooked fine it's possible to push them to the classical packages directory using:
+<code>
+tazwok check-incoming --SLITAZ_VERSION=experimental
+</code>
+
+You need to tell to tazpkg that you now have a local version of experimental:
+<code>
+# If you had already defined the experimental repository:
+echo "/home/slitaz/experimental/packages" > /var/lib/tazpkg/undigest/experimental/mirror
+tazpkg recharge
+# Else:
+tazpkg add-undigest experimental /home/slitaz/experimental/packages
+echo experimental > /var/lib/tazpkg/priority
+tazpkg recharge
+</code>
+
+Recook the toolchain packages except core (linux-api-headers/glibc/binutils/gcc) over themselves to consolidate it; in fact it's not really needed with an actual configuration but it's generally good to do to solve loop dependencies. It warrants consistency of the toolchain before and after an update of non-core toolchain packages. Note that core-toolchain should never be updated in this way - but by reusing the cook-toolchain script:
+<code>
+tazwok chroot --SLITAZ_VERSION=experimental
+tazwok build-depends toolchain-cooklist | sed '1,/^gcc$/d' > /tmp/consolidate.list
+tazwok cook-list /tmp/consolidate.list
+rm /tmp/consolidate.list
+</code>
+
+As packages has been re-cooked, you have to update the packages repository once again:
+<code>
+tazwok check-incoming
+</code>
+
+Still in the chroot for the next step.
+==== Cook packages of a flavor ====
+
+First you need data about cooking flavors:
+<code>
+cd /home/slitaz/experimental/flavors
+hg clone http://hg.slitaz.org/flavors .
+</code>
+
+Generate the cooklist for a given flavor. Note: for the next step, use the chosen flavor name instead of FLAVOR in the command line:
+<code>
+tazwok gen-cooklist --list=/home/slitaz/experimental/flavors/FLAVOR/packages.list > /tmp/FLAVOR.list
+</code>
+
+This list contains some already cooked packages, remove them:
+<code>
+cat /tmp/FLAVOR.list | while read p; do
+	grep -q ^$p$ /home/slitaz/experimental/packages/packages.txt && \
+		sed "/^$p$/d" -i /tmp/FLAVOR.list
+done
+</code>
+
+
+The cooklist is now ready to create the packages:
+<code>
+tazwok cook-list /tmp/FLAVOR.list
+</code>
+
+Update packages repository:
+<code>
+tazwok check-incoming
+</code>
+
+<note tip>You can repeat these steps each time you wish to add new packages to your repository.</note>
+
+Still in chroot for the next step.
+
+==== Create the ISO ====
+
+Actually tazlito uses /home/slitaz/flavors. Create a symbolic link:
+<code>
+ln -s /home/slitaz/experimental/flavors /home/slitaz
+</code>
+
+Set release as experimental for the future ISO:
+<code>
+cd  /home/slitaz/flavors/FLAVOR
+mkdir -p rootfs/etc
+echo experimental > rootfs/etc/slitaz-release
+</code>
+
+Configure your ISO to use your local repository:
+<code>
+mkdir -p rootfs/var/lib/tazpkg
+echo /home/slitaz/experimental/packages > rootfs/var/lib/tazpkg/mirror
+</code>
+
+Use tazwok-experimental instead of tazwok and add tazchroot:
+<code>
+sed 's/tazwok/tazwok-experimental/' -i packages.list
+echo tazchroot >> packages.list
+</code>
+
+Pack FLAVOR:
+<code>
+tazlito pack-flavor FLAVOR
+</code>
+
+Get FLAVOR:
+<code>
+tazlito get-flavor FLAVOR
+</code>
+
+Generate ISO:
+<code>
+tazlito gen-distro
+</code>
+
+Save ISO in your home dir:
+<code>
+mv /home/slitaz/distro/slitaz-FLAVOR.iso /home/slitaz/distro/slitaz-FLAVOR.md5 /home/slitaz/experimental/iso
+</code>
+
+Exit chroot:
+<code>
+exit
+</code>

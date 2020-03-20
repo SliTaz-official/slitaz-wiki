@@ -1,0 +1,64 @@
+====== QEMU ======
+
+===== Introduction =====
+
+QEMU provides a virtual machine that will run within XP. Refer to the QEMU documentation for a detailed description of the virtual hardware.
+
+It allows to test an operating system environment without actually installing it and without rebooting out of XP; e.g. you can test Slitaz this way, before deciding if you want to install it on your machine.
+
+Compared with Virtual Box (which I am also using regularly), QEMU is initially much faster and easier to set up. You will also have less problems if you are somewhat memory constrained (which you are, if you have less than 1.0 or 1.5 GB RAM). Performance wise, both virtualization platforms looked similar to me (although way slower than a native install). 
+
+If you just want to try Slitaz within your XP environment, prefer the QEMU solution described here (unless VirtualBox is already installed and set up on your machine).
+
+===== Getting started =====
+==== Requirements ====
+This works on XP with Slitaz 3.0 (should work with all versions of Slitaz). 
+
+==== Install QEMU ====
+Go to Pendrivelinux.com  and download the QEMU PC hardware emulator installer (QPU804.exe).
+This executable is actually a self-extracting archive. When you run it you just need to tell the installer where to unzip the contents (which may be on your hard disk or on a flash drive). The result will be a folder named QPU804.
+
+The QEMU setup can execute any ISO that you put in that folder.
+Copy the SliTaz ISO to that folder.
+You now have a virtualized SliTaz installation that can run alongside Windows.
+
+==== Start QEMU ====
+Execute QPU804.bat (double click on it from an explorer window) to start your virtual machine (it will advertise it is running Ubuntu, but really it will run the ISO you copied to that folder, Slitaz.iso in this case).
+
+You will see your virtual machine booting from the ISO file, as if it would be booting from a Slitaz LiveCD. Refer to other parts of the Slitaz documentation for a detailed presentation of what you can do from there.
+
+==== Getting in and out of the QEMU Window ====
+To move the mouse out of the QEMU screen window press ctrl, keep it pressed and press the alt key simultaneously. To go back, just left click in the window.
+
+==== Shared Folder ====
+Open a pcmanfm window: the Slitaz partition labeled "QEMU VVFAT" refers to the same physical (shared) location as the XP "QPU804\shared folder" folder. 
+
+==== Screen resolution ====
+My screen resolution was 800x600. You may want to read the QEMU documentation and play around with the available options from both QEMU and Slitaz to get a higher resolution.
+
+To get a full screen Slitaz, try adding the -full-screen option to the qemu command line of the QPU804.BAT file.
+
+===== I want to keep the changes I made in Slitaz =====
+
+==== Private data ====
+Copy any private data created in Slitaz to the shared directory: it will survive a virtual machine reboot.
+
+==== Keeping system changes ====
+Two ways to do this: 
+  * create a new iso with your changes, or 
+  * install Slitaz in a qemu virtual drive
+
+
+== Create an ISO file with your system changes ==
+In the Slitaz menu select //System Tools-> Create a LiveCD// (refer to the LiveCD section of the documentation).
+
+The writeISO panel will create a bootable image of Slitaz with any changes you made, and will store this image file as /home/slitaz/distro/slitaz.iso. 
+
+In the Slitaz environment, copy-paste that slitaz.iso file to the shared folder. Then from XP you will be able to copy the slitaz.iso file from the QPU804\shared folder to the QPU804 folder, replacing the existing ISO file (delete the old .iso file if it has a different name). Next time you start QEMU, it will boot from your new ISO which brings you back to the same environment.
+
+
+== Install Slitaz in a qemu virtual drive ==
+
+Alternatively, refer to the QEMU documentation to start QEMU with a "virtual disk" file, where you will be able to install Slitaz by using the menu item //System Tools -> Slitaz Installer//. 
+
+(Not tested with Slitaz but tested with other systems in the past)

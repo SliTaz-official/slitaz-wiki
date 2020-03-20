@@ -1,0 +1,23 @@
+====== WICD ======
+
+[[http://doc.slitaz.org/en:guides:network-script|Pankso's openbox treat]] is very close to WICD, but if you want to set up SliTaz for not very experienced users it's recommended that you use WICD for Wireless Internet Control.
+
+Do as root:
+
+<code># tazpkg get-install wicd
+# leafpad /etc/rcS.conf</code>
+
+In ///etc/rcS.conf// remove from the section RUN_SCRIPTS: **network.sh**
+and add to the section RUN_DAEMONS: **wicd**
+
+Then as user:
+
+<code>$ leafpad .config/openbox/autostart.sh</code>
+And add to the end:
+
+<file># wicd Network Configuration
+wicd-client &</file>
+
+Then remove the network-plugin from the LX-Panel by right clicking on the network-plugin. 
+
+Reboot - don't test before rebooting, because network.sh is interfering with WICD (even if you stop it by typing /etc/int.d/network.sh stop).

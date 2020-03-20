@@ -1,0 +1,19 @@
+====== SliTaz Tools ======
+
+The SliTaz Toolbox
+
+    * Mercurial repository.
+    * <nowiki>*box </nowiki> - dialog/GTKdialog.
+    * Archives source: [[http://download.tuxfamily.org/slitaz/sources/tools/|HTTP]].
+
+The SliTaz Tools contain useful scripts that enable you to customize SliTaz, such as a script to create a new initramfs or an ISO image, Makefile, etc. They accompany the [[http://doc.slitaz.org/en:scratchbook:start|Scratchbook]] and help the SliTaz developers. The archive is also distributed because it contains files that might be useful to hacker type individuals... The tools are constantly evolving and continue to expand, following the cycle of changes made by the Cooking and Stable versions.
+
+===== Mercurial repository =====
+
+The SliTaz Tools have their own Mercurial repository on the SliTaz server, they can be cloned via the command:
+
+<code> $ hg clone http://hg.slitaz.org/slitaz-tools/ </code>
+
+===== *box =====
+
+Mountbox, Netbox, Bootfloopybox, Tazlocale, etc are tools for creating SliTaz using dialog (ncurses) or GTKdialog; the scripts are contained in the directory //tinyutils///. Desktopbox is able to launch various boxes (desktopbox usage) scripted or created with Glade3. 

@@ -1,0 +1,92 @@
+====== Accessibility ======
+
+===== About =====
+
+SliTaz aims to provide some Assistive Technology (AT) tools.
+
+===== Screen magnifier =====
+
+SliTaz supplies a screen magnifier whose edges can be resized and that can magnify up to 16x. 
+It also provides graphical tools that enable a crosshair, pixel positions and RGB values. It
+can be found in the Menu -> Utilities:
+
+<code> # tazpkg get-install magnifier
+</code>
+
+===== Espeak - Text to speech (TTS) =====
+
+The espeak speech synthesizer run from the command line can speak text from an input file or 
+from stdin and supports many languages. Espeak can adjust the amplitude, pitch, word gap, 
+speed, etc. It can also write its output to a wave file rather than speaking it directly.
+Type ''%%espeak --help%%'' for a full list of available options:
+
+<code> # tazpkg get-install espeak
+</code>
+
+Example of use:
+
+<code> $ espeak -f example.txt
+</code>
+
+===== On-screen keyboard =====
+
+Virtual keyboard (xvkbd) can be used to enter characters into the software of your choice.
+The menu can be used to change the keyboard layout, function keys, etc. It supports word
+completion, the removal of unwanted keys and can connect to a remote display. The 
+configuration can be found in the ~/.Xdefaults file:
+
+<code> # tazpkg get-install xvkbd
+</code>
+
+===== Yasr - Screen Reader =====
+
+Yasr is a console (text-based) screen reader that operates through the speech-dispatcher
+interface and espeak:
+
+<code> # tazpkg get-install yasr
+</code>
+
+To configure speech-dispatcher:
+
+<code> # spd-conf 
+</code>
+
+Speech-dispatcher can be started/stopped like a daemon:
+
+<code> # speech-dispatcher
+ # killall speech-dispatcher
+</code>
+
+=== Usage ===
+
+<code> $ yasr
+ $ exit
+</code>
+
+The configuration files can be found in the /etc/speech-dispatcher or ~/.speech-dispatcher directories
+and the yasr configuration file is located in /usr/share/yasr.
+
+
+===== Sticky/Slow/Mouse Keys in X =====
+
+To enable the accessibility keys just edit your ///etc/slim.conf// file and logout of your X session:
+
+<file>
+default_xserver     /usr/bin/Xorg 
+xserver_arguments   +accessx 
+</file>
+
+After you login again, to enable/disable:
+    * **Sticky keys**: Press the shift key 5 times
+    * **Slow keys**: Hold down the shift key for 8 seconds
+    * **Mouse keys**: Hold down the left shift, left Alt and Num Lock keys
+
+There is also a package in the repositories that can do all this in gui or command line mode: **accessx**. To install and run:
+<code>
+ # tazpkg get-install accessx
+ $ ax help
+ $ accessx
+</code>
+
+
+       

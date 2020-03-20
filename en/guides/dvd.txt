@@ -1,0 +1,79 @@
+====== All Slitaz resources on one DVD ======
+
+A bootable DVD image of all available packages version is generated every day. See http://www.slitaz.org/en/get/ . Both cooking or stable versions are built; they contain:
+
+    * a Slitaz boot
+    * a copy of the website
+    * a snapshot of the wok
+    * all official packages
+
+It is designed to be used without an internet connection.
+
+===== Hybrid ISO =====
+
+The ISO image should be burned onto a DVD using:
+<code>
+# wodim -v dev=/dev/dvd packages-cooking.iso
+</code>
+It can also be written onto a USB key (say the key is /dev/usbkey). USE WITH CAUTION this will erase all your data.
+<code>
+# dd if=packages-cooking.iso of=/dev/usbkey
+</code>
+After writing the USB key, you can create partitions to get back the remaining storage.
+<code>
+# fdisk /dev/usbkey
+</code>
+The USB key is bootable. If your BIOS doesn't support USB boot, you can boot plop from http://www.slitaz.org/en/get/#floppy floppy.
+
+===== Burnable on CDROM =====
+
+The files on the ISO image are ordered in 5 groups:
+
+    - the boot files
+    - the loram boot files
+    - the website
+    - the wok
+    - the packages
+
+The four first groups fit in the first 100-200Mb of the ISO image. If you don't need the packages, you can burn it onto a mini-cdrom (8cm/210Mb)
+<code>
+# wodim -v dev=/dev/cdrom packages-cooking.iso
+</code>
+The packages are stored in alphabetical order. 915resolution should likely be present but zsh surely not. The directories are stored at the beginning of the image and are always present. If you try to load a non-present package (zsh) you will get an I/O error.
+
+===== Dual boot =====
+
+Both core and loram (loram-cdrom to be exact) boot files are stored in the ISO image. The default boot entry (slitaz) will select which to start according to your RAM size. You can force the choice with //core// or //loram// keyword:
+<code>
+boot: loram screen=1280x1024
+</code>
+With core boot you can:
+
+    * unmount the DVD (umount /cdrom)
+    * test (install) packages in RAM
+
+You can't do that with loram boot because it has /usr mounted read-only from the DVD. You can install slitaz on a hard disk with both boot files.
+
+===== Auto install =====
+
+During boot the following is performed:
+
+    * the DVD is mounted in /cdrom, the wok is onto /home/slitaz/wok
+    * a pseudo tazpkg recharge links packages from the DVD
+    * the slitaz web site is installed in file:///cdrom/website/index.html//
+
+Note: USB key users should read USB key instead of DVD
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: |  |
+
+\\
+----

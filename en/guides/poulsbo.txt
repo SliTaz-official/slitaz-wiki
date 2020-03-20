@@ -1,0 +1,20 @@
+====== Poulsbo (aka GMA500) ======
+
+This is a short guide on getting the Poulsbo graphics working nicely with SliTaz 4.0 or new rolling-core
+
+Boot SliTaz and establish a working network connection. 
+After a successful installation you will need to do the following steps to get the graphics working:
+
+<code># nano /etc/rcS.conf</code>
+Look for the row called LOAD_MODULES and remove poulsbo from the list, also make sure that psb_gfx is present.
+
+Then remove VESA and add the psb_gfx module (which is inside the linux-staging package):
+<code># tazpkg remove xorg-xf86-video-vesa 
+# tazpkg recharge
+# tazpkg get-install linux-staging</code>
+
+The fbdev-driver needs to be installed/updated:
+
+<code># tazpkg -gi xorg-xf86-video-fbdev</code>
+
+Simply reboot and the graphics should work nicely with the correct resolution.

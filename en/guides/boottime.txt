@@ -1,0 +1,40 @@
+====== Boot time ======
+
+SliTaz boots fast! But most likely you haven't turned super fast boot on yet. To do this, just edit your ///etc/rcS.conf// :
+<file> FAST_BOOT_X="yes" </file>
+
+Remove dbus, hald and slim from the RUN_DAEMONS array. That's all. Note, on some machines, FAST_BOOT_X may not boot properly. However, if Xvesa/Xorg works after you enable this feature, it's safe to leave it on. 
+
+Now, how do you measure the boot time? SliTaz logs time that rcS scripts take to run in the ///var/log/boot-time// file. In my case, it shows 5 secs. 
+
+But, how do you graph your full boot process (including the kernel-boot time)? Its quite easy on SliTaz. Just do and install the following:
+
+<code> # tazpkg get-install pybootchartgui </code>
+
+Pybootchartgui will then create a chart automatically in ///var/log//. 
+
+Now, just edit your //menu.lst// file for grub and add init=/sbin/bootchartd. In my case, it's like this:
+
+<file>
+title slitaz with bootchart
+root (hd0,8)
+kernel /boot/vmlinuz-2.6.30.6-slitaz root=/dev/sda9 init=/sbin/bootchartd quiet
+</file>
+
+Here's my boot chart with WPA2 wifi (under 10 secs boot time on a laptop with hard disk). This is out-of-the-box!!!:
+
+{{ :en:guides:image:bootchart.png?100 |My bootchart}}
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: |  |
+
+\\
+----

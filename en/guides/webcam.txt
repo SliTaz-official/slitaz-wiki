@@ -1,0 +1,38 @@
+====== Webcam on SliTaz ======
+
+
+Slitaz provides all the necessary tools to take pictures, record and stream webcam output.
+
+
+===== Installation ======
+
+By default your webcam may not be detected due to missing kernel drivers and this is normal since SliTaz doesn't provide webcam support on the LiveCD. To install and load the drivers:
+
+
+  # tazpkg -gi linux-media
+  # modprobe uvcvideo
+  
+You can check if the kernel correctly loaded the module with: 'dmesg | tail'. The webcam may be used with
+skype and other visual tools. To try the webcam with Mplayer:
+
+  $ mplayer tv:// -tv driver=v4l2:device=/dev/video0 -vo x11
+
+
+===== Pictures and recording ===
+
+To take pictures or record using the webcam you can install Mplayer:
+
+  # tazpkg -gi mplayer
+  
+Take a picture:
+
+  mplayer tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0 \
+    -fps 15 -vo png -frames 1
+
+Record a video to a file named myvideo.avi:
+
+  mencoder tv:// -tv \
+    driver=v4l2:width=640:height=480:device=/dev/video0:forceaudio:adevice=/dev/dsp \
+    -ovc lavc -oac mp3lame -lameopts cbr:br=64:mode=3 \
+    -o myvideo.avi
+

@@ -1,0 +1,79 @@
+====== Boot scripts ======
+
+The startup and shutdown scripts with their configuration files.
+
+===== SliTaz and startup =====
+
+SliTaz does not use a level of execution (runlevel), the system is initialized via a primary script and its main configuration file. This script itself launches some other smaller scripts which deal with the internationalization or the commands placed for the system to start.
+
+===== /etc/init.d/* - Directory of scripts and daemons =====
+
+The directory /etc/init.d contains all of the rc scripts, scripts finishing with '.sh' are simple shell scripts and daemons such as 'dropbear' or 'lighttpd' are scripts that launch a service. The daemon scripts can start, stop or restart through the command:
+
+   # /etc/init.d/daemon [start|stop|restart]
+
+On SliTaz you will find a /etc/init.d/README describing the basic function of rc scripts. Also note that all startup scripts and daemons can call upon the "/etc/init.d/rc.functions" file. This file makes it possible to include various functions in rc scripts. SliTaz uses a function "status" to check whether the previous command has succeeded (0) or not.
+
+===== /etc/init.d/rcS - Primary initialization script =====
+
+The "/etc/init.d/rcS" script configures all the basic services and initializes the base system. It begins by mounting the filesystems and starts services like syslogd, klogd, mdev and cleans up the system and so on. It uses the configuration file "/etc/rcS.conf" to locate which daemons and scripts to launch at startup. You can browse the script to know which commands are executed:
+
+   # nano rootfs/etc/init.d/rcS
+
+===== Specific scripts and daemons =====
+
+==== bootopts.sh - LiveCD mode options ====
+
+This script is used to configure the LiveCD options passed at boot time and is readable via the /proc/cmdline file. This is the script that allows you to use a USB key or external hard disk "/home" partition with the option home=usb or home=sda[1-9] or directly specify the language and keyboard parameters.
+
+==== network.sh - Initializing the network ====
+
+This script searches the network.sh configuration file /etc/network.conf for the network interface to use; if one wants to launch the DHCP client (or not) or if you want to use a fixed (static) IP. On SliTaz the /etc/init.d/network.sh script configures the network interfaces to start using the information contained in /etc/network.conf. If the variable $DHCP is equal to yes, then the /etc/init.d/network.sh script launches the DHCP client on the $INTERFACE interface.
+
+=== i18n.sh - Internationalization ===
+
+SliTaz backs up the configuration of the default locale in /etc/locale.conf which is read by /etc/profile at each login. The /etc/locale.conf is generated during boot time thanks to the /etc/i18n.sh script. This script launches the 'tazlocale' application if /etc/locale.conf doesn't exist. We use the same process for the keyboard layout using 'tazkmap' and the /etc/kmap.conf configuration file. Both applications are installed and located in /sbin and use dialog and the ncurses library. The script also checks whether the configuration file for the time zone /etc/TZ exists, otherwise it creates one relying on the keyboard configuration.
+
+==== local.sh - Local commands ====
+
+The /etc/init.d/local.sh script allows the system administrator to add local commands to be executed at boot. Example:
+<file>
+  #!/bin/sh
+  # /etc/init.d/local.sh: Local startup commands.
+  # All commands here will be executed at boot time.
+  #
+  . /etc/init.d/rc.functions
+
+  echo "Starting local startup commands... "
+</file>
+==== rc.shutdown ====
+
+This script is invoked by /etc/inittab during system shutdown. It also stops all daemons via the variable RUN_DAEMONS in the primary "/etc/rcS.conf" configuration file.
+
+===== /etc/inittab - Configuration file init =====
+
+The first file read by the Kernel at boot. It defines the initialization script (/etc/init.d/rcS), shells (ttys) and actions in the event of a reboot or disruption. You will find a complete example with accompanying notes in [[http://doc.slitaz.org/en:cookbook:slitaztools|SliTaz tools]]:
+<file>
+  # /etc/inittab: init configuration for SliTaz GNU/Linux.
+  # Boot-time system configuration/initialization script.
+  #
+  ::sysinit:/etc/init.d/rcS
+
+  # /sbin/getty respawn shell invocations for selected ttys.
+  tty1::respawn:/sbin/getty 38400 tty1
+  tty2::respawn:/sbin/getty 38400 tty2
+  tty3::respawn:/sbin/getty 38400 tty3
+  tty4::respawn:/sbin/getty 38400 tty4
+  tty5::respawn:/sbin/getty 38400 tty5
+  tty6::respawn:/sbin/getty 38400 tty6
+
+  # Stuff to do when restarting the init
+  # process, or before rebooting.
+  ::restart:/etc/init.d/rc.shutdown
+  ::restart:/sbin/init
+  ::ctrlaltdel:/sbin/reboot
+  ::shutdown:/etc/init.d/rc.shutdown
+</file>
+==== Following chapter ====
+
+The next chapter continues on with the [[x-window-system|X window system]].

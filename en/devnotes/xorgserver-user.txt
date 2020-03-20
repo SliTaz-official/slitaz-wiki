@@ -1,0 +1,29 @@
+======= xorg-server-1.8 ======
+
+===== Upgrade Xorg configuration =====
+
+
+Upgrade Slitaz :
+<code># echo 'y' | tazpkg upgrade</code>
+Backup xorg.conf :
+<code># mv /etc/X11/xorg.conf /etc/X11/xorg.conf-backup</code>
+Re-configure Xorg with tazx :
+<code># tazx config-xorg</code>
+
+==== User tweaks ====
+
+If you have tweaked the //xorg.conf// file, then you have two possibilities. In both cases the tweaks will be read before the default configuration and will not be erased by an upgrade :
+
+  * Put your modifications (examples) in the file ///etc/X11/xorg.conf.// This file is now reserved for users, it's the first read by Xorg when X boots.
+
+  * You put them in the correct file in the directory ///etc/X11/xorg.conf.d.// SliTaz use two files for each Xorg section : 
+          * n0-Section.conf for the default configuration and : 
+          * (n-1)5-SectionTweaks.conf for the configurations which overwrite the default one.
+
+Example :
+
+//40-evdev.conf// contains the default configuration for all devices.
+
+//35-synaptics.conf// is installed with the package xorg-input-xf86-synaptics and contains the configuration file for touchpad. It overwrites the default one (evdev).
+
+If you wish to modify this section manually, take care to rename the file with a lower number like //31-MyDevices.conf//. And don't use a file named x5 or x0 to ensure that it will not be overwritten by an upgrade.

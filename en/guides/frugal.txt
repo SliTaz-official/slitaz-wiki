@@ -1,0 +1,140 @@
+====== Winboot ======
+
+===== Frugal install to Microsoft Windows partition =====
+
+Install [[http://grub4dos.sourceforge.net/wiki/index.php/Grub4dos_tutorial#Installation|Grub4dos]].
+
+This article will assume that your C: drive is //(hd0,0)//.
+You need at least 160MB to run Slitaz cooking (128MB for Slitaz 1.0).
+
+Tested with Windows XP on FAT32 and on NTFS.
+
+For Windows XP, 2000 or NT, copy http://mirror.slitaz.org/boot/grldr
+into C:\ and append to C:\boot.ini:
+
+<file>C:\grldr="Grub4DOS"</file>
+
+===== Traditional frugal install =====
+
+Copy http://download.tuxfamily.org/slitaz/boot/cooking/bzImage and
+http://download.tuxfamily.org/slitaz/boot/cooking/rootfs.gz (both <30MB)
+into C:\boot and append to C:\menu.lst the following text:
+
+<file>
+title SliTaz cooking
+  kernel (hd0,0)/boot/bzImage rw root=/dev/null vga=normal
+  initrd (hd0,0)/boot/rootfs.gz
+</file>
+Works fine with Windows XP on FAT32 and on NTFS.
+
+===== ISO image install =====
+
+Copy http://download.tuxfamily.org/slitaz/iso/cooking/slitaz-cooking.iso (<30MB)
+into C:\boot. Run defragmentation on C:. And append to C:\menu.lst the following text:
+
+<file>
+title SliTaz cooking
+  map (hd0,0)/boot/slitaz-cooking.iso (hd1)
+  map --hook
+  kernel (hd1)/boot/bzImage rw root=/dev/null vga=normal
+  initrd (hd1)/boot/rootfs.gz
+</file>
+
+Works fine with Windows XP on FAT32 and on NTFS. Using version 0.4.3.
+The file C:\boot\slitaz-cooking.iso MUST be defragmented.
+
+<note tip>
+Anyway, you can always boot from an ISO image on a fragmented filesystem with:
+<file>
+title SliTaz cooking
+  map --mem --heads=0 --sectors-per-track=0 (hd0,0)/boot/slitaz-cooking.iso (hd1)
+  map --hook
+  kernel (hd1)/boot/bzImage rw root=/dev/null vga=normal
+  initrd (hd1)/boot/rootfs.gz
+</file>
+</note>
+
+You need 160MB or 256MB of RAM to run the slitaz-cooking.iso.
+If you have less RAM try:
+http://mirror.slitaz.org/iso/cooking/flavors/slitaz-cooking-base.iso or
+http://mirror.slitaz.org/iso/cooking/flavors/slitaz-cooking-justX.iso or
+http://mirror.slitaz.org/iso/cooking/flavors/slitaz-loram.iso instead:
+
+<file>
+title SliTaz cooking base
+  map (hd0,0)/boot/slitaz-cooking-base.iso (hd1)
+  map --hook
+  kernel (hd1)/boot/bzImage rw root=/dev/null vga=normal
+  initrd (hd1)/boot/rootfs.gz
+</file>
+See http://community.slitaz.org/wiki/Loram
+
+===== Web boot install =====
+
+Copy http://download.tuxfamily.org/slitaz/boot/gpxe (<200KB)
+into C:\boot and append to C:\menu.lst the following text:
+
+<file>
+title SliTaz web
+  kernel (hd0,0)/boot/gpxe
+</file>
+
+Gpxe is provided by the SliTaz Live CD too:
+<file>
+title SliTaz web
+  map (hd0,0)/boot/slitaz-cooking.iso (hd1)
+  map --hook
+  kernel (hd1)/boot/gpxe
+</file>
+This will boot the latest available version of SliTaz. See http://boot.slitaz.org/.
+Works fine with Windows XP on FAT32 and on NTFS.
+
+===== Tuning the boot process =====
+
+Additional boot parameters may be appended. For example:
+
+<file>
+title SliTaz cooking
+  map (hd0,0)/boot/slitaz-cooking.iso (hd1)
+  map --hook
+  kernel (hd1)/boot/bzImage rw root=/dev/null vga=extended lang=fr_FR kmap=fr-latin1 laptop autologin config=/dev/hda1,boot/slitaz.sh
+  initrd (hd1)/boot/rootfs.gz
+</file>
+
+The file // /boot/slitaz.sh // in // /dev/hda1 // will be executed at the end of the boot script:
+
+<file>
+  initrd (hd1)/boot/rootfs.gz (hd0,0)/boot/extra-softwares.gz (hd0,0)/boot/my-config-files.gz
+</file>
+
+The compressed cpio archives // /boot/extra-softwares.gz // and // /boot/my-config-files.gz // will be loaded after the official initramfs //rootfs.gz//. This is faster than using the previous // /boot/slitaz.sh // script. Example :
+<code># find /etc/rcS.conf /etc/daemons.conf /etc/dropbear /home/tux/.ssh | cpio -o -H newc | gzip -9 > /boot/my-config-files.gz</code>
+
+===== Automated Graphical Approach using UNetbootin =====
+
+A SliTaz Frugal Install or a Live USB installation can be performed using [[http://unetbootin.sourceforge.net/|UNetbootin]].
+
+<note warning>
+**Unetbootin will not work with the main 4.0 release slitaz-4.0.iso or slitaz-rolling.iso** which are core 4-in-1 iso's with multi-rootfs.gz without manually editing the boot menu or combining the multi-rootfs.gz into one.
+
+Please use [[http://mirror.slitaz.org/iso/4.0/flavors/slitaz-4.0-core.iso|slitaz-4.0-core.iso]] or another single rootfs.gz flavor found [[http://mirror.slitaz.org/iso/4.0/flavors/|here]]. </note>
+
+Either the standard version ([[http://unetbootin.sourceforge.net/unetbootin-windows-latest.exe|Windows]] | [[http://unetbootin.sourceforge.net/unetbootin-linux-latest|Linux]]) can be used (select SliTaz from the
+Distribution list), or a custom SliTaz version ([[http://unetbootin.sourceforge.net/unetbootin-windows-latest.exe|Windows]] | [[http://unetbootin.sourceforge.net/unetbootin-linux-latest|Linux]]) may also be used.
+
+To perform a Frugal Install, select “Hard Disk” under installation type;
+to create a Live USB, select “USB Drive” under installation type.
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: | Add new rows like this ;-)  |
+
+\\
+----

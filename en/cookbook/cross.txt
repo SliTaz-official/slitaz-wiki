@@ -1,0 +1,54 @@
+====== Cross compilation ======
+\\
+
+After SliTaz got new build tools for 4.0, we had to rebuild all packages and used this opportunity to cross compile as much as possible in the wok. There are many reasons: lots of user requests about Slitaz on ARM, prepare for the future and cross compile by default on our main build host aka Tank. Tank is a i686 machine and SliTaz targets i486 which is a more generic architecture and works on almost all X86 systems, so we enable cross compilation from a i686 build system for a i486 host system. This way we take advantage of Tank's power while we produce i486 binaries. If you look at the packages build log on Tank you will see:
+
+<code>
+checking build system type... i686-slitaz-linux-gnu
+checking host system type... i486-slitaz-linux-gnu
+checking whether we are cross compiling... yes
+</code>
+
+===--build, --host and --target===
+
+Build and host. These options are for cross-compiling. If you specify both options and BUILD_SYSTEM is different from HOST_SYSTEM, configure will prepare to cross-compile from BUILD_SYSTEM to be used on HOST_SYSTEM.
+
+To make it work we have 2 variables in cook.conf: BUILD_SYSTEM and HOST_SYSTEM. The build system is auto-detected by uname -m but can be changed to the native i486-slitaz-linux machine type tools. The host system is set with the ARCH variable also used in CFLAGS. In CFLAGS we have the GCC compiler options and by default we use -march=$ARCH but it must be changed for some architectures as explained below.
+
+The --target option is only used for building cross-compilers.
+
+===Current state and packages===
+
+While all main packages cross compile well, we still have some receipts to improve. But it may take some time, so for now we use a native i486 build for packages that don't compile. Instead of $CONFIGURE_ARGS we use: --build=$HOST_SYSTEM --host=$HOST_SYSTEM so it doesn't cross compile but builds with the native i486 toolchain, this doesn't screw anything since it is the default architecture, but we can't cross compile these packages for another arch like ARM.
+
+===Cross compiler and toolchain===
+
+If we want to be able to cook packages from a X86 machine for another architecture like ARM we need a cross compilation toolchain. A basic cross toolchain is: binutils and gcc. We need to make packages for cross compilers and use the --target option in configure. Accordingly the two example/test packages: cross-arm-binutils and cross-arm-gcc are a first attempt to provide a basic C compiler. After installation you can check the machine name with:
+
+<code>
+$ arm-slitaz-linux-gcc -dumpmachine
+</code>
+
+<note>
+Actually the packages were committed to let others try them and make them work properly since we are still in a building stage. Also if you do change 
+the receipt keep the CFLAGS unset since this should not be set when building a cross compiler.
+</note>
+
+===ARM Note===
+
+cook.conf
+<code>
+ARCH="arm"
+CFLAGS="-O2"
+</code>
+
+===X86_64 Notes===
+Notes about building natively on X86_64 and cross compiling for X86_64 machine.
+
+
+cook.conf
+<code>
+ARCH="X86_64"
+CFLAGS="-O2 -march=generic"
+</code>
+

@@ -1,0 +1,117 @@
+====== LightTPD Web Server ======
+
+===== About LightTPD =====
+
+This chapter describes the configuration and use of the LightTPD web server. It's a fast, secure, flexible HTTP server, using a small memory footprint. It enables intelligent management of the cpu load and offers FastCGI support, CGI, Auth, Output compression and the rewriting of URLs, etc. LightTPD is a cheap way to host your own site on an old machine.
+
+On SliTaz the server is automatically launched at system startup and is preconfigured with PHP. The root documents served by default are in /var/www, this contains the default page index.html, images are stored in the images/ directory. LightTPD website: http://www.lighttpd.net/
+
+===== /var/www - Root directory of documents =====
+
+The /var/www folder is the root directory of documents - you can access this via the URL http://localhost/. If you want to host a site, you can save all your documents in here. If you want to host multiple sites, you'll need to create virtual hosts. Note you can also check the http://localhost/server-status.
+
+
+===== ~Public - Public directory of users =====
+
+SliTaz provides the users of the system a public space to place documents, HTML in general. This directory is named Public and must be within the root of your user space, such as ///home/hacker/Public//. To create this directory, use the //mkdir// command:
+
+<code> $ mkdir ~/Public </code>
+
+You can then have access via the URL: http://localhost/~hacker/. You can also use the machine name or IP address if you connect from another computer.
+
+=====/etc/lighttpd/lighttpd.conf - LightTPD configuration file=====
+
+The main configuration file for LightTPD (lighttpd.conf) is located in ///etc/lighttpd///. This file provided by SliTaz is self-explanatory, just browse. You can find other examples on the LightTPD website. On SliTaz you'll also find a //vhosts.conf// file for the configuration of any virtual hosts (hosting several sites on the same server).
+
+=====Start, stop, restart the web server=====
+
+By default, SliTaz starts the server automatically at boot, to prevent this you need to remove lighttpd from the variable //RUN_DAEMONS// located in the system file ///etc/rcS.conf//. To start, stop or restart the server, you can use the commands: ///etc/init.d/lighttpd [start|stop|restart]//. Example to restart the server after changing the configuration file:
+
+<code> # /etc/init.d/lighttpd restart </code>
+
+===== CGI scripts using Perl =====
+
+To configure the LightTPD server to locate the path of the perl binary and use CGI/Perl, you'll need to install perl and modify the server configuration file. Example using Geany:
+
+<code> # tazpkg get-install perl
+ # geany /etc/lighttpd/lighttpd.conf & </code>
+
+
+<file>
+# CGI module. You can install Perl and assign .pl and .cgi scripts
+# to /usr/bin/perl
+$HTTP["url"] =~ "/cgi-bin/" {
+  cgi.assign = (
+    ".sh" => "/bin/sh",
+    ".cgi" => "/usr/bin/perl",
+    ".pl" => "/usr/bin/perl"
+  )
+}
+
+</file>
+
+===== CGI scripts using Python =====
+
+To configure the LightTPD server to locate the path of the python binary and use CGI/Python, you'll need to to install python and modify the server configuration file. Example using Geany:
+<code>
+ # tazpkg get-install python
+ # geany /etc/lighttpd/lighttpd.conf &
+</code>
+
+<file>
+# CGI module. You can install Python and assign .py and .cgi scripts
+# to /usr/bin/python
+$HTTP["url"] =~ "/cgi-bin/" {
+  cgi.assign = (
+    ".sh" => "/bin/sh",
+    ".cgi" => "/usr/bin/python",
+    ".py" => "/usr/bin/python"
+  )
+}
+</file>
+
+For the changes to be taken into effect and to use your first CGI scripts on SliTaz, just restart the LightTPD server:
+
+<code> # /etc/init.d/lighttpd restart </code>
+
+===== Authentication - Protection for the directories =====
+
+LightTPD provides authentication modules that can for example, protect a directory. The server offers several authentication methods, but we will begin by using the basic method without encrypting any passwords. In order to be able to use the module mod_auth, you must install the lighttpd-modules package (tazpkg get-install lighttpd-modules). Once installed mod_auth must be added to the list of modules:
+
+<file>
+# Modules to load.
+# See /usr/lib/lighttpd for all available modules.
+#
+server.modules = (
+  "mod_access",
+  "mod_auth",
+  "...",
+)
+</file>
+
+Now you can configure the modules by specifying the debug level and method (plain) and the path to the file containing a list of names using a protected password to access the directories. You must also define the directories that require authorization. In this example we'll protect the admin/ directory and authorize its access to user tux (//user=tux//):
+
+<file>
+# Authentication for protected directory.
+auth.debug = 2
+auth.backend = "plain"
+auth.backend.plain.userfile = "/etc/lighttpd/plain.passwd"
+auth.require = ( "/admin/" =>
+(
+"method" => "basic",
+"realm" => "Password protected area",
+"require" => "user=tux"
+)
+)
+</file>
+
+Finally, we now create the file containing the passwords, add a user and restart the server for testing. The basic syntax for the file is user:password. You can create the file and add a user with the echo command or edit with your favorite text editor. To add tux:root to the password file ///etc/lighttpd/plain.passwd//:
+
+<code>
+ # echo "tux:root" > /etc/lighttpd/plain.passwd
+ Or :
+ # nano /etc/lighttpd/plain.passwd
+</code>
+To test the address: **http://localhost/admin/**, just restart the server:
+
+<code> # /etc/init.d/lighttpd restart </code>

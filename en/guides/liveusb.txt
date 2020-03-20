@@ -1,0 +1,116 @@
+This page describes how to make a slitaz live usb stick.
+
+===== From Windows =====
+
+A SliTaz Live USB installation can be performed using:
+  * [[http://www.linuxliveusb.com/|LinuxLive USB Creator]]
+  * [[http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/|Universal USB Installer]]
+  * UnetBootin
+  * TazUSB
+
+<note warning>
+**SliTaz with xorg-server and persistent /home requires a linux filesystem (ext2,ext3) for regular users to login to an X-session.**
+
+**Fat32 or NTFS filesystems cause slim login manager error:** //Failed To Execute Login Command// </note>
+
+<note tip>__//Solution://__ \\
+**SliTaz runs in RAM so after booting it no longer needs the flash drive.** \\
+**This enables you to reformat the flash drive to a linux filesystem and reinstall SliTaz.** \\ </note>
+
+  - Install SliTaz with [[http://www.linuxliveusb.com/|LinuxLive USB Creator]] or [[http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/|Universal USB Installer]] \\
+  - Copy the slitaz.iso to the root of the flash drive. \\
+  - Boot into SliTaz with the flash drive,login root, password: root \\
+  - [[http://doc.slitaz.org/en:handbook:commands|Mount]] the flash drive,copy the slitaz.iso to /root \\
+  - Use **From SliTaz** instructions above to format the flash drive ext2, reinstall SliTaz using ISO file as install source.
+
+
+<note warning>**Tazusb.exe and Unetbootin do not work with any cooking.iso, rolling.iso or slitaz-4.0.iso (core 4-in-1)** .
+
+They will work with [[http://mirror.slitaz.org/iso/4.0/flavors/slitaz-4.0-core.iso|slitaz-4.0-core.iso]] or another single rootfs.gz flavor found [[http://mirror.slitaz.org/iso/4.0/flavors/|here]].</note>
+
+<note warning>**Tazusb.exe does not work with any cooking.iso, rolling.iso or slitaz-5.0.iso**.
+
+The .iso file must be renamed to an .exe file, i.e.:
+
+    * boot into windows,
+    * download the latest slitaz-rolling.iso,
+    * go to the downloaded file directory,
+    * rename the file slitaz-rolling.iso to slitaz-rolling.exe,
+    * double-click on the file slitaz-rolling.exe to run it,
+    * follow the instructions given by the application (2-3 steps):
+    *- Do you want to create a boot key: => answer yes,
+    *- Step 1: unplug the USB stick,
+    *- Step 2: plug the USB stick in and wait for Windows to mount it,
+    *- wait for the confirmation window,
+    * reboot,
+    * press Fn key to choose alternative boot device, slitaz boot panel must be displayed,
+    *- select the language,
+    *- RETURN to boot.
+</note>
+
+
+
+====== Remarks when using UNetbootin ======
+You can find UNetbootin for Windows at [[http://unetbootin.sourceforge.net/unetbootin-windows-latest.exe|this page]]. Note that you need to select SliTaz ISO from the Distribution list in unetbootin. To create a Live USB, select “USB Drive” under installation type.
+You can also choose to do a frugal install. To perform a Frugal Install, select “Hard Disk” under installation type.
+
+====== Remarks when using TazUSB ======
+The binary file **TazUSB.exe** is a Windows executable that installs an ISO file on a USB drive. \\
+  * download TazUSB executable for Windows: [[http://mirror.slitaz.org/packages/windows/tazusb.exe|tazusb.exe]] (the sources are available here [[http://hg.slitaz.org/tazusb/raw-file/tip/win32/tazusb.nsi|tazusb.nsi]])
+  * plug in your USB drive and format it in **FAT32** (formatting might not be required),
+  * launch TazUSB application by double-clicking on **TazUSB.exe** executable file,
+  * choose the language,
+  * select the destination USB drive (**double-check that the letter refers to the correct drive**),
+  * select the SliTaz **iso**
+
+===== From Linux =====
+====== From any Linux distro ======
+* You can use unetbootin; download from [[http://unetbootin.sourceforge.net/unetbootin-linux-latest|here]].
+
+====== From Slitaz linux ======
+Download > Burn > Boot a SliTaz ISO image
+
+**__//Verify the install target, format will delete everything.//__** 
+<code>
+$ su root
+# fdisk -l
+# tazusb format /dev/sdxx
+</code>
+
+**//LiveCD as install source//**
+<code>
+# tazusb gen-liveusb /dev/sdxx
+</code>
+
+**//Iso file as install source//**
+<code>
+# tazusb gen-iso2usb slitaz.iso /dev/sdxx
+</code>
+
+Note that the /dev/sdxx part of the command above specifies the location to where you need to write the iso's files to; it is not the source media where the iso is on ! With the iso file as install source option, you should hence specify the exact location where the slitaz iso  source file is located. If it is located at /home/tux (while running slitaz from a non-live version), write "tazusb gen-iso2usb /home/tux/slitaz.iso /dev/sdxx". If the source file is found on an external hard disk, mention the folder in which the media's files are outputted to - check this with PCManFM (in practice the folder can be something like /media/disk). So, the command you'd need to write with the latter would be something like "tazusb gen-iso2usb /media/disk/slitaz.iso /dev/sdxx"
+
+Once done, wait… and then reboot!
+
+===== SliTaz 4.0 kernel panic (not booting) =====
+In Slitaz 4.0 the rootfs file is divided into 4 parts which is a problem with tazusb.exe and UNetbootin. For SliTaz to work with tazusb.exe and Unetbootin you must download the [[http://mirror.slitaz.org/iso/4.0/flavors/slitaz-4.0-core.iso|core flavor of SliTaz]] consisting of a single file rootfs.
+
+===== Sources =====
+  * [[http://oldpapyrus.wordpress.com/tag/how-to-install-slitaz-4-0-on-usb/ ]]
+
+===== See also =====
+  * [[http://doc.slitaz.org/en:handbook:liveusb]]
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Give more details on using multiboot programs like YUMI, Multisystem, ...|
+|:::           | What about if using drive greater that 3GB? |
+|::: |   |
+
+\\
+----

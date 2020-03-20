@@ -1,0 +1,268 @@
+.. http://doc.slitaz.org/en:newsletter:oldissues:23
+.. en/newsletter/oldissues/23.txt · Last modified: 2011/12/13 21:41 by godane
+
+Issue 23
+========
+
+* Written on 2nd April 2011
+
+
+.. rubric:: Latest News
+
+* New Website, Community and Forum
+* New Cooking 20110329 ISO released
+
+
+.. rubric:: New Packages
+
+.. hlist::
+   :columns: 3
+
+   * nagios-{doc,dev,nrpe,nsca,plugins}
+   * p910nd
+   * emacs-pkg-{vala-mode,text-translator}
+   * opensp
+   * libofx
+   * libltdl
+   * mk-livestatus
+   * nagvis-{doc,flex}
+   * nconf
+   * ndoutils
+   * nareto
+   * libsvn
+   * perl-file-rsync
+   * bazzar-tools
+   * wbar2
+   * dokuwiki
+   * libshout
+   * perl-texi2html
+   * youtube-dl
+   * htmldoc
+   * unionfs-fuse
+   * dkms
+   * httptunnel
+   * ptunnel
+   * libtdb
+   * getmail
+   * tcpick
+   * ratmenu
+   * linux-libre
+   * deutex-devel
+   * freedoom
+   * par2
+   * backuppc
+   * firmware-iwlwifi-{1000,3945}
+   * rfkill
+   * ofono
+   * connman
+   * gtkaml
+   * lingot
+   * qca
+   * polkit-qt
+   * python-cython
+   * lfs-book
+   * e3
+   * fpc-{src,bootstrap}
+   * ruby-enterprise
+   * gource
+   * firmware-radeon
+   * metasploit
+   * gnu-netcat
+
+
+.. rubric:: Updated Packages (abridged)
+
+.. hlist::
+   :columns: 3
+
+   * bluez ⇒ 4.90
+   * terminal ⇒ 0.4.6
+   * xfce4-* ⇒ 4.8.1
+   * gmime ⇒ 2.4.22
+   * thunar ⇒ 1.2.1
+   * vlc ⇒ 1.1.8
+   * midori ⇒ 0.3.3
+   * git ⇒ 1.7.4.2
+   * fribidi ⇒ 0.19.2
+   * uget ⇒ 1.6.2a
+   * babl ⇒ 0.1.4
+   * cherokee ⇒ 1.2.1
+   * sqlite ⇒ 3.7.5
+   * gnuchess ⇒ 5.08
+   * dialog ⇒ 1.1-20110118
+   * poppler ⇒ 0.16.2
+   * lirc ⇒ 0.9.0-pre1
+   * glpi ⇒ 0.78.2
+   * xchm ⇒ 1.18
+   * mercurial ⇒ 1.8.1
+   * gnumeric ⇒ 1.10.14
+   * gcc ⇒ 4.5.2
+   * coreutils ⇒ 8.10
+   * nspr ⇒ 4.8.7
+   * shared-mime-info ⇒ 0.90
+   * desktop-file-utils ⇒ 0.18
+   * xorg-xrdb ⇒ 1.0.8
+   * whois ⇒ 5.0.11
+   * stellarium ⇒ 0.10.6
+   * scite ⇒ 2.24
+   * mc ⇒ 4.7.5.1
+   * sylpheed ⇒ 3.1.0
+   * guile ⇒ 1.8.8
+   * pangomm ⇒ 2.26.3
+   * xorg-xf86-input-evdev ⇒ 2.6.0
+   * fotoxx ⇒ 11.02
+   * nss ⇒ 3.12.9
+   * mousepad ⇒ 0.2.16
+   * transmission ⇒ 2.22
+   * pidgin ⇒ 2.7.11
+   * clamav ⇒ 0.97
+   * wordpress ⇒ 3.0.5
+   * xorg-server ⇒ 1.9.4
+   * openssl ⇒ 1.0.0.d
+   * libwebkit ⇒ 1.2.7
+   * lyx ⇒ 1.6.9
+   * nmap ⇒ 5.51
+   * aspell-en ⇒ 7.1-0
+   * openldap ⇒ 2.4.24
+   * slang ⇒ 2.2.3
+   * lvm2 ⇒ 2.02.84
+   * util-linux-ng ⇒ 2.19
+   * snort ⇒ 2.9.0.4
+   * bazaar ⇒ 2.3.0
+   * irzip ⇒ 0.552
+   * emotion ⇒ 55225
+   * openjpeg ⇒ 1.4
+   * libsmpeg ⇒ 390
+   * PyQt-x11-gpl ⇒ 4.8.3
+   * libnet ⇒ 1.1.5
+   * sip ⇒ 4.12.1
+   * sane-backends ⇒ 1.0.22
+   * lmms ⇒ 0.4.10
+   * udev ⇒ 166
+   * scummvm ⇒ 1.2.1
+   * synergy ⇒ 1.3.6
+   * glew ⇒ 1.5.8
+   * partimage ⇒ 0.6.9
+   * clutter ⇒ 1.6.6
+   * ghostscript ⇒ 9.01
+   * busybox ⇒ 1.18.4
+   * cmake ⇒ 2.8.4
+   * gparted ⇒ 0.8.0
+   * virtualbox-ose ⇒ 4.0.4
+   * curl ⇒ 7.21.4
+   * ntp ⇒ 4.2.6p3
+   * valgrind ⇒ 3.6.1
+   * readline ⇒ 6.2
+   * bash ⇒ 4.2
+   * ruby ⇒ 1.9.2-p180
+   * ruby-gtk2 ⇒ 0.90.7
+   * bind ⇒ 9.8.0
+   * glibc ⇒ 2.13
+   * fluxbox ⇒ 1.3.1
+   * ario ⇒ 1.5
+   * mpg123 ⇒ 1.13.2
+   * phpvirtualbox ⇒ 4.0-3
+   * postfix ⇒ 2.8.2
+   * bluefish ⇒ 2.0.3
+   * tor ⇒ 0.2.1.30
+   * mono ⇒ 2.10.1
+   * orage ⇒ 4.8.1
+   * dnsmasq ⇒ 2.57
+   * samba ⇒ 3.5.8
+   * firefox ⇒ 4.0
+   * thunderbird ⇒ 3.1.8
+   * swig ⇒ 2.0.2
+   * sudo ⇒ 1.8.0
+   * m4 ⇒ 1.4.16
+   * iproute2 ⇒ 2.6.37
+   * wireshark ⇒ 1.4.4
+   * seamonkey ⇒ 2.0.13
+   * squashfs ⇒ 4.2
+   * python-pysqlite ⇒ 2.6.0
+   * subversion ⇒ 1.6.16
+   * mlt ⇒ 0.6.2
+   * tmux ⇒ 1.4
+   * nscd ⇒ 2.13
+   * qt4 ⇒ 4.7.2
+   * icu ⇒ 4.6
+   * samba-pam ⇒ 3.5.7
+   * jack-audio-connection-kit ⇒ 0.120.1
+   * gnome-mplayer ⇒ 1.0.2
+   * couchdb ⇒ 1.0.2
+   * freeciv ⇒ 2.2.5
+   * pan ⇒ 0.134
+   * sox ⇒ 14.3.2
+   * xorg-setxkbmap ⇒ 1.2.1
+   * emacs ⇒ 23.3
+   * mesa ⇒ 7.10.1
+   * enna ⇒ 0.4.1
+   * icedtea6-jdk ⇒ 1.9.7
+   * tar ⇒ 1.26
+   * openmpi ⇒ 1.5.3
+   * dosfstools ⇒ 3.0.11
+   * hydrogen ⇒ 0.9.5
+   * openvas-manager ⇒ 1.0.4
+   * openvas-administrator ⇒ 1.0.1
+   * gcompris ⇒ 9.6
+   * vala ⇒ 0.11.6
+   * yad ⇒ 0.9.1
+   * gnome-doc-utils ⇒ 0.20.4
+   * evince ⇒ 2.32.0
+   * ffmpeg ⇒ 0.6.2
+   * xorg-libX11 ⇒ 1.4.2
+   * aria2 ⇒ 1.11.1
+   * cairo ⇒ 1.10.2
+   * openal ⇒ 1.13
+   * xorg-xf86-video-ati ⇒ 6.14.1
+   * goffice ⇒ 0.8.14
+   * b43-fwcutter ⇒ 014
+   * rsync ⇒ 3.0.8
+   * mpd ⇒ 15.16
+   * task ⇒ 1.9.4
+   * gnutls ⇒ 2.12.0
+   * vim ⇒ 7.3
+   * gnutls ⇒ 2.12.0
+   * mlt ⇒ 0.7.0
+   * imagemagick ⇒ 6.6.8-10
+   * hplip ⇒ 3.11.3
+   * ghostscript ⇒ 9.02
+
+
+.. rubric:: Improvements
+
+* slitaz-tools (4.0.3)
+* slitaz-boot-scripts (4.2)
+* slitaz-base-files (4.2)
+* tazpkg (4.2.6)
+* tazwok (4.2.9)
+* tazlito (4.0)
+* tazchroot (1.0.6)
+* libtaz (1.0.4)
+
+
+.. rubric:: Bugs
+
+======== ==== ======
+Activity Open Closed
+======== ==== ======
+Bugs      65    77
+Features  44    35
+Tasks      9    81
+======== ==== ======
+
+* Based on current figures
+
+
+.. rubric:: Cartoon
+
+.. image:: cartoons/cartoon-5.png
+
+
+.. rubric:: Tips and Tricks
+
+* `Using the /proc filesystem <https://web.archive.org/web/20121127115059/http://www.petur.eu/blog/?p=320>`_
+
+
+.. rubric:: Online
+
+* `Slitaz Linux 3.0 - An awesome 30 Mo Linux distribution <https://www.unixmen.com/slitaz-linux-30-an-awesome-30-mo-linux-distribution/>`_

@@ -1,0 +1,282 @@
+====== Monthly Newsletter - Issue 21 ======
+Lang:[[cn:newsletter:start|cn]] [[en:newsletter:start|en]] [[es:newsletter:start|es]] [[fr:newsletter:start|fr]] [[ru:newsletter:start|ru]]
+
+	* Written on 5th December 2010
+
+===== Latest News =====
+
+        * Guides translated into Russian (thanks Lexeii, Onion, Cyril)
+        * Over 400 packages updated
+
+===== New Packages =====
+
+        * libbonobo
+        * rarian
+        * libasyncns
+        * bin86
+        * hd2u
+        * mupen64plus
+        * pcsxr-svn
+        * ladspa
+        * raptor
+        * liblrdf
+        * libtar
+        * hydrogen
+        * bmpanel2
+        * aubio
+        * fftw
+        * frei0r-plugins
+        * liblo
+        * mlt
+        * fluidsynth
+        * ardour
+        * openshot
+        * libquicktime
+        * x264
+        * mupdf
+        * python-chardet
+        * jbig2dep
+        * openjpeg
+        * gavl
+        * swig
+        * vde2
+        * watchdog
+        * goocanvas
+        * portmidi
+        * mixxx
+        * singularity
+        * lmms
+        * deluge
+        * tinyproxy
+        * docbook-xml-{5,4.*}
+        * docbook-xsl-{ns}
+        * iasl
+        * ndisc6
+        * fop
+        * flam3
+        * electricsheep
+        * nanochess
+        * p4wn
+        * checkers
+        * othello
+        * hatenarunner
+        * chess3d
+        * sudoku
+        * jstetris
+        * virtualbox-ose
+        * qtconfig
+        * atkmm
+        * perl-file-tail
+        * txt2tags
+        * udhcpc6-fake
+        * lorcon
+        * libnet
+        * airpwn
+        * icewm
+        * cssc
+        * aspell-pl
+        * xorg-xf86-video-r128 6.8.1
+        * libfm
+        * pcmanfm2
+        * atftp
+        * aspell-nl
+        * cherokee
+        * linux-firmware
+        * stella
+        * sleuthkit
+        * linux-nfsd 
+        * linux-autofs
+        * autofs
+        * aufs
+        * geoip
+        * wavpack
+        * libass
+        * xorg-xf86-video-vmware
+        * which
+        * fcitx
+        * python-notify
+        * decibel
+        * stardict
+        * firefox-langpack-zh_CN
+        * wordpress
+        * drupal
+        * perl-locale-gettext
+        * perl-yaml
+        * libsdl-perl
+        * libsdl-pango
+        * frozen-bubble
+        * vnc2flv
+        * linux-iscsi
+        * aescrypt
+        * whois
+        * zvbi
+        * meld
+        * libglademm
+        * visualboyadvance
+        * aiksaurus
+        * lyx
+
+===== Updated  Packages (abridged) =====
+
+        * xorg => 1.9.2 
+        * libsndfile => 1.0.23
+        * wireshark => 1.4.2
+        * curl => 7.21.2
+        * libdrm => 2.4.22
+        * mesa => 7.8.2
+        * mpd => 1.15.15
+        * ncmpcpp => 5.5
+        * transmission => 2.12
+        * mtools => 4.0.14
+        * pyopenssl => 0.10
+        * pycairo => 1.8.10
+        * pygobject => 2.26.0
+        * pygtk => 2.22.0
+        * cdrkit => 1.1.11
+        * openldap => 2.4.23
+        * viewnoir => 1.0
+        * apr-util => 1.3.10
+        * apache => 2.2.17
+        * libsamplerate => 0.1.7
+        * dbus => 1.4.0
+        * udev => 163
+        * hal => 0.5.14
+        * freeimage => 3141
+        * vte => 0.27.2
+        * coreutils => 8.6
+        * mgetty => 1.1.37
+        * firefox => 3.6.12
+        * thunderbird => 3.0.15
+        * icedtea6-{jdk,jre} => 1.9.1
+        * libfirefox => 3.6.12
+        * aria2 => 1.10.5
+        * arora => 0.11.0
+        * gnutls => 2.10.2
+        * pidgin => 2.7.7
+        * ffmpeg => 0.6.1
+        * qemu => 0.13.0
+        * ffplay => 0.6.1
+        * nss => 3.12.8
+        * vlc => 1.1.15
+        * adeskbar => 0.4.2
+        * python-pygame => 1.9.1release
+        * libcap => 2.19
+        * pam => 1.1.2
+        * squirrelmail => 1.4.21
+        * valgrind => 3.6.0
+        * vala => 0.10.0
+        * syslinux => 4.03
+        * mono => 2.8.1
+        * clamav => 0.96.5
+        * scite => 2.22
+        * seamonkey => 2.0.10
+        * tar => 1.25
+        * iptables => 1.4.10
+        * poedit => 1.4.6.1
+        * fotoxx => 10.12
+        * dstat => 0.7.2
+        * remind => 03.01.10
+        * midori => 0.2.9
+        * libvorbis => 1.3.2
+        * mysql => 5.1.53
+        * aria2 => 1.10.6
+        * libpcap => 1.1.1
+        * snort => 2.9.0.2
+        * mtr => 0.80
+        * ncdu => 1.7
+        * inkscape => 0.48.0
+        * mercurial => 1.7.2
+        * dhcp => 4.2.0-P1
+        * cmake => 2.8.3
+        * linux 2.6.36
+        * gnome-mplayer => 1.0.0
+        * gecko-mediaplayer => 1.0.0
+        * zim => 0.49
+        * amule => r10365
+        * squid => 3.1.9
+        * alsaplayer => 0.99.81
+        * zip => 3.0
+        * ruby-gtk2 => 0.90.5
+        * mc => 4.7.0.10
+        * qt4 => 4.7.1
+        * cups => 1.4.5
+        * bluez => 4.80
+        * perl-xml-parser => 2.40
+        * privoxy => 3.0.17
+        * glib => 2.26.1
+        * gtk+ => 2.22.1
+        * gphoto2 => 2.4.10
+        * filezilla => 3.3.5.1
+        * elinks => 0.13
+        * pcmciautils => 017
+        * pciutils => 3.1.7
+        * usbutils => 0.91
+        * pixman => 0.20.0
+        * zenity => 2.32.1
+        * claws-mail => 3.7.8
+        * xane => 0.998
+        * imagemagick => 6.6.5-9
+        * libxml2 => 2.7.8
+        * nano => 2.2.6
+        * scribus => 1.3.8
+        * busybox => 1.17.4
+        * x11vnc => 0.9.12
+        * uget => 1.6.1
+        * subversion => 1.6.15
+        * tor => 0.2.1.27
+        * gnumeric => 1.10.12
+        * dahdi-tools => 2.4.0
+        * rpm4 => 4.8.1
+        * hydra => 5.9
+        * libsoup => 2.32.2
+        * python => 2.7.1
+        * gstreamer => 0.10.31
+        * GConf => 2.32.1
+        * bind => 9.7.2-P3
+        * freetype => 2.4.4
+        * openssl => 1.0.0c
+        * geany => 0.19.2
+        * gajim => 0.14.1
+        * mpfr => 3.0.0p8
+        * poppler => 0.14.5
+        * pidgin-facebookchat => 1.69
+        * wine => 1.2.2
+        * twisted => 10.2.0
+        * git => 1.7.3.3
+
+===== Improvements =====
+
+        * slitaz-tools (3.9.1) 
+        * slitaz-tools-boxes (3.9.1)
+        * slitaz-configs (4.0)
+        * slitaz-base-files (4.1)
+        * slitaz-doc (4.1)
+        * tazpkg (4.1.1)
+
+===== Bugs =====
+
+\\
+
+^   Activity   ^    Open   ^    Closed  ^
+|    Bugs        |     107    |     90     |
+|    Features    |     41     |     32     |  
+|    Tasks       |     24     |     48     |
+
+
+	* Based on current figures 
+
+===== Cartoon =====
+
+{{http://people.slitaz.org/~paul/cartoons/cartoon%232.png}}
+
+===== Tips and Tricks =====
+
+        * Linux Server Troubleshooting With strace: http://www.linuxplanet.com/linuxplanet/tutorials/7229/1/
+
+===== Online =====
+
+        * SliTaz GNU/Linux 3.0 Screencast Review  - http://linuxfilesystem.com/uncategorized/slitaz-gnulinux-3-0-screencast-review	
+
+===== Old Issues =====
+
+        * Click [[en:newsletter:oldissues|here]]

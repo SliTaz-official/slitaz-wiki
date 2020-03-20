@@ -1,0 +1,13 @@
+This category is to provide useful linux references/articles/bookmarks. Please feel free to add any topic that you think may be useful for the community. 
+
+===== Development ======
+
+  * [[http://linuxcommand.org/writing_shell_scripts.php | Shell scripts (LinuxCommand.org)]] - Writing shell scripts 
+  * [[http://tldp.org/LDP/abs/html/ | Advanced bash-scripting guide]] - Writing bash scripts 
+  * [[https://repology.org/ | Repology]] - Comparing packages versions across repositories 
+
+===== Linux References =====
+
+  * [[http://www.digilife.be/quickreferences/QRC/The%20One%20Page%20Linux%20Manual.pdf | One Page Manual]] - Not everything applies to SliTaz
+  * [[http://www.pixelbeat.org/cmdline.html | Another command line reference]]
+  * [[http://www.howtogeek.com/tag/linux/ | Linux How-To Articles, Tips, and Guides]] - How-To Geek

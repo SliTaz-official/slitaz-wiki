@@ -1,0 +1,150 @@
+====== 3G-UMTS =======
+
+The # sign means that you do this command as root on your console:
+
+===== Automatic Installation =====
+
+The new hwsetup in SliTaz 3.0 now adds automatic installation for 3G (still in trial version).
+
+<code># tazhw setup 3g-modem</code>
+
+Now open the wvdial box by typing y, enter your data (as described in wvdial.conf), save the configuration (if you don't save you risk breaking your pin), dial the pin (you have to do this only once you plug in your modem), then start dialing and you should be connected.
+
+===== Manual Installation =====
+
+<code>
+# tazpkg get-install wvdial
+# tazpkg get-install linux-dialup 
+</code>
+
+You have to bring down your network, otherwise you will have a route problem:
+
+<code>
+# ifconfig eth0 down
+# ifconfig eth1 down
+</code>
+
+You have to switch on the modem with:
+
+<code>
+# modprobe option  (Huawei E220, E160g, Venus-VT12)
+</code>
+
+Please help update which modem or phone is using which module using the forum post: http://labs.slitaz.org/issues/show/149. You will find if your modem is supported by linux-dialup.
+
+There is an extra guide for the [[http://doc.slitaz.org/en-guides:cricket-a600|Cricket-a600]]
+
+For automatization load the module at startup with your Slitaz Control Box.
+
+===== wvdial.conf =====
+
+Check the modem if it is /dev/ttyUSB* or /dev/ttyACM* (e.g. with #dmesg) and edit your wvdial.conf (here as an example):
+
+<code>
+# leafpad /etc/wvdial.conf
+</code>
+
+<file>
+[Dialer pin]
+Modem = /dev/ttyUSB0
+Init1 = AT+CPIN=1234...................,.....!!here's your pin!!
+
+[Dialer umts]
+Modem = /dev/ttyUSB0
+ISDN = off
+Modem Type = USB Modem
+Baud = 460800
+Init = ATZ
+Init2 = ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+Dial Prefix =
+Dial Attempts = 1
+Dial Command = ATM1L3DT
+Ask Password = off
+Auto Reconnect = off
+Abort on Busy = off
+Carrier Check = on
+Check Def Route = on
+Abort on No Dialtone = on
+Stupid Mode = off
+Idle Seconds = 0
+Init3 = AT+CGDCONT=1,"IP","drei.at".....!!here's your string!!
+Username = drei.at...........................!!here's your Usern!!
+Password = drei.at...........................!!here's your Passw!!
+Phone = *99#.................................!!here's your Phone!!
+</file>
+
+All the needed data can be found here:
+
+Austria, Germany,Switzerland: http://linux.frankenberger.at/Huawei_E220_Daten.html
+
+World:http://www.flexispy.com/Mobile%20APN%20Setting%20to%20use%20GPRS.htm
+
+But you can search the net with the name of your provider and wvdial.conf and I think you will need to.
+
+To connect do:
+
+<code>
+# wvdial pin
+# wvdial umts
+</code>
+
+You can put the pin also in Dialer umts, but I use my modem most of the time on the train, and you would get an error when you reconnect (when the connection breaks) - so use wvdial pin only the first time you plug in the modem.
+
+The only thing thats left is to put the DNS in resolv.conf (you will find the DNS in the two lists with all the data).
+
+<code>
+# leafpad /etc/resolv.conf
+</code>
+
+<file>
+nameserver 213.94.78.16........................!!here's your DNS!!
+</file>
+
+If you want to dial out as user - add yourself to the group "dialout" (cat /etc/group) and set the permissions for wvdial and wvdial.conf.
+
+For automatization you can put a script in /usr/local/bin called umts-connect (executable)! From here it's not proved, because I connect from the console, but it should work like this!
+
+<code bash>
+#! /bin/bash
+ifconfig eth0 down
+ifconfig eth1 down
+wvdial pin
+wvdial umts
+</code>
+
+But dont reconnect with this.
+
+===== Desktop entry =====
+
+You can also put a desktop entry in /usr/share/applications with the name umts.desktop 
+
+<file>
+[Desktop Entry]
+Encoding=UTF8
+Name=UMTS connection
+Name[de]=UMTS-Verbindung
+Comment=UMTS-Verbindung
+Type=Application
+Exec=/usr/local/bin/umts-connect
+Icon=/usr/share/icons/.................whatever you want
+Categories=Application;Network;
+</file>
+
+Please check Exec=/usr/local/bin/umts-connect for permissions.
+
+Here is the forum post about this: http://forum.slitaz.org/index.php/discussion/comment/440/#Comment_440
+
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: |  |
+
+\\
+----

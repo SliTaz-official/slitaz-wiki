@@ -1,0 +1,10 @@
+This manual is intented to help you on making a SliTaz livecd.
+Once you made a customized SliTaz iso, or after simply having downloaded a regular SliTaz iso from the SliTaz website, you can go ahead and burn it to a cd. However, as the writer of this guide has found, not all programs always work. So here's a list of programs that are found not to work:
+  * Nero Burning ROM 6 (Windows)
+
+These programs do work:
+  * imgBurn (Windows, or Linux using Wine)
+  * ISO Master (Linux; should work, see [[http://doc.slitaz.org/en:handbook:utilities#iso-master-create-and-edit-isos|here]])
+  * Graveman (Linux; should work, see [[http://www.slitaz.org/en/doc/scratchbook/base-system.html#mkiso|here]])
+  * k3b (Linux)
+  * wodim (Linux)

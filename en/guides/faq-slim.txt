@@ -1,0 +1,18 @@
+====== Halt, reboot or shutdown via slim ======
+
+===== Symptoms =====
+
+Slim, the SliTaz Login Manager asks for a password when a special command like ''halt'', ''reboot'' or ''shutdown'' was entered in place of a user name.
+
+===== Explanation =====
+
+The required password is that from user ''root''!
+
+===== Solution =====
+Enter the root password and the appropriate action for ''halt'', ''reboot'' or ''shutdown'' as defined in 
+<code>/etc/slim.conf</code>
+with
+<code>halt_cmd    /sbin/poweroff</code>
+and
+<code>reboot_cmd    /sbin/reboot</code>
+Will be performed and no login.

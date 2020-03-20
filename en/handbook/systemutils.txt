@@ -1,0 +1,372 @@
+====== System Administration ======
+
+===== Devices and disk access =====
+
+With Linux your disks and USB media are seen as devices. To access them you must first mount a device on a mount point (directory). On SliTaz you can graphically mount devices by using mountbox or the command line. To mount the first disk of a local hard disk on ///mnt/disk//:
+
+<code>
+ # mkdir -p /mnt/disk
+ # mount /dev/hda1 /mnt/disk
+</code>
+
+To mount a cdrom or an USB media you should use mount points located in ///media//. Note that for a cdrom, you just have to specify the device path. For a flash key, the mount point already exists:
+
+<code>
+ # mount /dev/cdrom
+ # mount /dev/sda1 /media/flash
+</code>
+
+=== NTFS filesystem ===
+
+If you need read/write access to Windows ntfs filesystems you must install a few additional packages from the mirror. The ntfs-3g driver provides stable access to ntfs partitions and ntfsprogs provides manipulation tools dependent on fuse. Note that you can format, move or resize ntfs partitions graphically with Gparted.
+
+=== NFS ===
+
+NFS (Network File System) is the native unix/linux method for sharing file systems. In this respect its function is similar to samba. The most popular version is still NFSv3 which is able to use either UDP or TCP as the network protocol. The older NFSv2 was only capable of using UDP. On a local LAN, UDP is still the fastest protocol; TCP is to be preferred when the machines are connected over a WAN. 
+NFSv3 has been superseded by NFS version4 which has notable improvements (security) over v3 but its configuration has become a lot more complex as a result. 
+
+An NFS server exports a part of it's file system; i.e. makes it available on the network. The server is configured with details about client ip addresses or host names and can restrict their access to the file system. Access can be read-only, read-write or no access at all. 
+An NFS client simply mounts the exported file systems as if they were local devices. 
+
+The NFS software in Slitaz makes it possible to run both as a server or a client. To start the NFS processes, you need to run the init script in etc/init.d/. 
+<code>/etc/init.d/nfsd start|stop</code>
+<note tip>The NFS daemons must be running also when the machine acts as a client.</note>
+
+== NFS Software Installation ==
+To start using NFS, the following packages are required:
+<code>
+# tazpkg -l | grep nfs
+linux-nfsd              2.6.37            base-system
+nfs-utils               1.2.2             system-tools
+</code>
+
+Install them using:
+<code>
+# tazpkg -gi linux-nfsd
+# tazpkg -gi nfs-utils
+</code>
+
+== /etc/exports ==
+Here is a sample exports file:
+<code>
+# /etc/exports: the access control list for filesystems which may be exported
+#               to NFS clients.  See exports(5).
+#
+# Example for NFSv2 and NFSv3:
+# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+#
+# Example for NFSv4:
+# /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+# /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+#
+/usb1           192.168.1.0/24(rw,sync,no_subtree_check)
+</code>
+The server is only exporting one drive: usb1. Clients must be in the 192.168.1.0/24 network and they have read-write access.
+
+To use nfs on the client; all you need to do is start nfsd and mount the share:
+<code>
+# /etc/init.d/nfsd start
+# mount server:/usb1 /mnt/usbdrive1
+</code>
+Please note the specific format for nfs shares **servername** colon slash-mountpoint**.
+Naturally you must also make sure that the specified mount point (directory) exists on the client. 
+
+===== Users, groups and passwords =====
+
+To manage users and groups on your SliTaz system you must use the command line, but file permissions can be changed graphically using the PCmanFM file manager. To add or remove users and groups you must be root. Root can also change all user passwords and a single user can only change his/her own password. To add or remove a user named linux:
+
+<code>
+ # adduser linux
+ # deluser linux
+</code>
+
+
+=== Manipulating users & group membership: ===
+
+Linux groups are a mechanism to manage a collection of computer system users. All Linux users have a user ID and a group ID and a unique numerical identification number called a userid (UID) and a groupid (GID) respectively. Groups can be assigned to logically tie users together for a common security, privilege and access purpose. It is the foundation of Linux security and access. Access to files and devices may be granted based on a user ID or a group ID. This mechanism is the same for all of linux but the way it is configured varies per distribution. Sometimes additional or different commands are used, like for example usermod, chgrp, useradd or groupadd. Below is an overview of how to handle users, groups and group membership on Slitaz. 
+
+The Slitaz way is using only four commands. Simple & Elegant. ;-)
+
+<code>
+# adduser <username> <= adds a user
+
+# deluser <username> <= deletes a user
+
+# addgroup <groupname> <= adds a group
+
+# delgroup <groupname> <= deletes a group
+
+# addgroup <username> <groupname> <= adds a user to a group
+
+# adduser -G <groupname> <username> <= adds the user to an additional group
+
+# delgroup <username> <groupname> <= deletes a user from a group
+</code>
+
+Any user can be member of any group and the combination of user & group permissions allows for granular access to system resources. 
+
+=== Passwd ===
+
+To change the current user's password or change the password of a specific user, you must use the passwd command:
+
+<code> $ passwd
+ # passwd username </code>
+
+=== Audio group ===
+
+If you want a new user to be able to listen to music he must be in the audio group. To add an existing user to the audio group:
+
+<code> # adduser -G audio user_name </code>
+===== Language and keyboard layout =====
+
+SliTaz saves the configuration of the default locale in ///etc/locale.conf// which is read by ///etc/profile// on each login and the keyboard setting is stored in ///etc/keymap.conf//. These two files can be edited with your favorite editor or configured respectively with //tazlocale// and //tazkeymap//. You can modify the settings you chose on the first boot by typing as root administrator:
+
+<code> # tazlocale
+ Or:
+ # tazkeymap </code>
+
+To check all available locales or your current configuration, you can use the command locale as a single user or root (C for English):
+
+<code>
+ $ locale -a
+ $ locale
+</code>
+
+===== Custom SHell =====
+
+SliTaz uses the ash shell linked to sh provided by busybox. Ash is light, fast and standards compliant. To change the default shell for a user you can edit the /etc/passwd file using the corresponding line. After you login, /etc/profile is read first and then the user file ~/.profile. You can edit these files with a text editor to configure the language, any aliases, etc. 
+
+=== Example: ~/.profile ===
+
+<file>
+# ~/.profile: executed by Bourne-compatible login shells.
+#
+
+# Aliases.
+alias ls='ls -F'
+alias df='df -h'
+
+# Env variables.
+export EDITOR=nano
+</file>
+
+===== Bash Shell =====
+
+On SliTaz you have the ash and sh shell with a link to Ash, this shell is provided by Busybox. If you wish to use the Bash (Bourne Again SHell), first as root install bash, copy the //.profile// found in your home directory and rename it //.bashrc//, then edit the ///etc/passwd// file with your favorite text editor and change your shell to :///bin/bash//
+
+<code>
+ # tazpkg get-install bash
+ # cp /home/hacker/.profile home/hacker/.bashrc
+ Note root user: cp /home/hacker/.profile ~/.bashrc
+ # nano /etc/passwd   ~ :/bin/bash
+</code>
+
+The next time you login bash will be your default shell, you can confirm this by typing env on the command line.
+
+===== Editors =====
+
+Busybox supplies a clone of vi for normal text editing, but it does have its limitations. You can install the full vim editor with the command:
+
+<code> # tazpkg get-install vim </code>
+
+Or alternatively if you prefer emacs, SliTaz offers a tiny version:
+
+<code> # tazpkg get-install emacs </code>
+
+===== Sudo =====
+
+The sudo command can be applied on SliTaz:
+
+<code> # tazpkg get-install sudo </code>
+
+Note that the configuration file ///etc/sudoers//, should always be edited by the //visudo// command which locks the file and checks for errors.
+
+===== System Time =====
+
+To check the current system time, you can simply type: <code>$ date </code>
+
+=== TimeZone ===
+On SliTaz, the timezone configuration file is saved in ///etc/TZ//, you can edit this with your favorite text editor or simply echo the changes. To view the available timezones, you can look in the ///usr/share/zoneinfo// directory. Here's an example using the timezone Europe/London:
+
+<code> # echo "Europe/London" > /etc/TZ </code>
+
+=== Rdate ===
+
+To synchronize the system clock with a network time server, you can (as root) use the //rdate -s// command:
+
+<code> # rdate -s tick.greyware.com </code>
+
+To display the time on the remote server, use the //rdate -p// command.
+
+<code> $ rdate -p tick.greyware.com </code>
+
+=== Using ntp ===
+
+NTP is a protocol to synchronize the time on many different systems via a network. NTP is a client-server application which uses UDP port 123. This section describes how to configure your system as an ntp client deriving its time from the Internet. There are many servers available on the Internet which provide an ntp service. 
+<note tip> Experience has shown that ntp servers seldom have a high availability, rather the opposite! This means it may not be such a good idea to configure a particular server as your time source, not even two or three. After a while you may find out that none of them is active any more and your time is drifting freely! A better way is to use the service from ntp.org.( http://www.ntp.org/ ) They provide pools of ntp servers per country or region. Selecting one of these provides a more reliable connection to an ntp time source. </note>
+
+
+Although Slitaz is a small distribution, it provides several ntp implementations. Most notably: 
+
+1: busybox ntpd (included in the base installation). Using busybox ntpd from the command line:
+<code>
+# busybox ntpd -p nl.pool.ntp.org  OR
+# ntpd -p nl.pool.ntp.org
+</code>
+
+2: ntp.tazpkg (install from packages repository). To install ntp.tazpkg: 
+<code> # tazpkg -gi ntp </code> 
+This package includes a decent set of ntp related binaries + the config file /etc/init.d/ntp
+<code>
+# tazpkg list-files ntp
+
+Installed files with: ntp
+=========================
+/etc/init.d/ntp
+/etc/ntp.conf
+/usr/bin/ntpd
+/usr/bin/ntpdate
+/usr/bin/ntpdc
+/usr/bin/ntp-keygen
+/usr/bin/ntpq
+/usr/bin/ntptime
+/usr/bin/ntptrace
+/usr/bin/ntp-wait
+/usr/bin/sntp
+/usr/bin/tickadj
+</code>
+Be aware that Slitaz has several ntp daemons available. We have the Busybox app but also the ntp package. Both provide virtually the same functionality. If you have limited resources, the busybox version can provide all you need. If you want all the diagnostic stuff as well, you should rather go for installing ntp.tazpkg.
+
+=== Starting ntpd at boot ===
+
+Probably the easiest way to start busybox ntpd at boot is to add an entry like above to /etc/init.d/local.sh. The explanation below focuses on ntp.tazpkg. It is unclear which one was intended by the developers to be started by the Server Manager. This can be somewhat confusing. The verified way to configure the ntp daemon is to use the command line as detailed below.
+
+To start /usr/bin/ntpd (ntp.tazpkg) at boot:
+
+1: Make sure to install the package as shown above ;-).
+
+2: Edit /etc/daemons.conf as follows:
+<code>
+Add one line at the end: 
+ NTP_OPTIONS="-p xx.pool.ntp.org" (where xx = country.)
+</code>
+
+<note tip>The ntp daemon gets it options from /etc/daemons.conf. The configuration file /etc/ntp.conf which is referred to by the Server Manager seems to be unused and may be deleted.</note>
+
+3: Edit /etc/rcS.conf as follows:
+<code>
+On the line with daemons to start, add ntp to the list:
+ RUN_DAEMONS="inetd dbus hald slim firewall httpd ntp " 
+</code>
+<note tip> Make sure to enter just ntp, not ntpd! The name is a reference to /etc/init.d/ntp </note>
+These are the required steps. After completion, you may reboot to verify everything is indeed working as expected. 
+
+Use the following to check if the daemon is running:
+<code>
+$ ps -ef | grep ntpd
+ 1934 root       0:00 /usr/bin/ntpd -p nl.pool.ntp.org
+ 2193 root       0:00 grep ntpd
+</code> 
+In this example, the first line shows the process we want to see.
+
+<note tip>Use /etc/init.d/ntp {start | stop | restart} to control the ntp daemon or specify the full path. (/usr/bin/ntpd) Using ntpd on the command line without the full path causes the busybox version to be invoked.</note>
+
+
+=== Verifying ntpd operation ===
+
+You may use //ntpq// to verify your connection to ntp servers
+<code>
+# ntpq -p nl.pool.ntp.org
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+*ntp0.nl.uu.net  .PPS.            1 u  632 1024  377    2.700    0.233   0.096
++ntp1.nl.uu.net  .PPS.            1 u  504 1024  377    1.742    0.356  41.789
+-chime1.surfnet. 194.171.167.130  2 u  298 1024  377    0.677    0.102   0.134
++chime4.surfnet. .PPS.            1 u  422 1024  367    9.652   -2.669   0.366
+ tt165.ripe.net  .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+</code>
+
+The * at the start of a line indicates the server you are currently synchronized to. 
+
+The column "st" shows the stratum or quality of the time source. 1 is best, 16 means unavailable.
+Important to check are the columns "reach" and those behind. Reach should be 377, everything else means polls were missed. Your daemon should be running for a while to get reliable output.
+
+=== Hwclock ===
+
+//Hwclock// allows you to synchronize the time of your hardware clock to the system clock or vice versa.
+
+Synchronize the system clock to the hardware clock (<nowiki> --utc = universal time, -l = local time </nowiki>):
+
+<code> # hwclock -w --utc </code>
+
+Synchronize the hardware clock to the system clock:
+
+<code> # hwclock -s --utc </code>
+
+<code> hwclock -u, --utc | -l, --localtime </code>
+Indicates that the Hardware Clock is kept in Coordinated Universal Time or local time, respectively. It is your choice whether to keep your clock in UTC or local time, but nothing in the clock tells which you've chosen. So this option is how you give that information to hwclock.
+If you specify the wrong one of these options (or specify neither and take a wrong default), both setting and querying of the Hardware Clock will be messed up. 
+
+<note>On slitaz, hwclock must always be set to UTC. The result of a non-UTC hardware clock setting is an incorrect time for your timezone.</note>
+
+=== Synchronizing the hwclock with ntp ===
+
+There are several ways to set the hardware clock to ntp time: 
+<code> # busybox ntpd -dnqp nl.pool.ntp.org && hwclock -w -u </code>
+OR:
+<code># ntpdate -u nl.pool.ntp.org && hwclock -w -u </code>
+
+Alternative three: (quite old, may not work on all servers)
+<code># rdate -s nl.pool.ntp.org && hwclock -w -u </code>
+
+Note that in all examples we used the -u option to set hwclock to UTC time.
+
+Further reading: http://linux.die.net/man/8/hwclock
+
+===== Execute scheduled commands =====
+
+The daemon 'crond' allows you to run commands automatically at a scheduled specific date or time. This is very useful for routine tasks such as system administration. The directory cron uses is ///var/spool/cron/crontabs//.
+
+Each user on the system can have his/her own tasks, they are defined in the file: ///var/spool/cron/crontabs/user//. This file can be created oder modified by any user with the //crontab -e// command, using the default text editor. The crontab utility allows you (amongst other things), to list the tasks specific to the user. 
+<code>
+# crontab -l <== To list the crontab for user root.
+OR:
+# crontab -l -u tux <== To list the crontab for another user.
+</code>
+
+The syntax of the crontab files is as follows:
+
+<file> mm hh dd MMM DDD command > log </file>
+
+We will create a file with root privileges and test the daemon 'crond' with a task performed every minute - writing the date to a file ///tmp/crond.test//, using GNU nano (<Ctrl+X> to save & exit):
+
+<code> # nano /var/spool/cron/crontabs/root </code>
+
+Add the line:
+
+<file> * * * * * date >> /tmp/crond.test </file>
+
+Launch crond with the option //-b// (background), configured via ///etc/daemons.conf// and using the startup script:
+
+<code> # /etc/init.d/crond start </code>
+
+You can wait a few minutes and view the contents of the file: ///tmp/crond.test//... OK:
+
+<code> # cat /tmp/crond.test </code>
+
+To stop or restart the daemon crond:
+
+<code>
+ # /etc/init.d/crond stop
+ Or :
+ # /etc/init.d/crond restart
+</code>
+
+=== Invoke the daemon crond on every boot ===
+
+To launch the daemon 'crond' each time you boot the system, just add it to the variable START_DAEMONS in the configuration file ///etc/rcS.conf//, either before or after the web server or SSH server.
+===== Add commands to be executed at boot =====
+
+During the boot process, various scripts are executed to configure services, such as the start of the web server, networking, etc. On SliTaz there is a script ///etc/init.d/local.sh// which allows you to add commands to be launched at system startup. You can also create new scripts in ///etc/init.d//, their links in ///etc/rc.scripts// for shell scripts and use// /etc/rc.d// for links to the startup script daemon in /etc/rcS.conf:
+
+<code> # nano /etc/init.d/local.sh </code>

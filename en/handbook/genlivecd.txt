@@ -1,0 +1,216 @@
+====== Generating a Customised LiveCD or LiveUSB======
+//Tazlito// can create your own, personalised version of SliTaz in very little time. It allows you to choose precisely the software packages that you want and make a flavor file (.flavor) with it. You can choose to make your own file starting from a general slitaz flavor (such as base, justx or core), or make it based on an  already customised flavor supplied by the SliTaz community.
+
+Once you've downloaded (and possibly -further- customized) the flavor you chose, you can make an iso-file with it using tazlito, and then burn it to a cd.\\
+
+=== Overview ===
+Tazlito automates the process of building a customized ISO, and the method is quite straight-forward:
+
+  - find a template (flavor) to work on ($ tazlito list-flavors)
+  - download the template ($ tazlito get-flavor flavor_name)
+  - look at the flavor's packages ($ tazlito show-flavor flavor_name)
+  - extract the flavor ($ tazlito extract-flavor flavor_name)
+  - put in a rootfs folder (make one by copying in files from /etc/ to /home/slitaz/distro ) 
+  - add additional files using the folder /home/slitaz/distro/addfiles (optional)
+  - change options ($ tazlito configure)
+  - create the ISO image ($ tazlito gen-distro)
+  - burn to CD or USB stick ($ tazusb gen-iso2usb) \\
+
+=== Notes ===
+
+  * Note that you can't delete packages, but you can use a stripped-down flavor to build your customized slitaz version. 
+  * Note that you can modify the distro further by hacking the ISO once created, after which you can make it into a flavor again (see details below) 
+  * Note that you can add some last changes (that require modification from inside slitaz; like changing appearance, modifying the taskbar, ...) by simply making an additional rootfs file with a usb stick made with the iso of the slitaz version you just made (using the # tazusb writefs lzma command), and then adding it to the extracted iso (using the [[en:handbook:hacklivecd|hacker account]]). You can probably also reinclude these changes finally into your flavor file by means of the # tazlito iso2flavor <your-ISO_image> <your-flavor> command. 
+  * Creating a LiveCD requires a minimum of 256MB of RAM. 
+  * Compressing the file-system with LZMA may take some time. GZip can also be used, though its compression ratio is not as effective.
+  *  It's possible to create a distribution from the LiveCD or from an installed system. In LiveCD mode, it's advisable to use persistent media or an USB drive to store generated files and save space in RAM.
+  *  Tazlito is used by developers to generate the official LiveCD. Unlike the (now deprecated tazwok), it is installed by default on SliTaz. Note that you can also use it an a different distribution (non-slitaz) if that linux distro has the necessary packages (they can be downloaded if not). See [[#installing-tazlito-on-another-distribution|the instructions]] at the bottom of the page for more details.\\
+
+===== A customized ISO in three commands =====
+
+A good way of becoming familiar with Tazlito is to re-build the LiveCD. To do this, download the default //core// flavor (a //.flavor// file that contains all the necessary information to create a LiveCD) and build it with the default options. This takes only three commands and will help to demonstrate the process:
+\\
+  * Get the default (//core//) flavor (# tazlito get-flavor core)
+  * Extract the flavor (# tazlito extract-flavor core)
+  * Optional: Amend the list of packages or add additional files.
+  * Create the LiveCD (# tazlito gen-distro)
+\\
+
+That's it! You will find the LiveCD ISO image in ///home/slitaz/<version>/distro//.
+\\
+
+===== The steps laid out in detail... =====
+\\
+
+====== Part I: Downloading a Flavor ======
+Flavors can be used to build various styles of LiveCDs by containing the list of packages (//distro-packages.list//) and sometimes additional files. This saves you the effort of saving the configuration files and provides a quick way of switching between them. A list of flavors available on the SliTaz servers can be downloaded and updated with Tazlito:
+
+  # tazlito list-flavors
+Or :
+  # tazlito list-flavors --recharge
+
+\\
+
+The list of flavors will be automatically displayed, showing the size of the LiveCD and a brief description. To use a flavor, use the get-flavor command to download the flavor file, automatically extract the package list and description in the current directory, and put additional files in the ///home/slitaz/distro/addfiles// directory:
+
+   # tazlito get-flavor flavor_name
+
+\\
+
+The description of the flavor can be displayed with the //show-flavor// command. Once your chosen flavor is downloaded, you can start to customise your distribution!
+
+<note tip>To store flavors, we suggest that you use a specific directory such as ///home/slitaz/flavors//. You can create this yourself and proceed inside:
+
+   # mkdir -p /home/slitaz/flavors
+   # cd /home/slitaz/flavors
+</note>
+
+
+\\
+
+====== Part II: Generating the Distribution  ======
+
+<note important>When generating a distro, there are some essential //base-system// packages that must be included. The dependency information in each package will take effect so these will be automatically included, even if they are not specified in the package list.</note>
+
+For your first ISO, we advise you re-build the default LiveCD without modifying the list. When you are comfortable with the process, you can start to delete or add packages as required. The gen-distro command generates an ISO image with all the packages on the list. All dependencies will be fulfilled automatically, just as with normal package installation. It must be run as root and be in the same directory as the list and the configuration file.
+
+Tazlito uses the //distro-packages.list// file to download each package and 'install' it into a pseudo-file-system. This is the distro tree and contains the whole of the LiveCD's operating system. This is not unlike //chroot//-ing in to another system from a LiveCD. It is then compressed and added to a CD ISO image with booting information.
+
+To generate a LiveCD:
+
+   # tazlito gen-distro
+
+Voilà! Your first LiveCD ISO image is generated in ///home/slitaz/distro//!
+
+\\
+
+==== Cleaning & Re-Generating ====
+As you have generated a LiveCD, you need to clean-up so another can be generated. Removing the resulting ISO image, cleaning the generated distro tree (but not your additional files!) can be done through the //clean-distro// option:
+
+   # tazlito clean-distro
+
+\\
+
+You can now customise your LiveCD further. To start, add one or two packages to the list. When you are ready, re-generate a new ISO image with the //gen-distro// command:
+
+   # tazlito gen-distro
+
+\\
+
+All the customisations applied so far should be effective on your new LiveCD ISO image.
+
+<note tip> Tazlito also offers several possibilities such as burning the ISO, copying additional files into the system or directly on to the CD-ROM. See the Tazlito [[http://hg.slitaz.org/tazlito/raw-file/tip/doc/tazlito.en.html|Manual]] for more information.</note>
+
+\\
+
+==== Hacking your customized SliTaz ISO ====
+//See also [[en:handbook:hacklivecd]]// \\
+
+If you want to modify the splash screen, boot loader, configuration files, GRUB itself, ... you need to "hack" the iso you made using your flavor file using a "hacker user account". Note that you can also update your flavor-file with these extra modifications you made at the boot loader, splash screen, ... by means of the "tazlito iso2flavor <your-ISO_image> <your_flavor>" command.
+
+To make a hacker user account, we must decompress the root file-system, add the account, then re-compress the root file-system. The first two stages can be executed as one command, the last stage another:
+
+   # tazlito addhacker
+   # tazlito gen-initiso
+
+This adds the account only to the LiveCD; your running system will not be affected.
+
+\\
+
+===== Adding the final changes =====
+//See also [[en:guides:persistence_splash]]// \\
+
+As mentioned above, you can add some last changes (that require modification from inside slitaz; like changing appearance, modifying the taskbar, ...) by simply making an additional rootfs file with a usb stick made with the iso of the slitaz version you just made (using the # tazusb writefs lzma command), and then adding it to the extracted iso (using the [[en:handbook:hacklivecd|hacker account]]). You can probably also reinclude these changes finally into your flavor file by means of the # tazlito extract-iso <your-ISO_image> <destination> command, combined with the tazlito pack-flavor <flavor_name> command. These 2 commands replace the old "tazlito iso2flavor" command (which can't be used any more).
+
+It should be noted that using this technique, you can probably delete packages too (see [[http://doc.slitaz.org/en:guides:manyinone|the manual on making many-in-one flavors]]). However, you best avoid this method however since the files are then probably still in the flavor/iso and the flavor/iso is hence larger than what it needs to be. The files/applications will simply not be used. 
+
+===== Including Additional Files =====
+
+The files containing flavors usually have additional files copied directly into the file-system or the root of the CD-ROM. The path to the files used is specified in the configuration file //tazlito.conf// - by default, these files are located in ///home/slitaz/distro/addfiles//. The additional files the core flavor provides are for example: the window manager JWM and some wallpapers. It is easy enough to modify, add or delete files in the root file-system (rootfs) or the root of the CD (rootcd) and regenerate the distribution. To clean and regenerate the distribution:
+
+   # tazlito clean-distro
+   # tazlito gen-distro
+
+\\
+
+===== Packages Used =====
+
+To create your distro, you need SliTaz packages. You can easily create your own packages with Tazpkg, or recreate packages from a SliTaz system in operation with Tazlito. By default, SliTaz packages are located in the ///home/slitaz/packages// directory but you can change this in the Tazlito configuration file (see [[#configuration-file|the bottom of this page]] for more information).
+
+If you want to retrieve packages manually, you can use FTP software such as gFTP (installed by default on SliTaz) or the command line and //wget//. The direct URL to package versions is: ''ftp://download.tuxfamily.org/slitaz/packages/''
+
+You can also use your own packages by putting them in the packages directory. For more information on creating your own SliTaz packages, see the [[en:cookbook:start|Cookbook]].
+
+\\
+
+===== Configuration File =====
+
+Tazlito uses the //tazlito.conf// located in the current directory, if it exists, or defaults to the system configuration file ///etc/tazlito/tazlito.conf//. This means that you can use the default file or a configuration file specific to the distro you want to create.
+
+This file specifies a number of properties:
+
+  * the name of the ISO image (//ISO_IMAGE//)
+  * the label used when mounted (//VOLUME_NAME//)
+  * the name of the maintainer (//PREPARED//)
+
+  * the paths to the working directories:
+    *  where the distro tree is located (//DISTRO//)
+      * default: ///home/slitaz/distro//
+    *  any packages that may be installed (//PACKAGES_REPOSITORY//)
+      * default: ///home/slitaz/packages//
+    *  the files that should be added to the built LiveCD (//ADDFILES//)
+      * default: //$DISTRO/addfiles//
+
+  * options for running Tazlito inside QEMU (//QEMU_OPTS//)
+
+  * the compression algorithm used on the root file-system (//COMPRESSION//):
+    * lzma //(default)//
+    * gzip
+    * bzip2
+
+To create and configure your own configuration file, you just need to run Tazlito with the //configure// command from the working directory of the distro. Assuming you have the tree of the distro in ///home/slitaz/distro// and you're working from it, use the command:
+
+   $ tazlito configure
+
+Once you've answered the questions, you can either create the ISO image, rebuild the root file-system and ISO, or generate a new distro with the list of packages.
+
+<note tip> If you generate many LiveCDs, including the //date// command in the ISO name may be beneficial. To do this, use a line such as:
+ISO_NAME="MyLiveCD-`date +%Y%m%d-%H%M`" </note>
+
+\\
+
+===== Advanced: Creating a Flavor =====
+
+Tazlito allows you to easily create your own flavor from the results of generating the distribution (//gen-distro//). The flavor will contain all the additional files, a description and a list of packages (which can be reused and updated later, according to their versions). To generate your own flavor responding to one or two questions:
+
+   # tazlito gen-flavor new-flavor
+
+Once your flavor is fully-functioning and well-tested, you can send it to SliTaz to make it available to everyone! It will then be listed via //list-flavor// and usable via //get-flavor//. You can send a flavor by several ways: 
+
+  * announce through a post on the [[http://www.slitaz.org/en/mailing-list.html|Mailing List]];
+  * save the file on-line and report on the [[http://forum.slitaz.org/|Forum]];
+  * send an e-mail to a SliTaz contributor.
+
+A contributor with sufficient privileges will then publish your flavor on the SliTaz servers.
+
+\\
+
+===== Installing Tazlito on Another Distribution =====
+
+Tazlito does not generate dependencies for the LiveCD, but it depends on Cdrkit to burn the image and Tazpkg to regenerate SliTaz packages you want installed. To retrieve and install Tazlito, follow the instructions in the README file in the [[http://download.tuxfamily.org/slitaz/sources/tazlito/|sources of Tazlito]].
+
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates FIXME  |
+|Priority| High |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly, e.g.,|
+|::: | add more information to the Hacker user section |
+|::: | Add new rows like this ;-)  |
+
+\\
+----

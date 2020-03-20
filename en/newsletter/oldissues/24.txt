@@ -1,0 +1,283 @@
+====== Monthly Newsletter - Issue 24 ======
+Lang:[[cn:newsletter:start|cn]] [[en:newsletter:start|en]] [[es:newsletter:start|es]] [[fr:newsletter:start|fr]] [[ru:newsletter:start|ru]]
+
+	* Written on 9th June 2011
+
+===== Latest News =====
+
+        *New Italian and Danish Website (thanks yhouse, Allessandro, Giovani and Bo)
+        *New Cooking 20110531 ISO released
+
+===== New Packages =====
+
+        *util-linux-ng-minix 
+        *util-linux-ng-cramfs
+        *fuse-emulator  
+        *libspectrum
+        *dega
+        *bcwipe
+        *tazweb
+        *cgames
+        *elfkickers
+        *arpwatch
+        *lensfun
+        *gens-gs
+        *tazdrop
+        *roundup
+        *firefox-langpack-pt-BR
+        *python-babel
+        *python-markupsafe
+        *postfix-mysql
+        *joe
+        *udev-light
+        *cookutils
+        *squidclamav
+        *squidguardmgr
+        *libnfnetlink
+        *libnetfilter_queue
+        *diggerjs
+        *ii
+        *sic
+        *spruz
+        *file-tail
+        *fastthread
+        *activesupport
+        *activeresource
+        *activerecord
+        *actionpack
+        *actionmailer
+        *clamtk
+        *perl-carp-clan
+        *perl-bit-vector
+        *perl-date-calc
+        *perl-number-compare
+        *perl-text-glob
+        *perl-file-find-rule
+        *safecopy
+        *daemon_controller
+        *rack
+        *rake
+        *rails
+        *passenger
+        *glade-perl
+        *p0f
+        *usbmuxd
+        *cross-arm-binutils
+        *cross-arm-gcc 
+        *pkcs
+        *truecrypt
+        *python-flup
+        *sylpheed-full 
+        *nginx
+        *eeze
+        *xorg-server-light
+        *libdbusmenu-qt
+        *qemu-light
+        *slitaz-i18n-extra
+        *locale-sv
+        *locale-pt_BR-extra 
+        *locale-es-extra 
+        *locale-de-extra 
+        *locale-da
+        *glib-networking
+        *xorg-server-Xfbdev 
+        *xmlrpc-c
+        *firmware-rt2x00
+
+===== Updated  Packages (abridged) =====
+
+        *linphone => 3.4.3
+        *youtube-dl => 2011.03.29
+        *aria2 => 1.11.1
+        *filezilla => 3.4.0
+        *mercurial => 1.8.3
+        *fotoxx => 11.05
+        *iron-linux =>11.0.700.2
+        *yad => 0.12.0
+        *git => 1.7.5.2
+        *pyopenssl => 0.11
+        *python-django => 1.3
+        *python-pygments => 1.4
+        *python-jinja2 => 2.5
+        *lirc => 0.9.0
+        *xterm => 269
+        *pygobject => 2.28.3
+        *pygtk => 2.24.0
+        *glib => 2.28.5
+        *gtk+ => 2.24.4
+        *glade3 => 3.8.0
+        *dhcp{6) => 4.2.1-P1
+        *libgio => 2.28.5
+        *snort => 2.9.0.5
+        *xorg-xrdb => 1.0.9
+        *xorg-libX11 => 1.4.3
+        *nasm => 2.09.08
+        *cairomm => 1.10.0
+        *glibmm => 2.28.1
+        *pangomm => 2.28.1
+        *atkmm => 2.22.4
+        *gtkmm => 2.24.0
+        *pyneighborhood => 0.5.4
+        *gtk-gnutella => 0.96.9
+        *taglib => 1.7
+        *sudo => 1.8.1
+        *homebank => 4.4
+        *gpodder => 2.15
+        *swig => 2.0.3
+        *bluez => 4.93
+        *xfsprogs => 3.1.5
+        *mc => 4.7.5.2
+        *lftp => 4.2.2
+        *xfce4-panel => 4.8.3
+        *lilo => 23.2
+        *gobject-introspection => 0.10.7
+        *libburn, libisofs => 1.0.6
+        *tiff => 3.9.5
+        *json-glib => 0.12.4
+        *dmraid => 1.0.0.rc16-3
+        *sqlite => 3.7.6.3
+        *fakeroot => 1.15.1
+        *GConf => 2.32.3
+        *kismet => 2011-03-R2
+        *vala => 0.12.0
+        *polkit => 0.101
+        *extrema => 4.4.5
+        *vlc => 1.1.9
+        *firefox => 4.0.1
+        *thunderbird => 3.1.10
+        *syslinux => 4.04
+        *mpfre-dev => 3.0.1
+        *ejabberd => 2.1.6
+        *readom => 1.1.11
+        *grep => 2.8
+        *apache => 2.2.19
+        *postfix => 2.8.3
+        *apache-mod-perl => 2.0.5
+        *p7zip => 9.20.1
+        *dropbear => 0.53.1
+        *dbus => 1.4.8
+        *perl-libwww => 6.02
+        *virtualbox-ose => 4.0.8
+        *warmux => 11.04.1
+        *gpho=>2 => 2.4.11
+        *kbd => 1.15.3
+        *kbd-busybox => 1.2
+        *weechat => 0.3.5
+        *xz => 5.0.2
+        *alsa-lib => 1.0.24.1
+        *alsa-utils => 1.0.24.2
+        *wxWidgets => 2.8.12
+        *wxpython => 2.8.12.0
+        *testdisk => 6.12
+        *parted => 2.4
+        *udev => 170
+        *sudo => 1.8.1p2
+        *qt4 => 4.7.3
+        *deadbeef => 0.5.0
+        *libsigc++ => 2.2.9
+        *feh => 1.14.1
+        *audacious => 2.5.1
+        *libgsf => 1.14.21
+        *pixman => 0.22.0
+        *transmission => 2.31
+        *midori => 0.3.6
+        *postfixadmin => 2.3.3
+        *groff => 1.21
+        *gstreamer => 0.10.34
+        *openvpn => 2.2.0
+        *acl => 2.2.51
+        *attr => 2.4.46
+        *libisofs => 1.0.8
+        *file => 5.07
+        *phpmyadmin => 3.4.0
+        *libcap => 2.21
+        *libevent => 2.0.11
+        *bind => 9.8.0-P2
+        *util-linux-ng => 2.19.1
+        *perl-datetime => 0.69
+        *gutenprint => 5.2.7
+        *lzo => 2.05
+        *libidn => 1.21
+        *mlt => 0.7.2
+        *openshot => 1.3.1
+        *gnuchess => 6.00
+        *libdvdread => 4.1.3
+        *openssh => 5.8p2
+        *ruby-gtk2 => 0.90.8
+        *ruby-gtk2 => 0.90.8
+        *pycryp=> => 2.3
+        *perl-glib => 1.223
+        *perl-gtk2 => 1.222
+        *gnome-mplayer => 1.0.3
+        *zim => 0.52
+        *wordpress => 3.1.3
+        *ffmpeg => 0.6.3
+        *mono => 2.10.2
+        *mpg123 => 1.13.3
+        *espeak => 1.45.04
+        *ncmpc => 0.18
+        *ncmpcpp => 0.5.7
+        *scite => 2.25
+        *clutter => 1.6.14
+        *liferea => 1.7.5
+        *wine => 1.2.3
+        *mirage => 0.9.5.2
+        *pygobject => 2.28.4
+        *wireshark => 1.4.7
+        *mesa => 7.10.2
+        *libdrm => 2.4.25
+        *xorg-xf86-video-intel => 2.15.0
+        *rdesktop => 1.7.0
+        *rdesktop => 1.7.0
+        *postgresql => 9.0.4
+        *claws-mail => 3.7.9
+        *vte => 0.28.0
+        *glib => 2.28.7
+        *bazaar => 2.3.1
+        *qemu => 0.14.1
+        *ethtool => 2.6.38
+        *xfce4-settings => 4.8.2
+        *gnutls => 2.12.5
+        *wbar2 => 2.2.2
+        *vidalia => 0.2.12
+        *python-pytz => 2011g
+        *childsplay => 1.6 
+
+===== Improvements =====
+
+        *slitaz tools (4.2.3)
+        *slitaz-boot-scripts (4.4)
+        *slitaz-base-files (4.3)
+        *slitaz-configs (4.3.2)
+        *slitaz-doc (4.2)
+        *tazpkg (4.7)
+        *tazwok (4.2.14)
+        *tazlito (4.1)
+        *tazusb (3.0)
+        *tazweb (1.4)
+
+ 
+===== Bugs =====
+
+\\
+
+^   Activity   ^    Open   ^    Closed  ^
+|    Critical  |     7     |     3      |
+|    Standard  |     15    |     9      |
+|    Feature   |     5     |     1      |  
+|    Task      |     11    |     3      |
+
+
+	* Based on current figures 
+
+===== Tips and Tricks =====
+
+        *Case statement: http://bashshell.net/shell-scripts/case-statement/
+
+===== Online =====
+
+        *SliTaz GNU/Linux Cooking 20110531 Review  - http://www.youtube.com/watch%3Fv%3D3jt3th_nhbE%26NR%3D1
+ 
+===== Old Issues =====
+
+        * Click [[en:newsletter:oldissues|here]]

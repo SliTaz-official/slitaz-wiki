@@ -1,0 +1,54 @@
+This document details how you can add persistence to your live SliTaz distro, and how you can modify the splash screen. There are different ways on how you can do add persistence (see [[https://superuser.com/questions/123399/how-to-make-slitaz-usb-persistent|here]]). Unless you decide not to keep the slim login manager in slitaz however, all methods first require you to have the live slitaz distro placed on a media (usb stick, ...) that is formatted in ext2 or ext3 (if you don't want to keep the slim login manager, FAT32 can also be used instead). FAT32 has the advantage that you can view/mount the media in Windows too, and you can format it in Windows simply by means of the windows explorer application. If you don't need this functionality though, you might want to use ext2 or ext3 however, as it is a more secure filesystem. 
+
+==Method 1==
+By typing "slitaz home = sdxx" or "slitaz home=UUID" at the command line at the splash/boot screen. See [[http://doc.slitaz.org/en:handbook:livecd#Slitaz parameters|here]]. This option hence involves typing in this line every time you want persistence. It's also only useful when keeping the slim login manager in place, as you can't specify to (immediately) log in as user or root (either with or without persistence).
+
+The "home=sdxx" or "home=UUID" basically just tells slitaz which disk it is where it needs to write the system changes to (which are being written away as a rootfs.gz file, see below). It should btw be noted here that "home=UUID" is preferred over "home=sdxx" or even "home=usb (the latter is the same as "home=sda1"). This, as depending on which drives you connect at any given time, your drive name may change, which will give problems (this happens as depending on the access speed of the drive (speed depending on the type of drives connected/inserted, i.e. SATA drive, USB drive, ...), linux will assign a different drive name). Then, to effectively write away the changes, you need to type in "#tazusb writefs gzip (for fast compression, average filesize), "#tazusb writefs lzma" (for slow compression, smaller filesize) or "#tazusb writefs none" (for no compression, larger filesize). Each of these will write everything to a 'rootfs.gz' archive to be loaded the next time you boot.
+
+One other way to write away the changes are to right-click on desktop, slitaz live, TazUSB Writefs (gzip). With this latter method, you will however then also need to rename the rootfs.gz file (i.e. to rootfs5.gz) and move the file from the root folder (/) to the /boot folder on your usb stick drive. Finally, you need to manually add this file to syslinux.cfg (or extlinux.conf, see below).
+
+==Method 2==
+Another way to tell slitaz the disk it needs to write to is by simply modifying or adding an entry to the extlinux.conf file (which is located at /home/boot/extlinux). See also [[http://forum.slitaz.org/topic/how-to-make-changes-persistent-on-a-usb-key-live-installation|here]]. This method is the only method that doesn't require typing in commands every time you boot and require persistence (more automated). Note that the same method can also be followed when you have a FAT32/non-slim login manager setup, however, you will then need to do the changes in the syslinux.cfg file (located at /home/boot/syslinux), see [[https://superuser.com/questions/123399/how-to-make-slitaz-usb-persistent|here]], and not extlinux.conf. To change the extlinux.conf or syslinux.cfg (which one you need to alter will depend on the filesystem you use), you need to pick one of the slitaz entries you're currently not using at the boot screen (i.e. base, justx, ... entry), and then modify it. Alternatively, you can make an entirely new label as well (see [[http://forum.slitaz.org/topic/how-to-make-changes-persistent-on-a-usb-key-live-installation|here]]. Make it look like this:
+
+LABEL my slitaz\\
+MENU LABEL My slitaz or "whatever you like"\\
+KERNEL /boot/bzImage\\
+APPEND initrd=/boot/rootfs4.gz,/boot/rootfs3.gz,/boot/rootfs2.gz,/boot/rootfs1.gz rw root=/dev/null vga=normal autologin home=UUID lang=en_GB kmap=uk 
+
+Note that the UUID will be a range of numbers which you can copy from another entry, or which you find by looking at the properties of the (removable USB) drive you want to write to.
+
+Note that you can also make both a root and a user account (each with or without persistence, so 4 accounts in total). This can be done by adding the "home=UUID" or by leaving it out (no persistence). 
+
+==Method 3==
+The last method is done by simply typing in some commands at the terminal (see [[http://forum.slitaz.org/topic/slitaz-on-usb-persistent|here]].
+So, after booting into slitaz, just bring up the terminal, log in as root, and then type:
+
+#blkid\\
+Edit your boot code so home=UUID\\
+
+# blkid\\
+/dev/sda1: UUID="2c55c420-760a-4fa3-871b-64191dcc338a" TYPE="ext2"\\
+root@slitaz:~# cat /proc/cmdline\\
+initrd=/boot/rootfs4.gz,/boot/rootfs3.gz,/boot/rootfs2.gz,/boot/rootfs1.gz rw root=/dev/null\\
+vga=normal autologin home=2c55c420-760a-4fa3-871b-64191dcc338a BOOT_IMAGE=/boot/bzImage 
+
+<note important>Having read the "http://doc.slitaz.org/en:handbook:hacklivecd#modify-the-isolinux-configuration" page, I seem to understand that what was the "main boot loader" was actually the isolinux boot loader, which in turn starts syslinux (with FAT32 usb sticks). With ext-formatted drives, syslinux itself then also starts extlinux before that boot loader can load slitaz.
+
+Is this correct ? If so, update the text accordingly above. One really need to now this to know what files to edit. Also, is it possible to leave out booting the syslinux boot loader completely when booting a slitaz liveUSB stick formatted in ext3 ? If possible, I suppose one can just alter the isolinux files to accomplish this, and then make 2 versions of the customised slitaz distro if one wants to; knowlingly
+* one for FAT32-formatted sticks (isolinux booting syslinux which then boots slitaz)
+* one for ext-formatted sticks (isolinux booting extlinux which then boots slitaz) 
+</note>
+
+<note important>I looked at the ext3-based slitaz 5 version I made a few days ago to check whether there is indeed an extlinux as well as an syslinux folder at /boot/ (and see whether there are any isolinux files in / ). I didn't find a syslinux folder though (which would imply it automatically loads extlinux after loading the main boot loader -isolinux-). The only folder I found was an "extlinux" folder at /boot/. Other files at /boot/ were bzImage, rootfs.gz, rootfs2.gz, rootfs3.gz, rootfs4.gz. So besides not finding a syslinux boot loader, I also didn't find any isolinux files at /, but I did found an isolinux file at /boot/extlinux, confirming that this isolinux boot loader is indeed the first boot loader that is started.
+
+In the /boot/extlinux folder, I found both the isolinux.cfg file mentioned above, as well as extlinux.conf. I added in the files in annex as texts file. I'm not sure but this would hence seem to imply that there is also no /boot/syslinux/ folder made at all (for any slitaz version, fat32 or ext3). I'm not sure on this however. </note>
+
+==Rolling back==
+If anything should go wrong when writing your filesystem, you can simply rollback to your previous filesystem by typing '//previous//' at the '//boot://' prompt. Older backups are named '//rootfs.gz.unixtimestamp//' and can be safely deleted from the ///home// folder to save disk space using //tazusb clean//.
+
+==See also==
+  * [[en:handbook:hacklivecd#modify-the-isolinux-configuration|Modifying isolinux]] (isolinux appearantly being the "main boot loader" which starts syslinux -syslinux itself starting extlinux if you have an ext-formatted USB drive with slitaz on it
+
+==Additional links/references==
+  * http://forum.slitaz.org/topic/slitaz-40-liveusb-writefs
+  * http://forum.slitaz.org/topic/a-couple-of-newbie-questions

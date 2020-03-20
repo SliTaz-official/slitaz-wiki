@@ -1,0 +1,167 @@
+====== Virtualbox ======
+
+===== SliTaz GNU/Linux with VirtualBox =====
+
+You can now play with SliTaz GNU/Linux on Windows with VirtualBox.
+Required:
+
+    * [[http://virtualbox.wordpress.com/2008/06/27/slitaz-gnulinux-is-here/|SliTaz GNU/Linux Image]], the virtual machine.
+    * [[http://www.virtualbox.org/wiki/Downloads|Oracle VirtualBox]] software, binaries for Windows.
+    * [[http://www.7-zip.org/fr/download.html|7-Zip]], needed to decompress the file.
+
+===== Step 1 - Downloads and installation. =====
+
+    * Download and install 7-Zip - necessary to decompress the files.
+    * Download and install the Oracle VitualBox software.
+    * Download and decompress the virtual machine somewhere on your local hard drive.
+
+===== Step 2 - Play the virtual machine. =====
+
+Before running SliTaz GNU/Linux virtual machine you need to configure a new virtual machine in the VirtualBox software.
+
+  -     Run virtualbox //Start/Programms/Oracle xVM VirtualBox/VirtualBox//.
+  -     Add a new Machine: Click on //New// toolbar button.
+  -     Click //Next// in the “ Create New Virtual Machine ” dialog box.
+  -     Give a name to your new virtual machine ( i.e: SliTaz GNU/Linux ), and select Linux 2.6 in OS Type list and click //Next//.
+  -     Select the amount of memory for the virtual machine. 256MB default should be sufficient.
+  -     In the “ //Virtual Hard Disk// ” dialog box click on the //Existing// button to use your SliTaz virtual disk.
+  -     The Virtual Disk Manager start. Click the //Add// toolbar button, locate and select the VDI file (i.e: slitaz-1.9-x86.vdi ).
+  -     Click on //Next// and //Finish//.
+
+If you wish to set up a network using the Host-only adapter, follow these instructions:
+
+  - Click on the //Settings// toolbar button
+  - Click on //Network// in the side menu
+  - Select the Network Adapter (usually Adapter 1) and set it for Host-only networking
+  - Click on the Advanced arrow
+  - Change the Adapter Type to PCnet-FAST III
+  - Click on OK
+
+The default Intel adapter seems to work fine for NAT, but not for Host-only networking.
+
+You can now play with your new SliTaz GNU/Linux virtual machine.
+
+<note>
+VirtualBox can use VMware virtual disks as well.
+</note>
+
+<note>
+If you experience resolution problems (no larger than 800 x 600) check the following forum post: 
+http://forum.slitaz.org/topic/screen-resolution/page/2
+</note>
+===== Virtualbox-OSE =====
+
+You can install the open source edition of virtualbox (free software) in SliTaz with the package virtualbox-ose:
+<code>
+# tazpkg get-install virtualbox-ose
+</code> 
+This is a restricted version without USB support.
+===== Slitaz get-virtualbox =====
+
+You can install virtualbox (full, but non-free version) in Slitaz with the get-virtualbox package:
+<code># tazpkg get-install get-virtualbox ; get-virtualbox</code>
+
+Other virtualization (free software) is also available such as lguest or qemu.
+
+===== Installing Virtualbox Guest Additions =====
+
+
+<note tip>This procedure is intended for Slitaz 5.0.\\ 
+This procedure was tested with:\\ 
+- VirtualBox 4.3.20 installed on Host, including the Extensions Pack;\\ 
+- slitaz-5.0-rc2.iso dated 20140519;\\ 
+- slitaz-rolling.iso 32-bit dated 20150201.
+
+See guest additions for SliTaz 4.0 [[http://forum.slitaz.org/topic/installing-virtualbox-guest-additions-in-slitaz-40-target#post-10791|in the forum]] also.</note>
+
+Virtualbox Guest Additions needs to be manually installed by Slitaz.\\ 
+
+Steps:
+
+**1.** In the Slitaz virtual machine make sure you have a working internet connection. Sometimes you need to stop/restart eth0 using TazPanel (Slitaz Panel) the first time to get a connection.
+
+**2.** Open Package Manager and recharge the package list.
+
+**3.** Install the following packages:
+
+  linux-module-headers (3.2.53)
+  mesa-dri
+  bzip2
+
+**4.** Mount the VBoxAdditions iso using the VirtualBox menu option Devices -> Insert Guest Additions CD image...
+
+**5.** In a terminal, change directory to the mount point for the VBoxAdditions iso, e.g.
+
+  $ cd /media/cdrom/
+
+**6.** Run as root the following command:
+
+  # sh ./VBoxLinuxAdditions.run
+
+Ignore text about scripts added to /etc/init.d (installer does not recognize your Linux Distribution etc).
+Ignore text about kernel headers for current running version not found.
+
+**7.** Open a terminal as root and issue the following commands:
+
+  # adduser -h /var/run/vboxadd -G daemon -S -s /bin/false vboxadd >/dev/null 2>&1
+  # addgroup -S vboxsf >/dev/null 2>&1
+
+**8.** Open as root /etc/rcS.conf and add "vboxguest vboxsf vboxvideo" to the LOAD_MODULES line, e.g.
+
+<file>LOAD_MODULES=" vboxguest vboxsf vboxvideo"</file>
+
+**9.** Open as root /etc/slim.conf and change the login_cmd line to start VBoxClient-all before it executes ~./xinitrc, e.g.
+
+<file>login_cmd VBoxClient-all & exec /bin/sh -l ~/.xinitrc %session</file>
+
+<note tip>Instead of editing /etc/slim.conf, you could add "VBoxClient-all &" without the quotes to a new line above the CASE 1$ line in every users ~/.xinitrc file.</note>
+
+**10.** Reboot.
+----
+To check that the vbox modules are loaded, open a terminal and type:
+
+  $ lsmod | grep vbox
+
+... that should show:
+
+  vboxguest
+  vboxsf
+  vboxvideo
+(as well as drm using vboxvideo)
+
+Also, you can install the mesa-demos package to get the //glxgears// and //glxinfo// utilities.
+After you install mesa-demos, open a terminal and type:
+
+  $ glxinfo | grep render
+
+... that should show:
+
+  direct rendering: Yes
+  OpenGL renderer string: Chromium
+
+//glxinfo// and //glxgears// will show a false error:
+
+  libGL error: failed to load driver: vboxvideo
+
+... which according to the VirtualBox bugtracker is due to the way vboxvideo hooks itself into the Mesa library instead of being loaded in the normal way by Mesa. So ignore it... If you have //OpenGL render = Chromium// and //Direct rendering = Yes// then accelerated 3D is supported.
+----
+Clipboard sharing Host<->Guest works if you enable it in the VirtualBox menus or in your virtual machine settings.
+
+Shared folders work (The author manually mounts the shared folders as and when he needs them). For instance, if you wanted to mount the (hypothetical) share called //pubdoc// and access it as a desktop folder called //Docs// (make sure the folder exists first) then you issue the following command in a terminal as root:
+
+  # mount -t vboxsf pubdoc /home/tux/Desktop/Docs
+
+References: [[http://forum.slitaz.org/topic/installing-virtualbox-guest-additions-in-slitaz-50#post-34521|Slitaz Forum topic]]
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Low |
+|Review| Major Updates FIXME |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| We have get-virtualbox pkg now? Can we remove linux-source dependency from get-virtualbox like nvidia?|
+|:::|  |
+
+\\
+----

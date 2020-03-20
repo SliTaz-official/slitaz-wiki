@@ -1,0 +1,281 @@
+.. http://doc.slitaz.org/en:newsletter:oldissues:28
+.. en/newsletter/oldissues/28.txt · Last modified: 2012/12/01 19:17 by linea
+
+Issue 28
+========
+
+* Written on 1st July 2012
+
+
+.. rubric:: Latest News
+
+* SliTaz 4.0 released in April 2012
+
+
+.. rubric:: New Packages
+
+.. hlist::
+   :columns: 3
+
+   * runcom
+   * xfe-extras
+   * memcached
+   * gdal
+   * proj
+   * geos
+   * tsch
+   * Expect
+   * R language
+   * gummi
+   * pyradio
+   * dolibarr
+   * perl-parser
+   * perl-http-message
+   * perl-http-date
+   * perl-ecnode-locale
+   * perl-digest-md5
+   * perl-test-*
+   * SpaceFM
+   * c_icap
+   * xorg-xf86-video-fbdev
+   * gtk-engine-nodoka
+   * nmon
+   * perl-file-listing
+   * usb-modeswitch
+   * notification-daemon
+   * sarg-php
+   * msmtp 
+   * pwauth 
+   * mp3info 
+   * libgee
+   * linux-arm-api-headers 
+   * linux64-btrfs
+   * linux64 modules
+   * tea
+   * razor-qt 
+   * upower
+   * xorg-libdmx
+   * xorg-dmxproto
+   * kmod
+   * sg3_utils
+   * libatasmart 
+   * qiviewer 
+   * lxappearance-obconf
+   * loqui
+   * lxpolkit
+   * lxisoftgun
+   * udisk
+   * xorg-server-Xephyr 
+   * ziproxy
+   * softgun 
+   * aalib 
+   * xosd 
+   * tuxpaint
+   * libpaper
+   * cross-x86_64-binutils
+   * linux-x86_64-api-headers
+   * cross-arm-glibc
+   * cross-arm-gcc
+   * qemu-box 
+   * terminator
+   * cross-arm-binutils
+   * libzip
+   * httrack
+   * vlc-plugin 
+   * xcb-util-*
+   * mariadb
+   * libconfig
+   * sshttp
+   * libqwt6-qt4
+   * enki
+   * dashel
+   * soundtouch
+   * lapack
+   * blas
+
+
+.. rubric:: Updated Packages (abridged)
+
+.. hlist::
+   :columns: 3
+
+   * tor ⇒ 0.2.2.35
+   * apache ⇒ 2.2.22
+   * grsync ⇒ 1.2.1
+   * amule ⇒ 2.3.1
+   * sudo ⇒ 1.8.4
+   * xine-ui ⇒ 0.99.6
+   * glib ⇒ 2.32.1
+   * git ⇒ 1.7.10
+   * iron-linux ⇒ 17.0.1000.0
+   * privoxy ⇒ 3.0.19
+   * rrdtool ⇒ 1.4.6
+   * rubyripper ⇒ 0.6.2
+   * emacs ⇒ 23.4
+   * grep ⇒ 2.11
+   * firefox ⇒ 10.0.2
+   * midori ⇒ 0.4.6
+   * zsh ⇒ 4.3.15
+   * mtpaint ⇒ 3.40
+   * mtr ⇒ 0.82
+   * dillo ⇒ 3.0.2
+   * yad ⇒ 0.17.1.1
+   * hplip ⇒ 3.12.2
+   * swig ⇒ 2.0.4
+   * openssh ⇒ 5.9p1
+   * wireshark ⇒ 1.6.7
+   * tcsh ⇒ 6.18.01
+   * dokuwiki ⇒ 2012.01.25
+   * thunderbird ⇒ 10.0.2
+   * seamonkey ⇒ 2.7.2
+   * lighttpd ⇒ 1.4.30
+   * libpng ⇒ 1.5.9
+   * openssl ⇒ 1.0.1a
+   * libvorbis ⇒ 1.3.3
+   * squidclamav ⇒ 6.5
+   * graphviz ⇒ 2.28.0
+   * zim ⇒ 0.55
+   * nasm ⇒ 2.0.9.10
+   * yasm ⇒ 1.2.0
+   * poppler ⇒ 0.18.3
+   * libogg ⇒ 1.3.0b 
+   * pidgin ⇒ 2.10.3
+   * transmission ⇒ 2.50
+   * mercurial ⇒ 2.1.2
+   * dovecot ⇒ 2.1.6
+   * tmux ⇒ 1.6
+   * jwm ⇒ 2.1.0
+   * gcompris ⇒ 11.12
+   * sarg ⇒ 2.3.1
+   * vala ⇒ 0.16.0
+   * logrotate ⇒ 3.8.1
+   * openjpeg ⇒ 1.5.0
+   * lxpanel ⇒ 0.5.9
+   * ndiswrapper ⇒ 1.57
+   * iptables ⇒ 1.4.13
+   * linux ⇒ 3.2.14
+   * mpc-library ⇒ 0.9
+   * glibc ⇒ 2.14.1
+   * linux-api-headers ⇒ 3.2.14
+   * gcc ⇒ 4.6.3
+   * binutils ⇒ 2.22
+   * mpfr ⇒ 3.1.0
+   * gmp ⇒ 5.0.4
+   * jpeg ⇒ 8c
+   * libevent ⇒ 2.0.17
+   * curl ⇒ 7.25.0
+   * bind ⇒ 9.9.0
+   * bazaar ⇒ 2.5.1
+   * asunder ⇒ 2.2
+   * aria2 ⇒ 1.15.0
+   * alsa-* ⇒ 1.0.25
+   * mjpegtools ⇒ 2.0.0
+   * gnupg ⇒ 2.0.19
+   * getmail ⇒ 4.26.0
+   * mc ⇒ 4.8.3
+   * xfsprogs ⇒ 3.1.8
+   * audacity ⇒ 2.0.0
+   * audacious ⇒ 3.2.3
+   * mono ⇒ 2.10.8
+   * mpg123 ⇒ 1.13.8
+   * subversion ⇒ 1.7.4
+   * sqlite ⇒ 3.7.12.1
+   * wxWidgets ⇒ 2.9.3.1
+   * file ⇒ 5.11
+   * lame ⇒ 3.99.4
+   * xorg-libX11 ⇒ 1.4.4
+   * dbus ⇒ 1.6.0
+   * dbus-python ⇒ 1.0.0
+   * gparted ⇒ 0.12.1
+   * parted ⇒ 3.1
+   * udev ⇒ 182
+   * polkit ⇒ 0.104
+   * pcre ⇒ 8.30
+   * busybox ⇒ 1.20.1
+   * vidalia ⇒ 0.2.17
+   * libdrm ⇒ 2.4.34
+   * xine-lib ⇒ 1.2.1
+   * Xorg server ⇒ 1.12.1
+   * apr ⇒ 1.4.6
+   * apr-util ⇒ 1.4.1
+   * linphone ⇒ 3.5.2
+   * libmtp ⇒ 1.1.1
+   * imagemagick ⇒ 6.7.6-7
+   * emelfm2 ⇒ 0.8.1
+   * dropbear ⇒ 2012.55
+   * ophcrack ⇒ 3.4.0
+   * gogglesmm ⇒ 0.12.6
+   * pciutils ⇒ 3.1.9
+   * broadcom-wl ⇒ 5_100_82_112
+   * elfutils ⇒ 0.153
+   * gimp ⇒ 2.8.0
+   * gegl ⇒ 0.2.0
+   * babl ⇒ 0.1.10
+   * vlc ⇒ 2.0.1
+   * ffplay ⇒ 0.10.3
+   * ffmpeg ⇒ 0.11.1
+   * tiff ⇒ 4.0.0
+   * libwebkit ⇒ 1.8.1
+   * libsoup ⇒ 2.38.1
+   * automake ⇒ 1.11.3
+   * htop ⇒ 1.0.1
+   * acpid ⇒ 2.0.16
+   * awesome ⇒ 3.4.11
+   * libffi ⇒ 3.0.11
+   * mplayer ⇒ 1.1
+   * bison ⇒ 2.5.1
+   * inkscape ⇒ 0.48.3.1
+   * qemu ⇒ 1.0.1
+   * gzip ⇒ 1.5
+   * gpodder ⇒ 2.20.1
+   * gutenprint ⇒ 5.2.8
+   * geany ⇒ 1.22
+   * php ⇒ 5.4.4
+   * jack-audio-connection-kit ⇒ 0.121.3
+   * grub2 ⇒ 2.00
+
+
+.. rubric:: Improvements
+
+* cookutils (2.0)
+* slitaz-configs (5.1) 
+* slitaz-boot-scripts (5.0)
+* slitaz-doc (4.2.1)
+* slitaz-icon (1.2)
+* slitaz-menus (2.4)
+* slitaz-tools (5.0)
+* slitaz-tools-boxes (4.5.1)
+* slitaz-base-files (5.2.3)
+* tazweb (1.6.1)
+* tazusb (4.2)
+* tazlito (5.0)
+* tazpanel (1.5.5)
+* tazpkg (5.0)
+* tazdev (1.5)
+* tazbug (1.0)
+
+
+.. rubric:: Bugs
+
+======== ==== ======
+Activity Open Closed
+======== ==== ======
+Standard  28    14
+======== ==== ======
+
+* Based on current figures 
+
+
+.. rubric:: Cartoon
+
+.. image:: cartoons/cartoon-15.png
+
+
+.. rubric:: Tips and Tricks
+
+* `Tiny Pluggable Linux ARM Computers Are Red-Hot <https://www.linux.com/tutorials/tiny-pluggable-linux-arm-computers-are-red-hot/>`_
+
+
+.. rubric:: Online
+
+* `SliTaz 4.0 Review — Small but fierce <http://badalhocando.blogspot.co.uk/2012/04/slitaz-40-review-small-but-fierce.html>`_

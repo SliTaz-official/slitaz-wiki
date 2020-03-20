@@ -1,0 +1,143 @@
+====== Monthly Newsletter - Issue 14 ======
+
+	* Written on 16th January 2010
+
+===== Latest News =====
+
+        * SliTaz featured in Distrowatch [[http://distrowatch.com/weekly.php?issue=20100111#feature|review]]
+        * SliTaz [[http://mirror.slitaz.org/iso/cooking-snow/README.html|snow]] isos released
+        * We will have a stand at the forthcoming http://www.solutionslinux.fr/
+        * Newsletter is back again!
+
+===== New Packages =====
+
+	* calcurse
+	* tty-clock
+	* nethogs
+	* icmptx
+	* plotdrop
+	* xournal
+	* apr-dpd-*
+	* openvas-*
+	* snort
+	* lives
+	* gkll
+	* gutenpy
+	* python-pyprotocols
+	* aspell-{hu,cs,id,it,ru,sl}
+	* evince
+	* libmagic
+	* libical
+	* libmpdclient
+	* libunique
+	* libplayer
+	* libvalhalla
+	* elementary
+	* enna
+	* libffd
+
+===== Updated  Packages =====
+
+	* mpg123 => 1.10.0
+	* openbox => 3.4.9
+	* cairo => 1.8.8
+	* firefox => 3.5.7
+	* web-applications => 1.2
+	* postgresql => 8.3.9
+	* apr => 1.3.9
+	* apache => 2.2.14
+	* sarg => 2.2.6
+	* squid => 3.0STABLE21
+	* putty => 0.60-2009-09-08
+	* sudo => 1.7.2p2
+	* mc => 4.7.01
+	* perl-pango => 1.221
+	* python-pygments => 1.1.1
+	* python-bpython => 0.9.5.2
+	* python-mysql => 1.2.3.c1
+	* python-django => 1.1.1
+	* python-sqlalchemy => 0.5.6
+	* python-formalchemy => 1.3.1
+	* python-jinja2 => 2.2.1
+	* tuxtype => 1.8.0
+	* intltool => 0.40.6
+	* babl=> 0.1.0
+	* gegl => 0.1.0
+	* gimp => 2.6.8
+	* couchdb => 0.10.1
+	* python-couchdbkit => 0.3.1
+	* libsmpeg => 389
+	* stoq => 0.9.11
+	* stoqdrivers => 0.9.8.2
+	* fpm2 => 0.76.1
+	* awstats => 6.95
+	* pure-ftpd => 1.0.27
+	* strace => 4.5.19
+	* pygtk => 2.16.0
+	* pycairo => 1.8.2
+	* pygobject => 2.20.0
+	* gdb => 7.0.1
+	* reiserfprogs => 3.6.21
+	* gajim => 0.13.1
+	* midori => 0.2.2
+	* ntfs-3g => 2009.11.14
+	* libboost => 1.41.0
+	* wormux => 0.8.5
+	* vte => 0.23.1
+	* sakura => 2.3.6
+	* jfsutils => 1.1.14
+	* emelfm2 => 0.7.1
+	* leafpad => 0.8.17
+	* popt => 1.15
+	* libmodplug => 0.8.7
+	* espeak => 1.42.04
+	* libffi => 3.0.9
+	* udev => 150
+	* cyrus-sasl => 2.1.23
+	* rsync => 3.0.7
+	* mpd => 0.15.7
+	* mpc => 0.19
+	* ario => 1.4.2
+	* slitaz-bootscripts => 3.2
+	* eet => 1.2.3
+	* e17 => 2009.12.02
+	* enlightenment => 2009.12.02
+	* pidgin => 2.6.5
+	* dnsmasq => 2.51
+	* get-virtualbox => 1.01
+	* bind => 9.6.1-P2
+
+===== Improvements =====
+
+  * slitaz-tools (3.4) - Lots of fixes and improvements
+  * tazpkg (3.2) - Box is much faster and deps auto-installed
+  * slitaz-boot-scripts (3.2) - WPA connections are much faster, boot time is logged and Xorg is autoconfigured at boot for any Live systems using it
+  * Package database for the Cooking version: 2226 (+ 835 from 2.0)
+
+===== Bugs =====
+
+
+^   Activity   ^    Open   ^    Closed  ^
+|    Bugs      |     58    |      50    |
+|    Features  |     37    |      21    |  
+|    Tasks     |     9     |      38    |
+
+
+	* Based on current figures
+
+===== Cartoon =====
+
+{{:en:newsletter:cartoon-6.png|}}
+
+
+===== Tips and Tricks =====
+
+	* The Many Uses of Screen: http://www.serverwatch.com/tutorials/article.php/3838961/The-Many-Uses-of-Screen.htm	
+
+===== Online =====
+
+	* Slitaz Linux - Zero to Distro in 30MB!: http://linuxologist.com/reviews/slitaz-linux-zero-to-distro-in-30-mb/		
+
+===== Old Issues =====
+
+       * Click [[en:newsletter:oldissues|here]]

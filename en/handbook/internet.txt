@@ -1,0 +1,83 @@
+====== Internet ======
+
+===== Midori - Lightweight web browser =====
+
+Midori is a lightweight web browser with very fast page rendering through the rendering engine Webkit. This is a serious alternative to Firefox for systems with low resources or those seeking a fast and sleek alternative. It supports most web standards, CSS stylesheets and images. Midori is configurable via a small interface and is located in the 'Internet' menu once installed.
+
+===== Mozilla Firefox - Web Browser =====
+
+SliTaz is proud to provide Mozilla Firefox, one of the world's best web browsers. It is secure, fast, standards compliant and customizable via a system of plugins. To install:
+
+<code> # tazpkg get-install firefox-official </code>
+
+The web browser configuration files are stored in the hidden (dot) directory ~/.mozilla/firefox.
+
+<note tip>When you combine the LiveCD with USB media, you can keep your bookmarks and plugins wherever you go.</note>
+
+===== Retawq - Text mode web browser =====
+
+Retawq is an interactive web brower that can be run from the console or a graphical terminal. To install:
+
+<code> # tazpkg get-install retawq </code>
+
+To start retawq, just type (with or without the url): 
+
+<code> $ retawq http://www.slitaz.org/en </code>
+
+The configuration files are found in //~/.retawq//, you can edit them with a text editor. Pressing <b> will display the bookmarks (bookmarks.html) and the <h> key will display the home page.
+
+===== Links - Graphical & Text browser =====
+
+Links was the first graphical web browser on the SliTaz LiveCD, it has since been replaced by Firefox, but Links is always available as a package:
+
+<code> # tazpkg get-install links </code>
+
+Links offers a graphical and a text mode. To use the graphical mode, we can use the option //-g//:
+
+<code>
+ $ links -g &
+ $ links -g http://www.slitaz.org/en &
+ $ links
+</code>
+
+The configuration files are stored in ~/.links, though it's not advisable to modify them. However, Links provides a configuration interface via the toolbar at the top, where you can configure the languages, bookmarks, etc. When you change options, you must save them via the //menu bar --> Configuration --> Save options//.
+
+===== LostIRC - IRC chat client =====
+
+LostIRC is a simple, yet useful IRC client that supports multiple servers and automatic joining of servers/channels. The configuration files are located in ~/.lostirc. Simply select from the menu --> Internet --> LostIRC. The documentation on the website contains a lot of useful information.
+
+<code> SliTaz channel: irc.toile-libre.org / #slitaz </code>
+
+===== Ghost In The Mail - Email client =====
+
+To send messages quickly without having to set up an email account, you can use Ghost In The Mail (gitmail). The minimal mail client offers a simple GTK interface and supports attachments. It allows you to send mail using SMTP with your existing mail account. To install gitmail:
+
+<code> # tazpkg get-install gitmail </code>
+
+===== Sylpheed - Mail Client =====
+
+If you'd rather have a fully featured email client - you can download Sylpheed. Simple, reliable and easy to use, it offers powerful search and filters, and junk mail control.
+
+<code> # tazpkg get-install sylpheed </code>
+
+===== Transmission - Lightweight BitTorrent client =====
+
+Transmission is a GTK+ BitTorrent client that is fast, light and easy to use. It offers a 'Preferences' option which allows you to limit the rate of uploads/downloads, specify port, download folders, etc. 
+
+To install:
+
+<code># tazpkg get-install transmission</code>
+
+Project website: http://transmission.m0k.org/
+
+===== gFTP - FTP client =====
+
+The gFTP application is a fast, ergonomic client for FTP transfers. It can resume interrupted transfers, manage bookmarks (favorites) and FTP or HTTP proxies. In addition gFTP supports the use of drag and drop, can make several transfers at the same time, compares windows, remembers passwords and can even define external applications for viewing or editing files. To install gFTP:
+
+<code> # tazpkg get-install gftp </code>
+
+===== Gtk-gnutella - P2P client =====
+
+Gtk-gnutella is a P2P file sharing application that uses the Gnutella network. Written in C, it requires a lot less resources than other clients. It supports the use of searches and filters, features for downloading large files and bandwidth control. To install gtk-gnutella:
+
+<code> # tazpkg get-install gtk-gnutella </code>

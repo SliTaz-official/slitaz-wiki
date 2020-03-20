@@ -1,0 +1,93 @@
+======= CPU Frequency Scaling =======
+
+==== Introduction ====
+
+To reduce power consumption is not only essential for portable computers: it is also essential to use it on desktop machines to reduce unnecessary CO2 emissions. You can save power by turning off not needed hardware components like WiFi, Bluetooth, etc., switching off or reducing the monitor backlight, spinning down HDDs and controlling the CPU frequency. 
+
+CPU frequency scaling is built into the 2.6 kernel and available; but because Slitaz is very small and light, you have to install some additional tools and set it up by yourself.
+
+==== Installation ====
+
+Install linux-cpufreq, linux-acpi, cpufrequtils and optional powertop (for easy controlling) - cpufrequtils and powertop we have to take from cooking, because cpufrequtils does not exist in 3.0 and powertop is buggy.
+
+<code># tazpkg get-install linux-cpufreq
+# tazpkg get-install linux-acpi,
+# wget http://mirror.slitaz.org/packages/cooking/cpufrequtils-008.tazpkg
+# wget http://mirror.slitaz.org/packages/cooking/powertop-1.13.tazpkg
+# tazpkg install cpufrequtils-008.tazpkg
+# tazpkg install powertop-1.13.tazpkg
+</code>
+
+==== Cpu driver ====
+
+You have to load the correct CPU kernel driver for your CPU - if you don't know, which CPU is in your PC you can get it from:
+
+<file> $ cat /proc/cpuinfo</file>
+
+Depending on the CPU, load one of the following modules - if you choose the wrong driver, you will get an error message, the module is not loaded and nothing goes wrong. 
+
+Generic ACPI P-States based driver:
+<code> # modprobe acpi-cpufreq</code>
+AMD mobile K6-2/3+ PowerNow!:
+<code> # modprobe powernow-k6</code>
+AMD mobile Athlon PowerNow!:
+<code> # powernow-k7</code>
+AMD Cool&Quiet PowerNow!(up to AMD "K10" CPU):
+<code> # modprobe powernow-k8</code>
+Intel SpeedStep using the SMI BIOS interface:
+<code> # modprobe speedstep-smi</code>
+Intel SpeedStep on ICH-based chipsets:
+<code> # speedstep-ich</code>
+Intel Enhanced SpeedStep (deprecated - use acpi-cpufreq):
+<code> # modprobe speedstep-centrino</code>
+Intel Pentium4/Xeon - The kernel documentation says "This adds the CPUFreq driver for Intel Pentium 4 / XEON processors.  When enabled it will lower CPU temperature by skipping clocks. This driver should be only used in exceptional circumstances when very low power is needed because it causes severe slowdowns and noticeable latencies.  Normally Speedstep should be used instead." - the p4-clockmod supports only performance and powersave governors (due to the long transition latency of the module itself):
+<code> # modprobe p4-clockmod</code>
+NatSemi Geode GX / Cyrix MediaGXm:
+<code> # modprobe gx-suspmod</code>
+Transmeta Crusoe / Efficeon LongRun:
+<code> # modprobe longrun</code>
+VIA Cyrix Longhaul:
+<code> # /sbin/modprobe longhaul</code>
+nForce2 FSB changing cpufreq driver:
+<code> # modprobe cpufreq-nforce2</code>
+Enhanced PowerSaver driver for VIA C7 CPUs:
+ <code> # modprobe e_powersaver</code>
+
+==== Scaling governors ====
+
+Governors can be thought of as pre-configured power schemes for the CPU. 
+
+Available governors:
+
+**cpufreq_performance (default in SliTaz)** \\
+The performance governor is built into the kernel and runs the CPU(s) at maximum clock speed 
+
+**cpufreq_ondemand (also built into the kernel)** \\ 
+Dynamically increases/decreases the CPU(s) clock speed based on system load 
+
+**cpufreq_conservative** \\ 
+Similar to ondemand, but more conservative (clock speed changes are more graceful) 
+
+**cpufreq_powersave** \\ 
+Runs the CPU at minimum speed 
+
+**cpufreq_userspace** \\ 
+Manually configured clock speeds by user 
+
+The built in governors must not be loaded - the others must be loaded with modprobe - you may load as many governors as desired (only one will be active at any given time). 
+
+Which poses the question, which governor saves most energy? The Powersave governor will only save you power if you're playing 3D games (it does not save power because application process completion times are prolonged at the lower processor frequency and the system does not enter a deep C-state. The greatest power savings occur at idle in deeper C-states) and the performance governor will basically never give you extra performance. Don't use them - therefore I am not happy that the performance governor is used by default in SliTaz. So you might choose between ondemand and conservative, which is a matter of taste.
+
+The userspace governor is necessary for third party applications - like cpupowerd http://www.themaxer.com/index.php?option=com_content&view=article&id=86:undervolting-your-cpu&catid=41:nas&Itemid=81 - unfortunately it does not work in SliTaz, because the kernel config for CONFIG_X86_MSR is not set.
+
+==== Select the governor ====
+
+At this point everything is prepared but no active governor selected - so no power saving yet.
+
+Use the 'cpufreq-set' command to activate one of the governors - for example:
+
+<code> # cpufreq-set -g ondemand</code>
+
+Please note, if you have a dual-core or multiple-core CPU, you must explicitly specify the CPU. There are CPUs where each core can run with different settings! Example for a dual-core CPU:
+
+<code> # cpufreq-set -c 0 -c 1 -g conservative</code>

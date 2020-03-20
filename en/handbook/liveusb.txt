@@ -1,0 +1,105 @@
+====== LiveUSB media ======
+===== Tazusb - Live USB Tool =====
+
+Tazusb is a tool that can create bootable usb media with a few simple commands. It can also compress and backup the entire current filesystem to the media, thus preserving all modifications for future use. Type //tazusb usage// for a full list of commands or read the [[http://hg.slitaz.org/tazusb/raw-file/tip/doc/tazusb.en.html|TazUSB manual]].
+
+=== Generate your own LiveUSB media ===
+
+To generate your own LiveUSB media, first you need to login as //root// with //su// and locate your usb storage device using the command:
+
+<code># fdisk -l /dev/sdxx </code>
+
+Then format and label your device (Warning: this will erase all data, make sure you specify the right device):
+
+<code> # tazusb format /dev/sdxx </code> 
+
+And finally generate your LiveUSB media device with either:
+
+<code> # tazusb gen-liveusb /dev/sdxx </code>
+(if you're working with a LiveCD as the install source) 
+
+OR
+
+<code> # tazusb gen-iso2usb slitaz.iso /dev/sdxx </code>
+(if you're working with an iso file as the install source)
+
+Note that the /dev/sdxx part of the command above specifies the location to where you need to write the iso's files to; it is not the source media where the iso is on ! With the iso file as install source option, you should hence specify the exact location where the slitaz iso  source file is located. If it is located at /home/tux (while running slitaz from a non-live version), write "tazusb gen-iso2usb /home/tux/slitaz.iso /dev/sdxx". If the source file is found on an external hard disk, mention the folder in which the media's files are outputted to - check this with PCManFM (in practice the folder can be something like /media/disk). So, the command you'd need to write with the latter would be something like "tazusb gen-iso2usb /media/disk/slitaz.iso /dev/sdxx"
+
+And that's all you need to do, you can now boot SliTaz from usb media (providing your computer bios supports this method).
+
+=== Tazusb Manual ===
+
+The official Tazusb manual can be found in the SliTaz [[http://hg.slitaz.org/tazusb/raw-file/tip/doc/tazusb.en.html|Web site documentation]]; this contains a lot more useful information. The manual is also available through the documentation menu on the LiveCD.
+
+===== Install SliTaz on USB from Windows =====
+
+Slitaz can be installed on USB media from windows. The following description has been tested on Windows XP and Vista.
+Before starting you need to download:
+  - the latest SliTaz iso from [[http://www.slitaz.org/en/get/#stable|Get SliTaz]].
+  - the syslinux tool for the SliTaz version you install:
+  * [[https://www.kernel.org/pub/linux/utils/boot/syslinux/4.xx/syslinux-4.05.zip|syslinux-4.05.zip]] for SliTaz 4.0
+  * [[https://www.kernel.org/pub/linux/utils/boot/syslinux/3.xx/syslinux-3.82.zip|syslinux-3.82.zip]] for SliTaz 3.0
+  * [[https://www.kernel.org/pub/linux/utils/boot/syslinux/3.xx/syslinux-3.73.zip|syslinux-3.73.zip]] for SliTaz 2.0
+  * [[https://www.kernel.org/pub/linux/utils/boot/syslinux/3.xx/syslinux-3.61.zip|syslinux-3.61.zip]] for SliTaz 1.0
+
+**1.** Extract the SliTaz ISO file to the USB stick. For this, use a tool like [[http://www.7-zip.org/|7-Zip]] or Winimage (shareware). Once extracted, you should get the following: 
+<code>
+\boot
+\boot\isolinux
+\boot\grub
+</code>
+
+<note>
+Depending on the version of SliTaz you install, you can find on root other directories and files but they are not used by the LiveUSB.
+</note>
+
+**2.** On your USB stick, rename the //\boot\isolinux// directory to //\boot\syslinux//.
+
+**3.** In the new directory //\boot\syslinux//, rename //isolinux.cfg// file to //syslinux.cfg// and //isolinux.msg// file to //syslinux.msg//. This is not mandatory but makes more sense.
+
+**4.** Now extract the syslinux archive previously downloaded and copy the //syslinux.exe// file from its //win32// directory into the //\boot\syslinux// directory of the USB stick.
+
+**5.** Modify the //\boot\syslinux\syslinux.cfg//: replace all //isolinux.*// appellations with //syslinux.*//.
+
+===example for SliTaz 4.0:===
+<file>...
+kernel /boot/isolinux/ifmem.c32
+...
+</file>
+to
+<file>...
+kernel /boot/syslinux/ifmem.c32
+...
+</file>
+
+===example for SliTaz 3.0 and previous versions:===
+<file>
+display syslinux.msg
+label slitaz
+	kernel /boot/bzImage
+	append initrd=/boot/rootfs.gz rw root=/dev/null lang=C kmap=uk vga=normal autologin
+
+include common.cfg
+</file>
+**Note : ** In the example above, compared to the original file, the line //display isolinux.msg// has been replaced by //display syslinux.cfg// and the parameters //lang=C kmap=uk// have been added to the line //append// so that, lang and keyboard are automatically selected at boot.
+
+In file //\boot\syslinux\common.cfg//, modify 
+<file>...
+F3 isolinux.msg
+...</file>
+to
+<file>...
+F3 syslinux.msg
+...</file>
+
+**6.** Now, from the terminal in Windows, run //syslinux.exe// to install the //bootloader//. For example, here the USB stick is shown as letter K, type:
+<code>
+k:
+cd \boot\syslinux
+syslinux -ma -d \boot\syslinux k:
+</code>
+
+**7.** You can now restart your computer. Change option in BIOS to boot first from USB.
+
+==== See also ====
+[[http://doc.slitaz.org/en:guides:liveusb]]

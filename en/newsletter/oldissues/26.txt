@@ -1,0 +1,66 @@
+====== Monthly Newsletter - Issue 26 ======
+Lang:[[cn:newsletter:start|cn]] [[en:newsletter:start|en]] [[es:newsletter:start|es]] [[fr:newsletter:start|fr]] [[ru:newsletter:start|ru]]
+
+	* Written on 9th October 2011
+
+===== Latest News =====
+
+        * Wok currently frozen for RC series
+
+===== New Packages =====
+
+        * posixovl
+        * linmodem-slmodem
+        * hdparm
+        * opencc
+        * fcitx-googlepinyin
+        * libgooglepinyin
+        * laptop-mode-tools
+        * util-linux-ng-blockdev
+
+===== Updated  Packages =====
+
+        * dokuwiki => 2011-05-25a
+        * wordpress => 3.2.1
+        * iron-linux => 13.0.800.0
+        * xnviewmp => 0.39
+        * apache => 2.2.21
+        * wireshark => 1.6.2
+        * zim => 0.53
+        * fcitx => v4.1.2
+        * fcitx-googlepinyin => v0.1.3
+
+===== Improvements =====
+
+        * tazwikiss (1.4)
+        * tazpkg (4.7.1)
+        * tazlito (4.2)
+
+===== Bugs =====
+
+\\
+
+^   Activity   ^    Open   ^    Closed  ^
+|    Critical  |     7     |     6      |
+|    Standard  |     28    |     15     |
+|    Feature   |     6     |     2      |  
+|    Task      |     11    |     9      |
+
+
+	* Based on current figures 
+
+===== Cartoon =====
+
+{{:en:newsletter:cartoon-13.png|}}
+
+===== Tips and Tricks =====
+
+        * Simple Iptables Script Generator: http://www.mista.nu/iptables/
+
+===== Online =====
+
+        * The SliTaz Experience  - http://rollingprogrammer.com/2011/06/26/the-slitaz-experience/
+ 
+===== Old Issues =====
+
+        * Click [[en:newsletter:oldissues|here]]

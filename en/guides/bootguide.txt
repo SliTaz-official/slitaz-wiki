@@ -1,0 +1,104 @@
+==== From BIOS to /etc/init.d/rcS ====
+<code>
+                      CPU
+                       |
+                       V
+   +------------------BIOS----------------+
+   |             |            |           |
+   V             V            V           V
+ Floppy      Hard Disk    Versatile      PXE (4)
+ set (3)    DVD/CD-ROM <- Floppy (2) -->  or
+   |          USB key                  WEB boot
+   V             V                        |
+   +-------------+         +--------------+
+          |                V              |
+          V         PXE forwarder (5)     V
+     Boot Sector           |              |
+          |                V              |
+          +-------------------------------+
+                                |
+Already running Kernel          V
+          V                     |
+          +------KEXEC (8)  Boot loader 
+                   |            |
+             +-----+------------+---------+
+             |                            |
+             V                            V
+     Frugal/Uncommon(1):              Installed:
+    load Kernel+initramfs          load Kernel only
+             |                            |
+             V                            V
++--------Run /init -------------+         |
+|            |                  |     Mount root
+|            V                  |     filesystem  
+|      Create tmpfs             |         |
+|     |            |            |         |
+|     V            V            V         V
+|  Loram(7):     Frugal:    Uncommon(1):  | 
+| Mount aufs    populate    run script    |
+| & squashfs     tmpfs    load modules(s) |
+|     |            |        mount root    |
+|     |            |            |         |
+V     +------------+------------+         |
+|                        |                |
++------+                 V                V
+       |         Switch to new root       |
+       |                 |                |
+       |                 +----------------+
+ Tiny SliTaz(6):              |
+       |                      V
+       |               Run /sbin/init
+       |                      |
+       +----------------------+
+                   |
+                   V
+          Run /etc/init.d/rcS       
+           from /etc/inittab
+</code>
+
+  - [[uncommoninst|Uncommon]] is LVM, RAID, crypto, loop or subdir mount with preinit rootfs.
+  - [[http://mirror.slitaz.org/boot/floppy-grub4dos|Versatile boot floppy]]
+  - [[http://mirror.slitaz.org/floppies/|Boot floppy set]].
+  - LAN [[pxe|PXE]] or [[http://boot.slitaz.org/|WEB boot]].
+  - [[pxe#advanced-web-booting-configuration|gpxe.pxe]].
+  - Tiny slitaz, see http://tiny.slitaz.org/
+  - [[lowramcd|Lowram CD]].
+  - kexec command from the [[http://pkgs.slitaz.org/search.sh?package=kexec-tools|kexec-tools]] package.
+
+===== SliTaz ISO image boot tricks =====
+
+The cdrom image has a hybrid format from version 5.0.
+
+  * It boots from a cdrom drive according to the el-torito specification as usual (BIOS or UEFI).
+  * It boots from a memory card / USB key using the syslinux hybrid format (BIOS) or using a FAT partition mapped in the ISO image (UEFI).
+  * It launches a USB boot key creation utility from Windows (32 bits).
+  * It can boot from DOS (real mode or virtual 8086 with EMM386) directly:
+
+<code>C:\> ren slitaz.iso slitaz.exe
+C:\> slitaz.exe</code>
+<note tip>
+The files bzImage, memtest and ipxe can boot with DOS too:
+<code>C:\> ren bzimage bzimage.exe
+C:\> bzimage.exe root=/dev/hda3 autologin</code><code>C:\> ren memtest memtest.exe
+C:\> memtest.exe</code><code>
+C:\> ren ipxe ipxe.exe
+C:\> ipxe.exe http://myserver.org/boot.php</code></note>
+
+  * It is easily customizable with the iso2exe (compatible with taziso or tazpanel/boot/ISO mine) tool:
+
+<code>iso2exe -a "lang=fr_FR kmap=fr-latin1 tz=Europe/Paris" -i myconfig.gz slitaz.iso
+iso2exe -l slitaz.iso
+iso2exe -r slitaz.iso custom.append custom.initrd
+taziso slitaz.iso getcustomconf
+taziso slitaz.iso isomd5</code>
+<note tip>You can tune the boot process with your own /init script:
+<code>#!/bin/sh
+
+sed -i 's,^RUN_DAEMONS=",RUN_DAEMONS="dropbear ,' /etc/rcS.conf
+cat >> /etc/init.d/local.sh <<EOM
+/my/special/inits.sh
+EOM
+exec /init "$@"
+</code>
+Update the kernel command line:
+<code>iso2exe -a "rdinit=/myinit lang=fr_FR kmap=fr-latin1 tz=Europe/Paris" -i myconfig slitaz.iso -f</code></note>

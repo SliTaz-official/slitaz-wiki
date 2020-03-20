@@ -1,0 +1,12 @@
+====== SliTaz 4.0 Errata ======
+
+\\
+  * Xorg fails to start at the end of boot. Solution: Preselect your language at boot menu or from the command line with: slitaz lang= kmap=
+  * Upgrade from 3.0 to 4.0 can be a pain from the Package manager. Solution: Use SliTaz Installer from the command line or TazPanel to perform an upgrade.
+  * Desktop bottom panel is missing. This is a bug from LXpanel, only the main panel is copied to user config. Solution: <code>cp /etc/lxpanel/slitaz/panels/* $HOME/.config/lxpanel/slitaz/panels</code>
+  * tazpanel liveCD loram conversion does not work. Solution 1: use tazlito, example: <code>tazlito build-loram slitaz-4.0.iso slitaz-4.0-loram.iso ram</code>Solution 2: stop tazpanel server with the kill command and start it in an xterm<code>/etc/init.d/tazpanel start</code>
+  * tazlito build-loram does not update the /mdsum file. The media-check option in boot menu reports unexpected broken files. slitaz-4.0-loram-cdrom media-check reports "177 files OK, 29 broken, 4488 not checked." Because isolinux.bin does not support rockridge and does not see most files.
+  * 'tazlito build-loram some.iso result.iso cdrom' does not work. Solution: use this fixed version http://hg.slitaz.org/tazlito/raw-file/ad96fdd80b46/tazlito
+  * bootfloppybox does not retrieve the boot cmdline of slitaz-4.0.iso. Solution: use this fixed version http://hg.slitaz.org/slitaz-tools/raw-file/fb636ac549ab/tinyutils/bootfloppybox
+  * The iso images slitaz-4.0-base.iso, slitaz-4.0-core.iso, slitaz-4.0-firefox.iso, slitaz-4.0.iso, slitaz-4.0-justx.iso, slitaz-4.0-preinit.iso, slitaz-4.0-proxy.iso and slitaz-4.0-xorg-light.iso are not hybrid. Solution 1: run isohybrid on the image, example: <code>isohybrid slitaz-4.0.iso</code> Solution 2: use slitaz-4.0-loram-cdrom.iso or slitaz-4.0-loram.iso.
+  * The installer in tazpanel does not find tazinst if you use the pt_BR locale. Solution: this bug has been fixed, update your system with the latest tazpanel and slitaz-tools packages.

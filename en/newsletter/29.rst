@@ -1,0 +1,276 @@
+.. http://doc.slitaz.org/en:newsletter:oldissues:29
+.. en/newsletter/oldissues/29.txt · Last modified: 2013/08/23 21:28 by linea
+
+Issue 29
+========
+
+* Written on 1st December 2012
+
+
+.. rubric:: Latest News
+
+* Website translated into Bosnian (thanks Adnan Sinanovic)
+
+
+.. rubric:: New Packages
+
+.. hlist::
+   :columns: 3
+
+   * glm
+   * aircrack-ng-oui
+   * mediawiki
+   * pylorcon
+   * lorcon-old
+   * qemacs-tiny
+   * zoneminder
+   * vorbisgain
+   * turses
+   * tahoe-lafs
+   * shell-detector
+   * qtgain
+   * qemacs
+   * powermanga
+   * phpsysinfo
+   * nimrod
+   * lz4
+   * id3v2
+   * i3
+   * glusterfs
+   * fbgrab
+   * dulwich
+   * dar
+   * airstrike
+   * python-tweepy
+   * python-oauth2
+   * vkeybd
+   * freepats
+   * TiMidity++
+   * python-pyexiv2
+   * gigolo
+   * librsync
+   * iso-codes
+   * perl-dbd-pg
+   * pcsc-lite
+   * help2man
+   * defrag
+   * shake
+   * exfat-utils
+   * fuse-exfat
+   * dukto
+   * libQtDeclarative
+   * musl-libc
+   * autossh
+   * sratom
+   * lilv
+   * lv2
+   * serd
+   * sord
+   * udevil
+   * facter
+   * opus
+   * burp 
+   * androguard 
+   * ibus
+   * uemacs 
+   * smx 
+   * naim
+   * wepbuster
+   * perl-io-tty 
+   * perl-io-stty
+   * perl-number-range
+   * perl-expect
+   * perl-algorithm-permute
+   * cmus
+   * icoutils
+   * get-playonlinux
+   * claws-mail-*
+   * partclone
+   * ipxe
+   * sozi
+   * check+
+   * iniparser
+   * giws
+   * hdf5
+   * szip
+   * libaio
+   * buffer
+   * mindi
+   * mondo
+   * grooms
+   * afio
+   * mtp-tools
+   * blazekiss
+   * python-prettytable
+   * python-mechanize
+   * python-html2text
+   * python-ooop
+   * gucharmap
+   * vpnc-cert
+   * gtk-recordmydesktop
+   * reaver
+   * pdnsd
+   * python-psutil
+   * linux64-aoe 
+   * linux64-nbd
+   * mdbtools
+   * epdf 
+   * gvolwheel
+   * pnmixer
+   * netrik
+   * nanoshot
+   * font-manager
+   * fbterm
+   * faenza-icon-theme
+   * 0install
+   * adminer
+   * blktrace
+   * busybox-boot
+   * blktrace
+   * codiad
+   * davmail
+   * e4rat
+   * fbff
+   * flashrom
+   * fsthost
+   * get-softmodem-driver
+   * lessfs
+   * libmikmod
+   * lvmts
+   * mikmod
+   * navit
+   * phpeasyvcs
+   * puppet
+   * qtractor
+   * splashutils
+   * systemd
+   * tokyocabinet
+   * vmware-view-open-client
+   * xflux
+   * pcsc-tools
+   * ccid
+   * cc65
+
+
+.. rubric:: Updated Packages (abridged)
+
+.. hlist::
+   :columns: 3
+
+   * wpa_supplicant ⇒ 1.0
+   * busybox ⇒ 1.20.2
+   * shellfm ⇒ 0.8
+   * bison ⇒ 2.6.5
+   * git ⇒ 1.7.12.3
+   * atk ⇒ 2.4.0
+   * cairo ⇒ 1.12.2
+   * pango ⇒ 1.30.1
+   * phpmyadmin ⇒ 3.5.2
+   * libao ⇒ 1.1.0
+   * wordpress ⇒ 3.4.1
+   * drupal ⇒ 7.15
+   * mysql ⇒ 5.5.27
+   * logrotate ⇒ 3.8.2
+   * fail2ban ⇒ 0.8.7.1
+   * mercurial ⇒ 2.3
+   * iptables ⇒ 1.4.16.2
+   * e2fsprogs ⇒ 1.42.5
+   * wget ⇒ 1.14
+   * flex ⇒ 2.5.37
+   * mpg123 ⇒ 1.14.4
+   * samba ⇒ 3.6.7
+   * pcmanfm ⇒ 1.0
+   * freerdp ⇒ 1.0.1
+   * kmod ⇒ 11
+   * alsa-* ⇒ 1.0.26
+   * qemu ⇒ 1.2.0
+   * ncmpcpp ⇒ 0.5.10
+   * wine ⇒ 1.4.1
+   * dbus ⇒ 1.6.4
+   * iron-linux ⇒ 20.0.1150.1
+   * glib ⇒ 2.32.4
+   * nmap ⇒ 6.01
+   * wireshark ⇒ 1.8.2
+   * ardour ⇒ 2.8.14
+   * frogatto ⇒ 1.1.1
+   * zim ⇒ 2.56
+   * sudo ⇒ 1.8.6p3
+   * curl ⇒ 7.27.0
+   * ranger ⇒ 1.5.5
+   * clawsmail ⇒ 3.8.1
+   * xvkbd ⇒ 3.3
+   * sysstat ⇒ 10.0.5
+   * testdisk ⇒ 6.14
+   * patch ⇒ 2.7
+   * gawk ⇒ 4.0.1
+   * subversion ⇒ 1.7.7
+   * gparted ⇒ 0.14.0
+   * lua ⇒ 5.2.1
+   * midori ⇒ 0.4.7
+   * razorqt ⇒ 0.5.0
+   * ncdu ⇒ 1.9
+   * vpnc ⇒ 0.5.3
+   * ethtool ⇒ 3.6
+   * task ⇒ 2.1.2
+   * tmux ⇒ 1.7
+   * lzop ⇒ 1.03
+   * beautifulsoup ⇒ 4.1.3
+   * pciutils ⇒ 3.1.10
+   * syslinux ⇒ 4.06
+   * libfm ⇒ 1.1.0
+   * spacefm ⇒ 0.8.2
+   * udevil ⇒ 0.3.4
+   * devede ⇒ 3.23.0
+   * python-cython ⇒ 0.17.1
+   * get-flash-plugin ⇒ 1.4
+   * remminia ⇒ 1.0.0
+   * ffmpeg ⇒ 1.0
+   * audacity ⇒ 2.0.2
+   * openshot ⇒ 1.4.3
+   * xine-lib ⇒ 1.2.2
+   * grsync ⇒ 1.2.2
+   * enlightenment ⇒ 0.17.0-alpha2
+   * pcsc-lite ⇒ 1.8.6
+   * speedometer ⇒ 2.8
+   * units ⇒ 2.01
+   * sqlite ⇒ 3.14.1
+   * fetchmail ⇒ 6.3.22
+   * grooms ⇒ 1.05
+   * cryptopp ⇒ 5.6.1
+   * urxvt-full ⇒ 9.15
+   * gnome-icon-theme ⇒ 3.6.2
+
+
+.. rubric:: Improvements
+
+* slitaz-configs (5.1.2)
+* slitaz-boot-scripts (5.2)
+* slitaz-tools (5.1)
+* slitaz-base-files (5.3.1)
+
+
+.. rubric:: Bugs
+
+======== ==== ======
+Activity Open Closed
+======== ==== ======
+Standard  33    31
+======== ==== ======
+
+* Based on current figures
+
+
+.. rubric:: Cartoon
+
+
+.. image:: cartoons/cartoon-17.png
+
+
+.. rubric:: Tips and Tricks
+
+* `Playing around with MPlayer <https://web.archive.org/web/20130117025157/http://tuts.pinehead.tv/2012/09/25/tutorial-playing-around-with-mplayer/>`_
+
+
+.. rubric:: Online
+
+* `LinuxLive USB creator (Slitaz supported) <http://betanews.com/2012/08/27/linuxlive-usb-creator-now-supports-peppermint-os-three-archlinux-and-slitaz/>`_

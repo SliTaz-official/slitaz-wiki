@@ -1,0 +1,136 @@
+====== SliTaz Base Corner ======
+
+
+Animated by this [[http://forum.slitaz.org/topic/how-to-use-my-pc-mainly-in-cli|starting thread]] at the forum, I felt the need for a central place to house information on how use SliTaz in pure console mode installing only the base of SliTaz!
+
+As this place is now available, we can feed it with useful information and links with the intention of helping to start more easily - as the first objective of SliTaz is to be a graphical Linux system and not really destined to be used as base only...
+
+
+===== Installation alt. use base without installation (frugal method) =====
+
+==== Read information! ====
+
+The installation of the base can use the same methods (as described in following pages) for the complete installation:
+
+
+  * [[http://doc.slitaz.org/en:handbook:livecd|Live-CD usage]]
+  * [[http://doc.slitaz.org/en:handbook:installation|Installation]]
+  * [[http://doc.slitaz.org/en:guides:uncommoninst|Unusual install methods]]
+
+being conscious that you only install a part of them! That part is included in the ISO and is named **rootfs4.gz**.
+
+==== Transfer onto hard disk for a frugal start ====
+
+As you will work in the command line, I assume you also will make instructions in a command line!
+
+Step-by-step operations:
+
+First step: we need an ISO file containing the software that we will use:
+
+SliTaz offers clear and strong organisation:
+
+  * http://www.slitaz.org is the main site with a [[http://www.slitaz.org/en/search.php|special page to search]] for all information about SliTaz in all SliTaz pages and media
+  * http://doc.slitaz.org is the starting point for your search for documentation
+  * http://forum.slitaz.org is our common forum in all languages
+  * http://mirror.slitaz.org is the starting point for your downloads
+
+So we will have to search for our ISO file in the last one on the mirror! The organisation is very simple! I will use the actual ISO for the new version 5.0 in elaboration. I visit the mirror with my browser and find the file needed. I will download it with **wget** by typing in the command line:
+
+<file>wget http://mirror.slitaz.org/iso/5.0/slitaz-5.0-rc2.iso
+ls</file>
+
+wget echoes for ex. (914 KB/s) - `slitaz-5.0-rc2.iso' saved.
+
+I find the file ready in my home directory: ls echoes the file name in the population of my home!
+
+I now have to know a bit about my actual system. Where is the location of my compact disk drive in the tree? For example **/mnt/cdrom** or **/media/cdrom**?
+
+I will mount the file at this point:
+
+I type in the command line (or copy it from here marking / hitting on the middle mouse key):
+
+<file>mount -o loop,ro </file>
+
+marking the preceding lines with the name of the ISO file with the mouse and hitting after the beginning of the line with the middle mouse key,
+
+<file>mount -o loop,ro slitaz-5.0-rc2.iso</file>
+  
+and continue as follows:
+
+<file>mount -o loop,ro slitaz-5.0-rc2.iso /mnt/cdrom
+ls /mnt/cdrom</file>
+
+(or /media/cdrom etc.)
+
+ls /mnt/cdrom echoes:
+
+<file>boot  index.html  md5sum  README  style.css</file>
+
+I look deeper:
+
+<file>ls /mnt/cdrom/boot</file>
+
+and can see the entries for the files I am looking for (marked in the following view):
+
+# **bzImage**  grub  ipxe  isolinux  memtest	rootfs1.gz  rootfs2.gz	rootfs3.gz  **rootfs4.gz**	**vmlinuz-3.2.53-slitaz**
+
+I will now copy those 3 files using:
+
+<file>cp -a FILENAME</file>
+
+into a new directory in the root of an adequate partition (please not a Windows NTFS! But it can be a fat32 from an old Windows...).
+
+I only have to add now an adequate entry in my grub.cfg or /.../grub/menu.lst to start my new SliTaz base using Grub!
+
+You need only a few minutes to do all this and can immediately begin after restarting to experiment in the frugal started SliTaz base system!
+
+This method has a major inconvenience: All what you do in the frugal started SliTaz base is not persistent! If you want to preserve your next steps you have to decide between two ways: remaster your SliTaz (if you find it is to much) or install fully your new SliTaz base somewhere (probably your own little partition for it, -see the following item-, or you can look [[http://doc.slitaz.org/en:guides:uncommoninst|here]] for a **Subdirectory install in a Posix filesystem**).
+
+===== Install the SliTaz base on an own little partition =====
+
+I assume now you used the above frugal start to proceed to that full installation and that your ISO file is still in the same partition in your preceding ~ (home) directory! If not you only have to repeat later some of preceding steps but I will not describe them again...
+
+I also assume you have already created the newly needed partition (if not look for information on how to do that in the pages linked under the above item **Read Information!**). The partition doesn't have to be empty: Only the usual Linux directories have to be moved somewhere else in that partition (for ex. /oldSystem !).
+
+You started using Grub and the **login** console appears. Please enter the SliTaz standard username **tux**. It needs no password :-) ! To work as superuser you will later need the superuser password. In the new system it is **root** (you can change it in the full installation using the command **passwd** and following the dialog!). But as user, you can continue with **tux**, why not!
+ 
+
+ 
+
+
+
+
+===== Choice of standard SliTaz packages useful in a SliTaz base system =====
+
+==== Installation of packages ====
+
+As you are always in a command line system, you have only options:
+  * install packages with [[http://hg.slitaz.org/tazpkg/raw-file/tip/doc/tazpkg.en.html|Tazpkg]] (hit on that link to download the HTML manual). Example:
+<file>tazpkg get-install gpm </file>
+  * compile a non SliTaz package (very useful in console mode: **didiwiki**, works well in lynx or links, **wordgrinder**, text processor for CLI)
+  * add per simple copy (buuuuuuuuuuh!) :-| a binary package from another distro and hope it works and does nothing bad...
+
+==== Usual jobs ====
+  * mouse driver under console mode: **gpm** (this author did also write an interesting text editor with full performance using ... the mouse of course!)
+  * **sudo**
+  * directories and file manager: **clex**
+  * commander: **mc**
+  * email client: **alpine**
+  * alpine includes the very interesting text editor: **pico** (SliTaz includes **e3** in **vi** mode, uses trad. **nano**, and proposes also **vim**)
+  * irc client: **rhapsody**
+  * web browser: **lynx** (or **links**, but **links** is having a few dependencies as it would be also usable in graphical mode, where it can show pictures)
+  * <del>retawq</del> did show me only the code of http://encrypted.google.com (retawq was the trad. SliTaz browser)
+  * <del>elinks</del> has too many dependencies in SliTaz...
+  * spreadsheet: **sc**
+
+
+==== Server jobs ====
+
+
+
+===== Helpful documents =====
+  * the, of course, most interesting documents are the man pages of diverse bash commands including bash itself and of the above app's! This may be really difficult to get in foreign languages and I can't say that the Google translation is very useful in this case depending on the language. For my own use, I did collect the text of the following man pages: adduser, alpine, ar (useful to extract sources from Debian), arch, ark, cat, chmod, chown, chroot, clear, cp, cut, date, dd, debmany (to search Debian man pages), didiwiki, dpkg (regarding Debian), e2freefrag, e2fsck, export, filefrag, fim (see on the internet, perhaps http://savannah.nongnu.org/projects/fbi-improved/ !), free, gpm, groupadd, imagemagick, init, less, libsvga, links, ln, locate, ls, lynx, man2html (good!), mkdir, mkfs, more, mount, mv, pico, pr, retawq, rm, rsync, sc, su, tail, tar, uuid, etc. ...
+
+===== Example of Grub texts =====
+
+

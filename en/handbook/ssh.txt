@@ -1,0 +1,53 @@
+====== Secure SHell (SSH) ======
+
+===== About Dropbear =====
+
+Control and administer remotely with the Dropbear SSH secure server. Dropbear is a small SSH client/server supporting SSH 2. It's compatible with OpenSSH and uses //~/.ssh/authorized_keys// for the management of public keys. Dropbear also provides its own version of //scp//, allowing you to copy files between machines in a secure manner.
+
+Project website: http://matt.ucc.asn.au/dropbear/dropbear.html
+
+===== Connecting to a remote host with dbclient =====
+
+The configuration files for the SSH client are located in the //~/.ssh// directory of each user, this contains the //authorized_keys// and //known_hosts// files. The directory //~/.ssh// and known_hosts file are automatically created the first time you run the Dropbear client (//dbclient//).
+
+To connect to a remote host employing the user and machine name:
+
+<code> $ dbclient user@machine.org </code>
+
+You can also connect using the IP address of the machine:
+
+<code> $ dbclient user@192.168.0.2 </code>
+
+===== Transfer of remote files with scp =====
+
+To copy a file from one computer to another, scp can be utilized in the following ways. To copy a file named page.html to a remote directory of the user (don't forget the : after the machine name or IP address):
+
+<code> $ scp page.html user@machine.org:path/remote/directory </code>
+
+Copy a file from a remote machine to your local machine:
+
+<code> $ scp user@machine.org:path/remote/directory/page.html /path/your/directory </code>
+
+===== Generate rsa/dss keys with dropbearkey =====
+
+Dropbear provides dropbearkey to generate the protected rsa and dss keys. Note that when you start the server for the first time, secure keys will be automatically generated if they don't already exist. You can use //dropbearkey// with the following arguments:
+<code>
+ # dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key
+ # dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key
+</code>
+
+===== Start, stop, restart the SSH server =====
+
+By default SliTaz will not start the SSH server at boot. To be launched automatically, dropbear must be added to the variable //RUN_DAEMONS// in the ///etc/rcS.conf// file. To start, stop or restart the SSH server, use the following commands: ///etc/init.d/dropbear [start|stop|restart]//. Example to start the server:
+
+<code> # /etc/init.d/dropbear start </code>
+
+Note that the server supports the passing of various options when launched. To change the default values, simply modify the daemons configuration file ///etc/daemons.conf//. 
+
+===== Dropbear and the X server =====
+
+Dropbear supports X11 tunneling on the server side only. The client dbclient has no support for X11 tunneling. SliTaz provides a tiny shell script named ///usr/bin/sshx// to do the work. It opens a terminal with remote X11 protocol support if the environment variable //DISPLAY// is set. You can launch any remote X windows application on this terminal.
+
+===== Dropbear and VNC =====
+
+SliTaz provides a tiny VNC client named ///bin/fbvnc//. The VNC connections are not secure (neither encryption nor authentication). A tiny shell script named ///usr/bin/sshfbvnc// move the VNC connection to a SSH tunnel ending at the localhost interface of the remote VNC server. You will have an encrypted connection and authentication for your VNC sessions.

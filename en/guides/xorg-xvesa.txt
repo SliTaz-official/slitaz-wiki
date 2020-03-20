@@ -1,0 +1,307 @@
+====== Xorg & XVesa ======
+
+By default, SliTaz v3 uses Xorg 7.4 with the //xorg-xf86-video-vesa// v2.0.0 driver. This basic driver can cause problems with certain hardware combinations and can sometimes result in a very low resolution. Occasionally, X does not start at all and instead falls back to the log-in screen or to a text-based prompt. There are some simple solutions that can yield major improvements:
+
+  * check that you have enough RAM to run the default ISO. If not, use the [[http://mirror.slitaz.org/iso/3.0/flavors/|Low RAM ISO]] instead.
+  * try the [[http://mirror.slitaz.org/iso/3.0/flavors/slitaz-3.0-xvesa.iso|XVesa ISO]] (a.k.a. TinyX)
+  * install a more specific driver for your graphics card
+  * customise your Xorg configuration file (//xorg.conf//)
+
+Good introductions to Xorg Configuration can be found at [[http://www.freebsd.org/doc/en/books/handbook/x-config.html|The FreeBSD Handbook]] and [[https://wiki.ubuntu.com/X/Config|X Configuration from Ubuntu]].
+
+<note tip> Up to v7.3, the Ctrl+Alt+Backspace key combination could be used to quit the X server. To enable it in version 7.4 and later, type the following command from any X terminal emulator:
+
+<code>setxkbmap -option terminate:ctrl_alt_bksp</code>
+
+</note>
+
+<note important>
+Throughout this page, commands preceeded with a hash sign (#) should be executed as the **root** user. This is best under a terminal window. Otherwise, the dollar symbol ($) denotes a regular (tux) user.
+</note>
+
+
+===== Using Xorg & Vendor-Specific Drivers =====
+
+When you are using SliTaz as your main system, it's recommended to use Xorg over XVesa. You will get a much better display and performance than when using Xvesa tinyX.
+
+
+=== AGP Cards ===
+
+All AGP video cards need extra kernel modules to function under Xorg. Check if you have an AGP video card with //lspci//; if so, install the necessary modules in the //linux-agp// package before using Xorg:
+
+<code>
+# tazpkg get-install linux-agp
+</code>
+
+Load the modules using the SliTaz hardware detection tool:
+
+<code># tazhw detect-pci</code> 
+
+You can now use the SliTaz X configuration tool to detect your settings:
+
+<code># tazx</code>
+
+Select the appropriate driver for your video card from the list.
+
+
+=== DRI / DRM Problem ===
+
+Sometimes, the auto-detection is not enough. Cards that require [[http://www.bitwiz.org.uk/s/how-dri-and-drm-work.html|DRI / DRM]] are supported under SliTaz, but v3 has a couple of bugs! The file ///dev/dri// should be a directory and not a file and, to get DRI working correctly, we have to add tux to the group video or modify permissions in the Xorg configuration file:
+
+<code>
+# tazpkg get-install linux-drm
+# tazpkg get-install mesa-demos (for glxinfo and glxgears)
+# rm /dev/dri
+# mkdir /dev/dri/
+# addgroup tux video
+</code>
+
+The //drm// module is not loaded by //tazhw// so you have to do it manually:
+<code># modprobe drm</code>
+
+<note tip>All modules, which are loaded by tazhw and yourself to make your changes permanent, have to be added to the SliTaz Control Box under Initialization in "Load Modules". </note>
+
+
+=== Intel cards ===
+
+The xorg-xf86-video-vesa 2.0.0 driver has a lot of trouble with Intel chips. For example, on a 82945GM chipset it does not display 1280x1024 and 1024x768, but 1600x1200 is not a problem.
+
+Use "tazx" to select the intel driver, then "tazhw detect-pci", solve the dri problem and load drm and restart X - normally that's it (perhaps you must change your xorg.conf too).
+
+Some users may need to add the "intel_agp" module to the xorg.conf file:
+
+<file>
+Section "Module"
+        ...
+	Load  "intel_agp"
+	...
+EndSection
+</file>
+
+for the driver to work.
+
+Depending on the hardware, the //mode-setting// feature must be turned on or off. To turn it off append one of the following to the //kernel// line in the GRUB boot-loader configuration:
+
+  *  //nomodeset//
+  *  //i810.modeset=0//
+  *  //i915.modeset=0//
+
+If mode-setting is off by default and should instead be turned on, append one of the following:
+
+  *  //modeset//
+  *  //i810.modeset=1//
+  *  //i915.modeset=1//
+
+=== Trident cards ===
+
+Use "tazx" to select the trident driver, install mesa-dri-trident
+<code># tazpkg get-install mesa-dri-trident</code>and restart X
+
+
+=== nVidia cards ===
+
+SliTaz provides automatic configuration for nVidia cards. There are two drivers available, the Xorg-provided //[[#free-driver-nv|nv]]// and the nVidia-provided, non-free //[[#non-free-driver-nvidia|nvidia]]//. The //nv// driver should be tried first as this has been compiled for SliTaz, whereas the nVidia-supplied driver is a //binary blob// that tries to fit each and every Linux distribution.
+\\
+
+== Free Driver (nv) ==
+
+To set-up the free nVidia drivers, use the SliTaz Hardware Configuration tool:
+<code># tazhw setup nvidia </code>
+
+Alternatively, you can do this process manually:
+  * Download the following packages:
+    *  mesa, mesa-demos, linux-agp, xorg-xf86-video-nv
+<code># tazpkg get-install xorg-xf86-video-nv
+# tazpkg get-install mesa
+# tazpkg get-install mesa-demos
+# tazpkg get-install linux-agp</code>
+
+  * Load the kernel modules 
+<code># tazhw detect-pci</code>
+
+  * Replace the standard //vesa// driver with //nv//
+<code># sed -i 's/vesa/nv/' /etc/X11/xorg.conf
+</code>
+
+== Non-Free Driver (nvidia) ==
+
+To set-up the non-free nVidia drivers, use the SliTaz Hardware Configuration tool with the //--non-free// switch:
+<code># tazhw setup nvidia --non-free </code>
+
+Alternatively, you can do this process manually:
+  * Download the following packages:
+    *  mesa mesa-demos linux-agp nvidia
+<code># tazpkg get-install nvidia
+# tazpkg get-install mesa
+# tazpkg get-install mesa-demos
+# tazpkg get-install linux-agp</code>
+
+  * Load the kernel modules 
+<code># tazhw detect-pci</code>
+
+  * Attempt to configure the card with nVidia's tool:
+<code># nvidia-xconfig</code>
+  * To test if rendering is working, 
+<code># glxinfo | grep render</code>
+  * To change nVidia's settings, use nVidia's Settings tool:
+<code># nvidia-settings</code>
+
+== Hiding the Logo ==
+To hide the nVidia logo when the system boots, add the following to ///etc/X11/xorg.conf// at the end of the //Device// section:
+<file>Option "NoLogo" "True"</file>
+
+
+=== ATI cards ===
+
+SliTaz provides automatic configuration for ATI cards. There are two drivers available, the Xorg-provided //[[#free-driver-radeon|radeon]]// and the ATI-provided, non-free //[[#non-free-driver-catalyst|catalyst]]//. The //ati// driver should be tried first as this has been compiled for SliTaz, whereas the ATI-supplied driver is a //binary blob// that tries to fit each and every Linux distribution.
+\\
+
+== Free Driver (radeon) ==
+
+To set-up the free ATI drivers, install the AGP & DRM modules, then use the SliTaz Hardware Configuration tool:
+
+<code># tazpkg get-install linux-agp
+# tazpkg get-install linux-drm
+# tazhw setup ati</code>
+
+- but perhaps this is not enough - check /var/log/Xorg.0.log to see if other modules must be loaded: See [[#dri-drm-problem | DRI / DRM Problem ]]
+
+Alternatively, you can do this process manually:
+  * Download the following packages:
+    *  xorg-xf86-video-ati mesa-dri-ati mesa-demos linux-agp
+<code># tazpkg get-install xorg-xf86-video-ati
+# tazpkg get-install mesa-dri-ati
+# tazpkg get-install mesa-demos
+# tazpkg get-install linux-agp
+# tazpkg get-install linux-drm</code>
+
+  * Load the kernel modules 
+<code># tazhw detect-pci</code>
+
+  * To install the free ATI driver radeon, replace //vesa// with //radeon// in the ///etc/X11/xorg.conf// file:
+<code># sed -i 's/vesa/radeon/' /etc/X11/xorg.conf</code>
+
+
+== Non-Free Driver (catalyst) ==
+
+To set-up the non-free ATI drivers, use the SliTaz Hardware Configuration tool with the //--non-free// switch:
+<code># tazhw setup ati --non-free </code>
+
+
+=== Modifying the Xorg Configuration ===
+
+Normally Xorg will start successfully, but perhaps not with the correct resolution. See the [[#adding-resolutions|tips]] at the end of this page or sometimes search the Internet for the xorg.conf for your card and your monitor - or use another LiveCD and copy the working configuration file to SliTaz.
+
+
+===== Configuring X =====
+
+While X will do it's bets to auto-configure itself for your graphics card set-up, sometimes it needs a tweak. Its configuration file, ///etc/X11/xorg.conf//, is the place to customise the configuration. The best example of this is switching drivers or adding resolutions it doesn't detect.
+
+
+=== Adding Resolutions ===
+1. Include //HorizSync// and //VertRefresh// (refresh timings) in the //Monitor// section:
+
+<file>
+Section "Monitor"
+	Identifier   "Monitor0"
+	VendorName   "Monitor Vendor"
+	ModelName	 "Monitor Model"
+	HorizSync	 28-64
+	VertRefresh  60
+EndSection
+</file>
+
+2. Include a //DefaultDepth// in the //Screen// section:
+ 
+<file>
+Section "Screen"
+	Identifier "Screen0"
+	Device     "Card0"
+	Monitor    "Monitor0"
+**	DefaultDepth 24 **
+</file>
+
+3. Add an extra //Mode// to the line in the //Display// sub-section:
+
+<file>
+   SubSection "Display"
+		Viewport   0 0
+		Depth     24
+		Modes 	  "1024x768" "800x600"
+	EndSubSection
+</file>
+
+4. Also, add the default Font paths in the //Files// section:
+
+<file>
+Section "Files"
+	ModulePath   "/usr/lib/X11/modules"
+	FontPath     "/usr/share/fonts/X11/misc/"
+	FontPath     "/usr/share/fonts/X11/TTF/"
+	FontPath     "/usr/share/fonts/X11/OTF"
+	FontPath     "/usr/share/fonts/X11/Type1/"
+	FontPath     "/usr/share/fonts/X11/100dpi/"
+	FontPath     "/usr/share/fonts/X11/75dpi/"
+	FontPath     "/usr/share/fonts/truetype/ttf-dejavu"
+EndSection
+</file>
+
+  *  If you have DRI/DRM enabled, it may be easier to change its permission so all users can use it, rather than adding each to the //video// group. Append the following section:
+
+<file>
+Section "DRI"
+        Mode 0666
+EndSection
+</file>
+
+
+<note tip>You can use xrandr to identify your monitor(s). This utility is in the //xorg-xrandr// package:
+
+<code># tazpkg get-install xorg-xrandr</code>
+
+See the [[http://wiki.debian.org/XStrikeForce/HowToRandR12|Debian RandR 1.2 Wiki]] for more information.
+</note>
+
+
+=== Restarting Xorg ===
+
+For changes to take effect, you need to restart Xorg. This can be done by logging out of your session and back in again. Choose //Logout// from the Menu and select the //Logout X session// button. If you see the Slim log-in manager, Xorg has restarted successfully!
+
+
+===== Using XVesa and Generic Drivers (TinyX) =====
+
+The [[http://mirror.slitaz.org/iso/3.0/flavors/slitaz-3.0-xvesa.iso|SliTaz-3.0-xvesa.iso]] uses the XVesa system instead of Xorg, which offers a more generic driver at the cost of performance. It boots on nearly all computers and laptops, but can only display a 4:3 resolution.
+
+To find out which resolutions are possible with your card, type:
+
+<code># Xvesa -listmodes</code> 
+
+Here's a selection of resolutions for an example Intel Atom Board:
+
+<code>VBE version 3.0 (Intel(r) 82945GM Chipset Family Graphics Chip Accelerated VGA BIOS)
+DAC is switchable, controller is VGA compatible, RAMDAC causes snow
+Total memory: 7872 kilobytes
+0x015A: 1600x1200x24 TrueColor [8:8:8:8]
+0x011B: 1280x1024x24 TrueColor [8:8:8:8]
+0x0118: 1024x768x24 TrueColor [8:8:8:8]
+0x0112: 640x480x24 TrueColor [8:8:8:8]
+0x0115: 800x600x24 TrueColor [8:8:8:8]</code>
+
+This output shows widescreen resolutions cannot be displayed with XVesa.
+
+If X does not start with the default SliTaz ISO, you could use the XVesa ISO to install your default Xorg driver. When you are asked for your resolution at boot-time, scroll down the window and find the option to install your Xorg driver //before// XVesa is started. However, don't use "tazx" and "tazhw setup ati or nv" on the XVesa ISO to install your Xorg driver because you will end up with a blank and confused screen!
+
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Extra config. for other cards? |
+|::: | More details on or references to xorg.conf  |
+
+\\
+----

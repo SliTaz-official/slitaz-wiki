@@ -1,0 +1,136 @@
+====== Guides ======
+
+The SliTaz GNU/Linux quick start and complete guides by the community. You will find here specific guides to software, hardware or system configurations written by SliTaz users and contributors. These guides aim to provide concise and correct instructions. They explain a precise example of a solution and don't expect to be a general how-to.
+
+
+===== General =====
+   * [[newbie | SliTaz Newbie Guide]] 
+   * [[reallyBasicNewbie | SliTaz Newbie Guide]] II - Training for really Basic Newbie coming from Windows 
+   * [[read | README ]] - Before you post a question in the Community Forum
+   * [[contributor | Contribute to Slitaz]] - Guidelines to become a SliTaz Contributor
+   * [[bugs | Most Annoying Bugs ]]
+   * [[faq | FAQ]] - Frequently Asked Questions
+   * [[makingtazpackages | Making tazpackages ]] - Details on how to make packages
+   * [[testingapps | Testing Packages]] - Quality Management
+   * [[ http://scn.slitaz.org/groups/artwork/ | Artwork]] - Showcase your screenshots, wallpaper, themes and other Artwork 
+   * [[en:devel:start|Developers Corner]] - You are interested in contributing or developing your own SliTaz version? Here is your corner!
+   * [[en:base:start|SliTaz Base Corner]] - A console mode SliTaz version is enough for you? See here what you may expect to do with it!
+
+===== Installation, flavors and virtualization =====
+  * [[pxe|PXE boot]] - Boot from the web
+  * [[lowramcd|Live CD for low RAM systems]]
+  * [[frugal|Frugal install to Windows partition ]]
+  * [[uncommoninst|Unusual install methods]]
+  * [[livecd|LiveCD]] - How to make a SliTaz LiveCD
+  * [[liveusb| LiveUSB]]- How to make a SliTaz USB flash drive 
+  * [[dvd|Offline DVD]] - All Slitaz resources on one DVD 
+  * [[sdcard|SD Card]] - How to install SliTaz to a MMC/SD flash memory card
+  * [[ http://pizza.slitaz.org/ | Online builder ]] - Create a flavor using Pizza
+  * [[manyinone | Create many-in-1 flavors]]
+  * [[internationalization | Internationalization ]] - Add language support and create your own language flavor
+  * [[qemu | Qemu ]] - SliTaz GNU/Linux with Qemu
+  * [[vmware| VMware]] - SliTaz GNU/Linux with VMware
+  * [[virtualbox | Virtualbox]]- SliTaz GNU/Linux with virtualbox
+  * [[netstart|Net start usage and immediate installation on hard disk]]
+  * [[http://blog.bodhizazen.net/linux/how-to-install-slitaz-with-ext4-and-grub2/|Grub2]] - Install SliTaz with grub2 (and ext4)
+  * [[bootguide|Boot tree]] - What happens when you power on your slitaz box
+  * [[persistence_splash|Persistence and splash screen]] - Adding persistence and modifying the splash screen
+
+===== Networking / LAN =====
+  * [[wifi-easy|Wifi easy]] - Easy way to configure wifi
+  * [[wifi-hard|Wifi hard]] - Hard way to configure wifi
+  * [[network-script|Network.sh script]] - The /etc/init.d/network.sh file
+  * [[vpn|VPN]] - Build your own Virtual Private Network
+  * [[dialup | 3G/Dialup]] - How to get your 3G modem working
+  * [[modem | Modem]] - Modem dialup with ppp or wvdial
+  * [[bluetooth|Bluetooth]] - Configure bluetooth
+  * [[samba | Windows Networking with Samba]] - Share Windows/Linux files
+  * [[remotedesktop | Remote Desktop ]] - NX software from NoMachine 
+
+===== Software =====
+  * [[recommended | Recommended Software Packages]] - Applications to do almost anything on Slitaz	
+  * [[flash|FlashInstall]] - How to install Adobe Flash Player 
+  * [[boottime|Super Fast Boot]] - Super fast boot time 
+  * [[burncd | Burn CD / DVD]] - Burn CD/DVD audio/video 
+  * [[backup| Backup ]] - How to make backups on CD / computer
+  * [[Midori|Midori]] - Midori Tips and Tweaks 
+  * [[panels | Panels and Launchers ]]
+  * [[arts | Themes, Wallpaper, Icon sets ]]
+  * [[fonts | Useful Fonts ]]
+  * [[sexydesktop| Sexy Desktop]] - Desktop apps and config
+  * [[conky | Conky ]] - Lightweight system monitor on desktop
+  * [[audioplayers | Audio Players ]]
+  * [[videoplayers | Video Players ]]
+  * [[soundconvert | Sound and Video Conversion]] - Sound/Video conversion, Audio creation and synthesis
+  * [[importphotos | Import photos from digital camera]] - using gphoto2 
+  * [[dropbox | Dropbox ]]
+  * [[tor|Tor]] - The Tor Install Guide without blah-blah
+  * [[conspy|Conspy]] - Tiny session manager or shared console
+  * [[wicd | Wicd]] - Lightweight network manager
+  * [[grub | Grub and Grub2]]
+  * [[alsaequal | Alsaequal]] - Real-time adjustable equalizer plugin for ALSA
+  * [[xbindkeys | Xbindkeys]] - Launch shell commands with your keyboard or mouse (independent of your X window manager)
+  * [[tazwikiss | TazWikiss]] - wiki software using a web server
+ 
+
+===== Hardware =====
+  * [[xorg/xvesa | Xorg/Xvesa]] - What to do if X is will not start or has the wrong resolution
+  * [[nvidia|Nvidia]] - Install the latest non-free Nvidia driver
+  * [[ati | ATI]] - Install the latest non-free catalyst ATI driver
+  * [[poulsbo | Poulsbo]] - Poulsbo graphics installation
+  * [[webcam | Webcam]] - How to get your webcam working
+  * [[printer | Printing]] - Howto print, CUPS install and configuration
+  * [[scanner | Scanning]]
+  * [[udev | UDEV and HAL]]
+  * [[troubleshoot | Troubleshoot]]
+  * [[powermgmt | Power Management ]] - ACPI (Advanced Configuration and Power Interface)
+  * [[CPU-frequency | CPU Frequency Scaling]] - CPU Frequency Scaling instructions
+  * [[uefi | UEFI and SliTaz]] - HOWTO do a [[uefi-live | LiveUSB]] - [[uefi-frugal | frugal install]] - [[uefi-full | full install]] in Boot Mode UEFI
+  * [[microcode | Microcode]] - Updating the processor microcode
+
+===== Server setup and system Administration =====
+  * [[apache | Apache Webserver ]]
+  * [[lighttpd | Lighttpd Webserver]]
+  * [[ssh | Dropbear, Openssh ]]
+  * [[mailman | Mailserver and Mailman]]
+  * [[database|Database engine]] - SQLite and other DB management systems
+  * [[redmine | Redmine Setup ]]
+  * [[mercurial | Mercurial Installation ]]
+  * [[en:handbook:server-apps#drupal|Drupal]] - Powerful CMS engine using PHP/MySQL
+  * [[streaming | Media Streaming Server ]]
+  * [[encryption | File, Drive Encryption ]]
+  * [[firewall | Firewall]]
+  * [[router | Router and Internet Gateway ]]
+
+
+===== Window Managers=====
+  * [[en:handbook:wm#dwm|DWM]] 
+  * [[en:handbook:wm#pekwm|Pekwm]]
+  * [[fluxbox | Fluxbox ]]
+  * [[en:handbook:wm#xfce | Xfce ]]
+ 
+ 
+
+===== Kernel and SliTaz Build system =====
+  * [[kernel|CustomKernel]] - Build your own custom Linux Kernel
+  * [[en:guides:linuxpkgs | linux-packages]] - Explanation of various linux packages
+  * [[chroot|Chroot]] - How to setup a chroot to cook packages
+  * [[tazwoktips | Tazwok tips]] - Tips for compiling with (the now deprecated) Tazwok
+  * [[hal-removal | hal-removal ]] - Documentation for removing hal in 5.0
+===== Playground =====
+  * [[playground|Playground]] - For testing purposes only
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Low  |
+|Review| Major Updates FIXME  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly, e.g.,|
+|::: | [[en:guides:start | Add link]]|
+|::: | Add new rows like this ;-)  |
+
+\\
+----

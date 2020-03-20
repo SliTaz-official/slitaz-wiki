@@ -1,0 +1,47 @@
+====== The Tor Installation Guide ======
+
+This guide allows you to use the anonymous TOR network with most web browsers and command line tools such as wget. Begin by installing TOR:
+
+<code>
+# tazpkg get-install tor
+# tazpkg get-install privoxy
+# echo 'forward-socks5t /        127.0.0.1:9050   .' >> /etc/privoxy/config
+# sed -r '/RUN_DAEMONS/s/(" *)$/ privoxy\1/' -i /etc/rcS.conf 
+# /etc/init.d/privoxy start
+</code>
+
+You can use Vidalia to start and configure tor, the proxy server is launched automatically when the SliTaz system boots. Once installed, you will find Vidalia in the Menu -> Internet. To configure preferences via the proxy server with the following values: Proxy address: **127.0.0.1** Port: **8118** and the path to the configuration file: **/home/USER/.config/torrc** (changing USER by User name).
+
+<code>
+# tazpkg get-install vidalia
+# exit
+$ cp /etc/tor/torrc ~/.config
+</code>
+
+Use Bridges to get tor working if the above options are not working.
+
+<code>
+# echo '
+UseBridges 1
+UpdateBridgesFromAuthority 1
+bridge 66.160.141.98:6085 ' >> ~/.config/torrc
+</code>
+
+
+===== Verification and Advice =====
+
+For more added security; do not launch TOR via the 'root' user, Vidalia is perfect for this (or the command line). To check your current browser with TOR: https://check.torproject.org/
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Medium  |
+|Review| Minor Updates  |
+|Priority| Low |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Introduction is missing|
+|::: |  |
+
+\\
+----

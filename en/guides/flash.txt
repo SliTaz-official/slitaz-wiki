@@ -1,0 +1,35 @@
+====== How-To install Adobe Flash Player ======
+
+Open a terminal. Become super-user:
+<code> $ su -
+</code>
+The default password for the root account is **//root//** .
+
+Type the following as one command:
+
+<code> # tazpkg get-install get-flash-plugin && get-flash-plugin
+</code>
+
+The package installs a get-flash-plugin command which creates a pseudo-package that downloads the source code from Adobe. It packages the build source code and pulls in any necessary dependencies.
+
+By using this method the Flash plugin can be managed through tazpkg; it will update itself as the repo package is updated.
+
+When you install Flash to SliTaz 3.0 and Midori is not recognizing the plugin - just reinstall Midori with
+<code> # tazpkg get-install midori --forced</code> Thats it.
+
+
+// This was successfully tested in Midori, Firefox/Shiretoko & Opera, on Cooking 2010-03-14 (the v3 RC). //
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Suggest briefly|
+|::: |  |
+
+\\
+----

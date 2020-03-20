@@ -1,0 +1,131 @@
+====== Bluetooth ======
+
+===== Introduction =====
+
+This guide will help you to configure bluetooth, e.g. to use your phone as a modem.
+Do following steps as root.
+First of all you must install Slitaz packages related to bluetooth:
+  # tazpkg get-install bluez
+  # tazpkg get-install linux-bluetooth
+The first package contains the Official Linux Bluetooth protocol stack www.bluez.org and the second contains the kernel modules related to bluetooth.
+Now you can launch the bluetooth daemon:
+  # bluetoothd
+And load the module required by your local bluetooth device, this is very likely btusb:
+  # modprobe btusb
+If btusb is the module you need the command "hcitool dev" to show you the local device address:
+  root@slitaz:/home/tux# hcitool dev
+  Devices:
+          hci0    00:02:72:xx:xx:xx
+If the command "hcitool dev" does not show you any hci* device you must detect which module you need and repeat the previous step until you have a hci* device.
+Now that you have hci* you can run the "hcitool scan" command to show you if there is any discoverable device nearby.
+So if you are searching, e.g. your phone, remember to put it in discoverable mode:
+  root@slitaz:/home/tux# hcitool scan
+  Scanning ...
+          00:18:C5:xx:xx:xx       Nokia 6151
+  root@slitaz:/home/tux#
+Now you can pair your locale device with your remote device. You use bluez-simple-agent to do that.
+
+If you want to start the pairing from the remote device you need to put your local device in discoverable mode:
+  # hciconfig hci0 piscan
+
+Now launch bluez-simple-agent, start the pairing from the remote device and wait for bluez-simple-agent to ask you for the pin code needed to pair.
+This code will be the same one you typed on the phone. When you are done you need to kill bluez-simple-agent with Ctrl-c:
+  root@slitaz:/home/tux# hciconfig hci0 piscan
+  root@slitaz:/home/tux# bluez-simple-agent
+  Agent registered
+  RequestPinCode (/org/bluez/2944/hci0/dev_00_18_C5_xx_xx_xx)
+  Enter PIN Code: 1234
+  ^CTraceback (most recent call last):
+    File "/usr/bin/bluez-simple-agent", line 113, in <module>
+      mainloop.run()
+  KeyboardInterrupt
+  root@slitaz:/home/tux#
+Put your local device back in undiscoverable mode:
+  # hciconfig hci0 pscan
+
+If you want to start the pairing from your local device you can do it using bluez-simple-agent with the hci* of your local device and the address of the device you discovered with "hcitool scan". In this case you will choose the pin in bluez-simple-agent and type the same pin on the remote device:
+  root@slitaz:/home/tux# bluez-simple-agent hci0 00:18:C5:xx:xx:xx
+  RequestPinCode (/org/bluez/3078/hci0/dev_00_18_C5_xx_xx_xx)
+  Enter PIN Code: 1234
+  Release
+  New device (/org/bluez/3078/hci0/dev_00_18_C5_xx_xx_xx)
+  root@slitaz:/home/tux# 
+Be fast because bluez-simple-agent has a timeout which I don't know how to set (suggestions?)
+
+===== Use a phone as a modem =====
+
+Now you have your two devices paired, i will go on with the phone as a modem example, I don't have other experiences with bluetooth devices.
+To use your phone as a modem you need the rfcomm module. At the moment I am writing this guide the rfcomm module of Slitaz is compiled without tty support. You can check if this is the case with the following commands:
+  root@slitaz:/home/tux# zcat /proc/config.gz | grep RFCOMM                    
+  CONFIG_BT_RFCOMM=m
+  # CONFIG_BT_RFCOMM_TTY is not set
+  root@slitaz:/home/tux#
+If CONFIG_BT_RFCOMM_TTY is not =y you must recompile the module with tty support. Install linux-source:
+  # tazpkg get-install linux-source
+cd in /usr/src/linux-`uname -r`/ and give this command:
+  # make CONFIG_BT_RFCOMM=m CONFIG_BT_RFCOMM_TTY=y M=net/bluetooth/rfcomm
+This will build only the rfcomm module with tty support. You will find it in /usr/src/linux-`uname -r`/net/bluetooth/rfcomm/rfcomm.ko.
+Now you can delete the old rfcomm module and replace it with your module:
+  # rm /lib/modules/`uname -r`/kernel/net/bluetooth/rfcomm/rfcomm.ko.gz
+  # cp /usr/src/linux-`uname -r`/net/bluetooth/rfcomm/rfcomm.ko /lib/modules/`uname -r`/kernel/net/bluetooth/rfcomm/ 
+  # depmod -a
+Now that we have a working rfcomm module we must detect the channel where the phone dialup service is listening:
+  # sdptool browse 00:18:C5:xx:xx:xx
+Where 00:18:C5:xx:xx:xx is the address of your phone, it will give a list with the services available on your phone. The one you are looking for is Dial-up networking or DUN:
+  Service Name: Dial-up networking
+  Service RecHandle: 0x10000
+  Service Class ID List:
+    "Dialup Networking" (0x1103)
+    "Generic Networking" (0x1201)
+  Protocol Descriptor List:
+    "L2CAP" (0x0100)
+    "RFCOMM" (0x0003)
+      Channel: 1
+  Language Base Attr List:
+    code_ISO639: 0x656e
+    encoding:    0x6a
+    base_offset: 0x100
+  Profile Descriptor List:
+    "Dialup Networking" (0x1103)
+      Version: 0x0100
+      
+===== rfcomm.conf =====
+
+As you can see it is listening on channel 1, so you edit ///etc/bluetooth/rfcomm.conf// this way:
+<file>
+  #
+  # RFCOMM configuration file.
+  #
+  rfcomm0 {
+  #       # Automatically bind the device at startup
+          bind yes;
+  #
+  #       # Bluetooth address of the device
+          device 00:18:C5:xx:xx:xx;
+  #
+  #       # RFCOMM channel for the connection
+          channel 1;
+  #
+  #       # Description of the connection
+  #       comment "Example Bluetooth device";
+  }
+</file>
+Now with:
+  # modprobe rfcomm
+  # rfcomm bind all
+You can use /dev/rfcomm0 as a modem in a wvdial script.
+You may want to check this guide http://doc.slitaz.org/en:guides:dialup
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Good  |
+|Review| Minor Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Add tazhw setup bluetooth ; Please create "sections" for toc|
+|::: |  |
+
+\\
+----

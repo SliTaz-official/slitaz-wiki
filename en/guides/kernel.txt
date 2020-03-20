@@ -1,0 +1,86 @@
+====== Build your own custom Linux Kernel for SliTaz ======
+
+===== Prepare your system =====
+
+
+    * Install the slitaz-toolchain meta package. This package contains the required base files.
+        * binutils
+        * linux-headers
+        * glibc-dev
+        * gcc
+        * make
+
+<code>
+# tazpkg get-install slitaz-toolchain
+</code>
+
+    * Install the packages required to configure and compile the kernel sources.
+        * ncurses-dev
+        * perl
+
+<code>
+# tazpkg get-install ncurses-dev
+# tazpkg get-install perl
+</code>
+
+    * SliTaz provides a linux-source package. The kernel source tree will be downloaded from the mirror, installed to the /usr/src/linux-<VERSION> directory, and patched for SliTaz..
+
+<code>
+# tazpkg get-install linux-source
+# /usr/bin/get-linux-source
+# ls -l /usr/src
+lrwxrwxrwx    1 root     root           21 Jul 21 21:27 linux -> linux-2.6.25.5-slitaz
+drwxrwxr-x   23 root     root         4096 Jul 21 22:41 linux-2.6.25.5-slitaz
+-rw-r--r--    1 root     root     48589640 Jul 21 21:28 linux-2.6.25.5.tar.bz2
+</code>
+
+===== Configure and Compile =====
+
+The Linux kernel source tree is now ready to configure and compile.
+
+    * Go to the directory that contains the kernel source tree.
+<code>
+# cd /usr/src/linux
+</code>
+
+    * Prepare the build from the default configuration.
+<code>
+# make oldconfig && make prepare
+</code>
+
+     * Modify the kernel configuration to your needs, and compile.
+     * The //menuconfig// allows you to customise the kernel, which is built into the //bzImage// file. Any //modules// are built and then //install//ed in to the ///usr/include// directory. You should then copy the kernel itself to the ///boot// directory.
+<code>
+# make menuconfig
+# make
+# make modules 
+# make modules_install
+# cp arch/x86/boot/bzImage /boot
+</code>
+
+    * Configure the boot-loader (optional)
+<code>
+# leafpad /boot/grub/menu.lst
+</code>
+
+    * Add the new kernel to the list
+<file>
+# My kernel:
+title 	SliTaz GNU/Linux (cooking) (Kernel <VERSION>)
+		root (hd0,1)
+		kernel /boot/bzImage root=/dev/sda2
+</file>
+
+---- 
+\\
+^  Page Review Section  ^^ 
+|Quality| Medium  |
+|Review| Minor/Major Updates  |
+|Priority| Medium |
+|Problems| add a [[http://forum.slitaz.org|forum post link]]|
+|:::     | OR add a [[http://labs.slitaz.org/issues |lab issue tracker link ]]|
+|How to Improve| Add "tazwok cook linux"|
+|::: |  |
+
+\\
+----
