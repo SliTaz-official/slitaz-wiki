@@ -6,6 +6,8 @@
 LightTPD Web Server
 ===================
 
+:author: jozee, linea, gokhlayeh, trixar_za
+
 
 About LightTPD
 --------------

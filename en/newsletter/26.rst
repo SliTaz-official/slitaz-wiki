@@ -4,6 +4,8 @@
 Issue 26
 ========
 
+:author: linea
+
 * Written on 9th October 2011
 
 

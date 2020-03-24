@@ -6,6 +6,7 @@
 Wok & Tools
 ===========
 
+:author: jozee, claudinei, linea, seawolf, hgt
 
 Overview
 --------
@@ -23,7 +24,8 @@ The utilities are all distributed as a source archive and are installed by defau
    Developers and future contributors can refer to the `development <http://www.slitaz.org/en/devel/forge.php>`_ page that provides information on SliTaz project management.
 
 
-.. rubric:: Wok Structure and Organisation
+Wok Structure and Organisation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *wok* is a directory structure that houses all the available packages.
 Each directory contains at least one receipt to download, unpack, compile and generate a package.
@@ -62,7 +64,8 @@ To access the SliTaz repositories, you will need to install the :program:`mercur
 More information on the use of the :program:`Mercurial` VCS is available from its `website <http://mercurial-scm.org/>`_ and the "`Hg Book <http://hgbook.red-bean.com/>`_".
 
 
-.. rubric:: Cloning the Wok
+Cloning the Wok
+^^^^^^^^^^^^^^^
 
 If you are to generate a package for inclusion in the SliTaz repositories, it is necessary to first obtain the current wok by using :program:`Mercurial`.
 This is called *cloning* the Wok, a procedure that downloads the entire Wok and all its history to a working directory.
@@ -84,7 +87,8 @@ This download may take some time; you will have a complete directory structure o
 
 .. _creating a personal wok:
 
-.. rubric:: Creating a Personal Wok
+Creating a Personal Wok
+^^^^^^^^^^^^^^^^^^^^^^^
 
 If your packages are only for personal use and are not intended for inclusion in the SliTaz repositories, a wok can be created from scratch.
 
@@ -120,10 +124,11 @@ When you are familiar with :ref:`receipts <cookbook receipt>` and the compilatio
 
    # cook new <packageName> --interactive
 
-Be sure to read the documentation on the options provided by the :ref:`receipt <cookbook receipt>` and the :ref:`Tazwok Tips <tazwoktips>` to avoid frustration!
+Be sure to read the documentation on the options provided by the :ref:`receipt <cookbook receipt>` and the :ref:`tazwoktips` to avoid frustration!
 
 
-.. rubric:: Cooking Multiple Packages with a cook list
+Cooking Multiple Packages with a cook list
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 :program:`Cookutils` can compile several packages with a single command.
 This is achieved with a *cooking list*, a text file of one package per line.
@@ -140,13 +145,15 @@ Package Compilation Options
 While you are free to use any options you want, it is necessary to respect the FSH, the documentation in :file:`/usr/share/doc` and follow the FreeDesktop standards (``.desktop``).
 
 
-.. rubric:: Package-Specific
+Package-Specific
+^^^^^^^^^^^^^^^^
 
 Package-specific options are your choice; for example, you can disable support for XML, have smaller binaries for PHP and get rid of libxml2, but in the case of PHP, it's not worth the cost in terms of loss of functionality.
 If you have any doubts, look at the receipts and compiler options in ``compile_rules``.
 
 
-.. rubric:: Optimization
+Optimization
+^^^^^^^^^^^^
 
 The official SliTaz packages are optimized for **i486**, the optimization arguments used to configure are specified in :file:`/etc/slitaz/cook.conf` and can be called via the variable ``$CONFIGURE_ARGS``.
 If you want to compile a package with different arguments, you can modify the :program:`Cookutils` configuration file:
@@ -156,7 +163,8 @@ If you want to compile a package with different arguments, you can modify the :p
    CONFIGURE_ARGS="--build=i486-pc-linux-gnu --host=i486-pc-linux-gnu"
 
 
-.. rubric:: Files to Include/Exclude
+Files to Include/Exclude
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Generally, the base packages contain no :file:`man`, :file:`info` or :file:`doc` files, nor static libraries; we have to create them via a ``package-doc`` or a ``package-dev``.
 Note that SliTaz does not intend to use the :command:`man` or :command:`info` command so there's no manual or GNU info file.

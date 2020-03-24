@@ -6,6 +6,8 @@
 Mouse
 =====
 
+:author: genesis, linea, mojo
+
 
 I can't change the mouse for left-handed people
 -----------------------------------------------

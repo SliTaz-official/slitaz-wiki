@@ -6,6 +6,8 @@
 Unusual install methods
 =======================
 
+:author: bellard, linea, babaorum, mojo
+
 The :ref:`slitaz-installer <handbook installation>` installs SliTaz in a partition or a hard drive as most Linux distributions do.
 However, there are many other ways to install SliTaz…
 

@@ -6,6 +6,8 @@
 SliTaz Tools
 ============
 
+:author: jozee, linea, llev
+
 The SliTaz Toolbox
 
 * Mercurial repository.
@@ -13,7 +15,7 @@ The SliTaz Toolbox
 * Archives source: `HTTP <http://download.tuxfamily.org/slitaz/sources/tools/>`_.
 
 The SliTaz Tools contain useful scripts that enable you to customize SliTaz, such as a script to create a new initramfs or an ISO image, :file:`Makefile`, etc.
-They accompany the :ref:`Scratchbook <scratchbook>` and help the SliTaz developers.
+They accompany the :ref:`scratchbook` and help the SliTaz developers.
 The archive is also distributed because it contains files that might be useful to hacker type individuals…
 The tools are constantly evolving and continue to expand, following the cycle of changes made by the Cooking and Stable versions.
 

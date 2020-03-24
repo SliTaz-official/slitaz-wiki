@@ -6,6 +6,8 @@
 Locale & i18n
 =============
 
+:author: domcox
+
 Installation and configuration of locales.
 
 

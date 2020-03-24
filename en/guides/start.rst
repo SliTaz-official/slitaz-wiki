@@ -6,6 +6,8 @@
 Guides
 ======
 
+:author: erjo, pankso, linea, jozee, kultex, gokhlayeh, rupp, ernia, monz, seawolf, bellard, trixar_za, domcox, oui, emgi, sidini, brianperry, mojo, genesis, hgt, ceel
+
 The SliTaz GNU/Linux quick start and complete guides by the community.
 You will find here specific guides to software, hardware or system configurations written by SliTaz users and contributors.
 These guides aim to provide concise and correct instructions.

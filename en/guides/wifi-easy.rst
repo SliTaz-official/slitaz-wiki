@@ -6,6 +6,8 @@
 Wi-Fi configuration, easy method
 ================================
 
+:author: linea, pankso, jozee
+
 
 Introduction
 ------------

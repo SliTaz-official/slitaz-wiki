@@ -4,6 +4,8 @@
 Issue 22
 ========
 
+:author: linea, godane
+
 * Written on 30th January 2011
 
 

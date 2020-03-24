@@ -6,6 +6,8 @@
 Generating a Customised LiveCD or LiveUSB
 =========================================
 
+:author: jozee, linea, seawolf, toasted-ravioli, brianperry, hgt
+
 :program:`Tazlito` can create your own, personalised version of SliTaz in very little time.
 It allows you to choose precisely the software packages that you want and make a flavor file (:file:`.flavor`) with it.
 You can choose to make your own file starting from a general slitaz flavor (such as *base*, *justx* or *core*), or make it based on an already customised flavor supplied by the SliTaz community.

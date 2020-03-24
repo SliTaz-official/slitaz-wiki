@@ -6,6 +6,8 @@
 XTerm — Cannot Copy/Paste
 =========================
 
+:author: seawolf
+
 
 Overview
 --------

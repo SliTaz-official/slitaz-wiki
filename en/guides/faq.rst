@@ -6,6 +6,8 @@
 Frequently Asked Questions
 ==========================
 
+:author: seawolf, linea, jozee, genesis, hgt
+
 Listed here are the most frequently asked questions from the user forums.
 Please check here to see if your problem has been fixed before starting a new forum thread.
 
@@ -16,7 +18,7 @@ Within each, a symptom describes a give-away identification of the problem; a wi
 .. rubric:: General
 
 * :ref:`Log-In Problems <faq-login>`
-* :ref:`Shutdown via slim <faq-slim>`
+* :ref:`Shutdown via SLiM <faq-slim>`
 * :ref:`Terminals (Copy/Paste etc.) <faq-terminal>`
 
 

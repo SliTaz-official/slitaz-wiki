@@ -6,6 +6,8 @@
 Boot scripts
 ============
 
+:author: jozee, linea
+
 The startup and shutdown scripts with their configuration files.
 
 .. contents::
@@ -107,7 +109,7 @@ It also stops all daemons via the variable ``RUN_DAEMONS`` in the primary :file:
 
 The first file read by the Kernel at boot.
 It defines the initialization script (:file:`/etc/init.d/rcS`), virtual terminals (``tty``\ s) and actions in the event of a reboot or disruption.
-You will find a complete example with accompanying notes in :ref:`SliTaz tools <cookbook slitaztools>`:
+You will find a complete example with accompanying notes in :ref:`cookbook slitaztools`:
 
 .. code-block:: shell
 

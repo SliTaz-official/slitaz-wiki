@@ -6,6 +6,8 @@
 Live CD for Low-RAM Systems
 ===========================
 
+:author:  jozee, seawolf, linea, bellard
+
 The minimum RAM requirement for the SliTaz core Live CD is 160MB (128MB for 1.0).
 Many graphical applications won't run with such a low amount of memory; so, using the text-mode ``screen=text`` boot option is recommended.
 

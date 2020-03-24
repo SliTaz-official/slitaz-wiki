@@ -6,6 +6,8 @@
 LiveCD
 ======
 
+:author: seawolf, brianperry
+
 This manual is intented to help you on making a SliTaz LiveCD.
 Once you made a customized SliTaz ISO, or after simply having downloaded a regular SliTaz ISO from the SliTaz website, you can go ahead and burn it to a CD.
 However, as the writer of this guide has found, not all programs always work.

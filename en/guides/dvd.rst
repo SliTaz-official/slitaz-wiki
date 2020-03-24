@@ -6,6 +6,8 @@
 All SliTaz resources on one DVD
 ===============================
 
+:author: jozee, linea
+
 A bootable DVD image of all available packages version is generated every day.
 See http://www.slitaz.org/en/get/.
 Both *cooking* or *stable* versions are built; they contain:

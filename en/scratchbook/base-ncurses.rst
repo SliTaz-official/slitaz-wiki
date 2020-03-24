@@ -6,6 +6,8 @@
 Ncurses libraries and applications
 ==================================
 
+:author: domcox
+
 Installation and configuration of ncurses libraries and applications.
 
 

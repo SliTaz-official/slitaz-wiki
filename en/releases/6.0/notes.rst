@@ -5,3 +5,5 @@
 
 SliTaz 6.0 Release Notes
 ========================
+
+:author: pankso

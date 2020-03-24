@@ -6,6 +6,8 @@
 Webcam on SliTaz
 ================
 
+:author: pankso, linea
+
 SliTaz provides all the necessary tools to take pictures, record and stream webcam output.
 
 

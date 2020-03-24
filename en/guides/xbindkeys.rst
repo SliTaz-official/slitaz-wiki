@@ -6,6 +6,8 @@
 Xbindkeys
 =========
 
+:author: sidini, linea, hgt
+
 
 Introduction
 ------------

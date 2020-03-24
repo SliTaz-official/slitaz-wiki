@@ -6,26 +6,28 @@
 BUGS
 ====
 
+:author: stork, linea
+
 The problems listed in this page refer to the Slitaz 3.0 environment.
 
 
-Burning a CD with Burnbox
--------------------------
+Burning a CD with :program:`Burnbox`
+------------------------------------
 
-To burn a CD, you have to be root (it will NOT work from your default TUX account, even if TUX has been added to the cdrom group). 
+To burn a CD, you have to be root (it will NOT work from your default TUX account, even if TUX has been added to the ``cdrom`` group).
 
-In Burnbox; enclose the file and folder names between quotes if they contain a space (eg ``"My Documents"``), otherwise it will fail to find the document.
+In :program:`Burnbox`; enclose the file and folder names between quotes if they contain a space (eg ``"My Documents"``), otherwise it will fail to find the document.
 
 
-Abiword
--------
+:program:`Abiword`
+------------------
 
-With AbiWord you MUST install glibc-locale too, it was forgotten as a dependency, but it is needed for AbiWord to work properly.
+With :program:`AbiWord` you MUST install :program:`glibc-locale` too, it was forgotten as a dependency, but it is needed for :program:`AbiWord` to work properly.
 
 
 Chat entry of the Internet menu
 -------------------------------
 
-This should install pidgin and skype.
-Practically it has sometimes (but not always) installed pidgin, and always failed to install Skype.
-Install Pigin and Skype (well, get-skype) from the package manager.
+This should install :program:`pidgin` and :program:`skype`.
+Practically it has sometimes (but not always) installed :program:`pidgin`, and always failed to install :program:`Skype`.
+Install :program:`Pigin` and :program:`Skype` (well, :program:`get-skype`) from the package manager.

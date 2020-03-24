@@ -6,13 +6,15 @@
 Release tasks
 =============
 
+:author: pankso, linea, erjo, mojo
+
 Things to do before publishing a new version.
 
 .. note::
    20140502 <pankso> 5.0 is out RC.
    The current things to do are:
 
-   * Write the :ref:`Release Notes <relnotes>` in English here on the Wiki, then static xHTML for translation on the list and commits in :program:`slitaz-doc`
+   * Write the :ref:`relnotes` in English here on the Wiki, then static xHTML for translation on the list and commits in :program:`slitaz-doc`
    * Update docs in this wiki.
      The Handbook must be hugely improved or removed since people use the guides section (ex liveUSB has 2 pages…)
 

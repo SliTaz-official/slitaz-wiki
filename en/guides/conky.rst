@@ -6,6 +6,8 @@
 Conky
 =====
 
+:author: genesis, linea
+
 
 Introduction
 ------------

@@ -6,6 +6,8 @@
 System Administration
 =====================
 
+:author: jozee, linea, emgi, hgt
+
 
 Devices and disk access
 -----------------------

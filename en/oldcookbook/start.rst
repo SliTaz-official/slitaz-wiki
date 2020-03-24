@@ -6,6 +6,8 @@
 Old Cookbook
 ============
 
+:author: linea
+
 The Old Cookbook brings together deprecated information about the project management, operation and development of the distribution.
 It talks about creating packages, receipts, the wok, and scripts that start SliTaz.
 

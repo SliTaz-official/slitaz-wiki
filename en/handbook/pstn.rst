@@ -6,6 +6,8 @@
 PSTN
 ====
 
+:author: domcox, linea
+
 Introduction
 ------------
 

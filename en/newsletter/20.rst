@@ -4,6 +4,8 @@
 Issue 20
 ========
 
+:author: linea
+
 * Written on 16th October 2010
 
 

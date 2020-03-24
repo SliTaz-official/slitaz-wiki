@@ -6,6 +6,8 @@
 CPU Frequency Scaling
 =====================
 
+:author: kultex, linea
+
 
 Introduction
 ------------

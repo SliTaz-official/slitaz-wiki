@@ -6,6 +6,8 @@
 Recipes
 =======
 
+:author: jozee, int3, linea, pankso, godane, bellard, hgt
+
 This document describes the opportunities offered by the recipes used by :program:`Cookutils` to compile and generate packages for SliTaz and :program:`Tazpkg` through the wok and tools.
 The recipe for a package is also used by :program:`Tazpkg` to install/uninstall and provide information about a :file:`.tazpkg` package.
 Each recipe begins with a comment in English:

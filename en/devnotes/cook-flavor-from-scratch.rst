@@ -6,6 +6,8 @@
 Cook a flavor from scratch
 ==========================
 
+:author: gokhlayeh, oui, linea
+
 
 Introduction
 ------------

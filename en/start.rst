@@ -5,6 +5,8 @@
 English documentation
 =====================
 
+:author: pankso, oui, linea, jozee, gokhlayeh, ceel
+
 This site provides SliTaz GNU/Linux official and community documentation.
 
 We believe that SliTaz users all over the world want to share their knowledge and experiences through writing.

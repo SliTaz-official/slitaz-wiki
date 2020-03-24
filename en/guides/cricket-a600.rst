@@ -6,6 +6,8 @@
 Setting Up The Cricket A600 Broadband Modem
 ===========================================
 
+:author:  jozee, linea
+
 
 Introduction
 ------------

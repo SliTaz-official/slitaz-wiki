@@ -6,6 +6,8 @@
 Printing
 ========
 
+:author: papagoose, jozee, linea, seawolf
+
 The CUPS (Common Unix Printing System) software manages printers connected to the local computer or over a network.
 The local printers are attached via a loop-back connection (IP 127.0.0.1), a network connection pointing to the same system.
 

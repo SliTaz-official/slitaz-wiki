@@ -6,6 +6,8 @@
 Slitaz Newbie Guide
 ===================
 
+:author: oui, linea
+
 
 SliTaz "the OS"
 ---------------

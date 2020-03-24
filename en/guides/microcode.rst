@@ -6,18 +6,20 @@
 Updating the processor microcode
 ================================
 
+:author: ceel, linea
+
 .. important::
    Updating the microcode of your processor can help to preserve your system against Spectre, a vulnerability that affects most of the modern processors.
 
-   For more information about Spectre (and Meltdown), read `this topic <http://forum.slitaz.org/topic/-important-info-about-meltdown-and-spectre->`_.
+   For more information about Spectre (and Meltdown), read `Important info about Meltdown and Spectre`_.
 
 In the normal way, the microcode is loaded on boot from the BIOS.
 However it is possible to update it on Linux; this must be repeated on every boot.
 This document decribes how to proceed for Intel processors.
 
 
-Install the intel-ucode package
--------------------------------
+Install the :program:`intel-ucode` package
+------------------------------------------
 
 First of all, update your system:
 
@@ -25,7 +27,7 @@ First of all, update your system:
 
    # tazpkg up
 
-Then get-install the intel-ucode package:
+Then get-install the :program:`intel-ucode` package:
 
 .. code-block:: console
 
@@ -206,3 +208,6 @@ As the root user, uncompress the downloaded :file:`microcode-{YYYYMMDD}.tgz` fil
    # tar -xzf microcode-YYYYMMDD.tgz /lib/firmware/
 
 Then follow this HOWTO from :ref:`microcode step 2`.
+
+
+.. _Important info about Meltdown and Spectre: http://forum.slitaz.org/topic/-important-info-about-meltdown-and-spectre-

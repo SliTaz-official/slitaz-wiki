@@ -6,6 +6,8 @@
 Virtualbox
 ==========
 
+:author: jozee, linea, bellard, magicienap, shreknz, emgi, genesis, mojo
+
 
 SliTaz GNU/Linux with VirtualBox
 --------------------------------

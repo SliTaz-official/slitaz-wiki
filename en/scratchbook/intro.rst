@@ -5,6 +5,8 @@
 Introduction
 ------------
 
+:author: jozee, linea, domcox
+
 The scratchbook allows you to track the creation of the first public release of SliTaz and make a trip to the heart of GNU/Linux.
 You'll be able to customize your new system or create your own autonomous distro running in system memory (RAM) that's fully installable on a hard drive or USB key.
 Once started you'll be able to remove the CD-ROM and still have SliTaz working.

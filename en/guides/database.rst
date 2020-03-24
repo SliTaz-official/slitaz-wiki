@@ -6,6 +6,8 @@
 The SQLite database
 ===================
 
+:author: emgi,  linea
+
 :program:`SQLite` is a lightweight SQL database and as such perfectly suitable for use with Slitaz.
 Lightweight does however not imply that its functionality is also limited; rather the opposite!
 

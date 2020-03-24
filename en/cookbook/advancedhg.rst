@@ -6,6 +6,7 @@
 Advanced usage of Mercurial
 ===========================
 
+:author: gokhlayeh, linea, llev
 
 Use an external tool to merge
 -----------------------------

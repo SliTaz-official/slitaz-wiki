@@ -4,6 +4,8 @@
 Issue 24
 ========
 
+:author: linea
+
 * Written on 9th June 2011
 
 

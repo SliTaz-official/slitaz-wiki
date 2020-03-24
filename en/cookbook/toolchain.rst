@@ -6,6 +6,8 @@
 Toolchain
 =========
 
+:author: pankso, linea, brianperry
+
 The Toolchain is the set of packages used to build the entire system.
 It consists of :program:`Binutils`, :program:`GCC`, :program:`Linux API headers` and the :program:`GNU libc` aka :program:`Glibc`.
 SliTaz has an annual development cycle, so the toolchain gets a huge update once a year just after a stable release.

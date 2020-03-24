@@ -6,6 +6,8 @@
 Sexy desktop apps and config
 ============================
 
+:author: jozee, ionreflex, linea
+
 
 Introduction
 ------------

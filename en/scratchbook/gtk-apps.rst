@@ -6,6 +6,8 @@
 GTK+ Applications
 =================
 
+:author: domcox
+
 Compiliation and installation of applications using GTK+.
 
 

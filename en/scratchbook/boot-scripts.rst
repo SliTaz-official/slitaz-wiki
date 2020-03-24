@@ -6,6 +6,8 @@
 Boot scripts
 ============
 
+:author: domcox
+
 The startup and shutdown scripts with their configuration files.
 
 

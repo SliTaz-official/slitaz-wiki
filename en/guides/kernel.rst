@@ -6,11 +6,13 @@
 Build your own custom Linux Kernel for SliTaz
 =============================================
 
+:author: linea, fandesandro, jozee, seawolf, ernia, woodt
+
 
 Prepare your system
 -------------------
 
-* Install the slitaz-toolchain meta package.
+* Install the :program:`slitaz-toolchain` meta package.
   This package contains the required base files.
 
   * :program:`binutils`
@@ -33,7 +35,7 @@ Prepare your system
      # tazpkg get-install ncurses-dev
      # tazpkg get-install perl
 
-* SliTaz provides a linux-source package.
+* SliTaz provides a :program:`linux-source` package.
   The kernel source tree will be downloaded from the mirror, installed to the :file:`/usr/src/linux-{VERSION}` directory, and patched for SliTaz.
 
   .. code-block:: console

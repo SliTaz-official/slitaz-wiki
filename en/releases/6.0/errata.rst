@@ -5,3 +5,5 @@
 
 SliTaz 6.0 Errata
 =================
+
+:author: pankso

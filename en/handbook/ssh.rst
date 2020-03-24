@@ -6,6 +6,8 @@
 Secure SHell (SSH)
 ==================
 
+:author: jozee, linea, bellard
+
 
 About Dropbear
 --------------

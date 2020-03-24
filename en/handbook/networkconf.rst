@@ -6,6 +6,8 @@
 Network Configuration
 =====================
 
+:author: jozee, linea, domcox, emgi, genesis, mojo
+
 .. important::
    SliTaz Panel/Network replaces :program:`netbox` for SliTaz-4.0 and newer
 

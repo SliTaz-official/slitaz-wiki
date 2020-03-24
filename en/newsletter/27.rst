@@ -4,6 +4,8 @@
 Issue 27
 ========
 
+:author: linea
+
 * Written on 20th January 2012
 
 

@@ -3,8 +3,10 @@
 
 .. _tazwoktips:
 
-Tazwoktips
-==========
+Tazwok Tips
+===========
+
+:author: jozee, linea, brianperry
 
 You must read the :ref:`cookbook` first — it's a great collection of documents.
 This guide supplements the cookbook with some tips that you are most likely to face while compiling packages for SliTaz.

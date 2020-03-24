@@ -6,6 +6,8 @@
 Recipes
 =======
 
+:author: linea
+
 This document describes the opportunities offered by the recipes used by :program:`Tazwok` to compile and generate packages for SliTaz and :program:`Tazpkg` through The wok and tools.
 The recipe for a package is also used by :program:`Tazpkg` to install/uninstall and provide information about a :file:`.tazpkg` package.
 Each recipe begins with a comment in English:

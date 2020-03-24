@@ -6,6 +6,8 @@
 Web start and possible immediate installation
 =============================================
 
+:author: oui
+
 
 Special figure in SliTaz!
 -------------------------

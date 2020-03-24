@@ -6,6 +6,8 @@
 Install the latest non-free Nvidia driver
 =========================================
 
+:author: jozee, linea, domcox
+
 
 Required Reading
 ----------------
@@ -17,7 +19,7 @@ Required Reading
 Prepare
 -------
 
-* Download the installer from the NVIDIA `website <http://www.nvidia.com/object/unix.html>`_.
+* Download the installer from the `Nvidia website <http://www.nvidia.com/object/unix.html>`_.
   Latest version 190.53
 * Install the Xorg server
 
@@ -60,7 +62,7 @@ When you're ready press :kbd:`Alt`\ +\ :kbd:`Ctrl`\ +\ :kbd:`Del`, you should no
      # make modules
      # make modules_install
 
-* Now make executable and install the NVIDIA driver, change to directory you installed to
+* Now make executable and install the Nvidia driver, change to directory you installed to
 
   .. code-block:: console
 

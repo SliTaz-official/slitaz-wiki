@@ -3,8 +3,10 @@
 
 .. _reallyBasicNewbie:
 
-SliTaz Newbie Guide - II
+SliTaz Newbie Guide — II
 ========================
+
+:author: oui
 
 
 .. rubric:: Training for really Basic Newbie coming from Windows
@@ -17,7 +19,7 @@ And all documentation concerning Unix and, later, Linux was already perfect as L
 Please remember
 ---------------
 
-The **main** difference is, that Linux did never break with the use of commando line:
+The **main** difference is, that Linux did never break with the use of command line:
 All graphic figures can be considered as (often only) graphic front ends from a powerful unified processing at commando line (=binary) level.
 All is considered as a “file” and will be handle so, so that the commands can generally be used on each type of objects and data.
 

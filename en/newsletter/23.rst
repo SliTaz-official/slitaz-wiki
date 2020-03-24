@@ -4,6 +4,8 @@
 Issue 23
 ========
 
+:author: linea, godane
+
 * Written on 2nd April 2011
 
 

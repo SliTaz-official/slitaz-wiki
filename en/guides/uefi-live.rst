@@ -6,6 +6,8 @@
 HOWTO do a SliTaz LiveUSB for EFI computers
 ===========================================
 
+:author: ceel, linea
+
 Here starts my trilogy about UEFI & SliTaz ;-)
 
 This first tutorial describes how to do an EFI LiveUSB of SliTaz Next from a SliTaz Rolling session.

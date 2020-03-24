@@ -6,6 +6,8 @@
 How-To install Adobe Flash Player
 =================================
 
+:author: pankso, seawolf, linea, jozee, kultex
+
 Open a terminal.
 Become super-user:
 
@@ -26,7 +28,7 @@ It packages the build source code and pulls in any necessary dependencies.
 
 By using this method the Flash plugin can be managed through :program:`tazpkg`; it will update itself as the repo package is updated.
 
-When you install Flash to SliTaz 3.0 and :program:`Midori` is not recognizing the plugin — just reinstall Midori with
+When you install Flash to SliTaz 3.0 and :program:`Midori` is not recognizing the plugin — just reinstall :program:`Midori` with
 
 .. code-block:: console
 
@@ -35,4 +37,4 @@ When you install Flash to SliTaz 3.0 and :program:`Midori` is not recognizing th
 Thats it.
 
 .. note::
-   This was successfully tested in Midori, Firefox/Shiretoko & Opera, on Cooking 2010-03-14 (the v3 RC).
+   This was successfully tested in :program:`Midori`, :program:`Firefox`\ /\ :program:`Shiretoko` & :program:`Opera`, on Cooking 2010-03-14 (the v3 RC).

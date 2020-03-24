@@ -6,6 +6,8 @@
 GTK+ Libraries
 ==============
 
+:author: domcox
+
 Compilation and installation of GTK+ packages and libraries.
 
 

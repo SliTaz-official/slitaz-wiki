@@ -6,6 +6,8 @@
 xorg-server-1.8
 ===============
 
+:author: gokhlayeh, linea
+
 
 Introduction
 ------------
@@ -40,7 +42,7 @@ The configuration files are read in alphanumerical order and their names must en
 * 100 — Extension
 
 Some of the x0 sections are configured by :command:`tazx xorg-config` using a template :file:`xorg.conf` file (generated with :command:`Xorg -configure`).
-You can find more information about this in the function `xorg_conf_d <http://hg.slitaz.org/slitaz-tools/file/ca6804d9b56b/tinyutils/tazx#l27>`_ of :program:`tazx`.
+You can find more information about this in the function xorg_conf_d_ of :program:`tazx`.
 
 If you want add a configuration file to a package, please take care to use a name different from those specified by :program:`tazx` or this file will be erased when booting in live mode.
 You can use the same number (x0) with a different name if this configuration doesn't conflict with those used by default.
@@ -48,9 +50,9 @@ Otherwise, use (x-1)5 for that configuration overwriting the default one.
 
 Examples:
 
-* `40-evedev.conf <http://hg.slitaz.org/wok/file/c29991cef110/xorg-xf86-input-evdev/stuff/40-evdev.conf>`_ — Default configuration for all devices
-* `35-synaptics.conf <http://hg.slitaz.org/wok/file/c29991cef110/xorg-xf86-input-synaptics/stuff/35-synaptics.conf>`_ — Advanced configuration for touchpad devices, overwriting the default configuration for these devices
-* hwsetup, section `nvidia <http://hg.slitaz.org/slitaz-tools/file/ca6804d9b56b/tinyutils/hwsetup#l685>`_ and `ati <http://hg.slitaz.org/slitaz-tools/file/ca6804d9b56b/tinyutils/hwsetup#l753>`_ — Add a file :file:`55-DeviceTweaks.conf` configuring a graphic driver other than :program:`vesa`
+* `40-evedev.conf`_ — Default configuration for all devices
+* `35-synaptics.conf`_ — Advanced configuration for touchpad devices, overwriting the default configuration for these devices
+* hwsetup, section nvidia_ and ati_ — Add a file :file:`55-DeviceTweaks.conf` configuring a graphic driver other than :program:`vesa`
 
 
 Configuration files list
@@ -87,3 +89,10 @@ TODO
 * Improve the auto-configuration tool in :program:`tazx`: some fonts and modules don't need to be loaded by default or don't exist.
   Some of these elements can be configured by their original package.
 * Pre-configure some drivers to make them work out-of-the-box.
+
+
+.. _xorg_conf_d:       http://hg.slitaz.org/slitaz-tools/file/ca6804d9b56b/tinyutils/tazx#l27
+.. _40-evedev.conf:    http://hg.slitaz.org/wok/file/c29991cef110/xorg-xf86-input-evdev/stuff/40-evdev.conf
+.. _35-synaptics.conf: http://hg.slitaz.org/wok/file/c29991cef110/xorg-xf86-input-synaptics/stuff/35-synaptics.conf
+.. _nvidia:            http://hg.slitaz.org/slitaz-tools/file/ca6804d9b56b/tinyutils/hwsetup#l685
+.. _ati:               http://hg.slitaz.org/slitaz-tools/file/ca6804d9b56b/tinyutils/hwsetup#l753

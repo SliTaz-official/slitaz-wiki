@@ -6,6 +6,8 @@
 Cross compilation
 =================
 
+:author: pankso, linea
+
 After SliTaz got new build tools for 4.0, we had to rebuild all packages and used this opportunity to cross compile as much as possible in the wok.
 There are many reasons: lots of user requests about Slitaz on ARM, prepare for the future and cross compile by default on our main build host aka Tank.
 Tank is a i686 machine and SliTaz targets i486 which is a more generic architecture and works on almost all X86 systems, so we enable cross compilation from a i686 build system for a i486 host system.

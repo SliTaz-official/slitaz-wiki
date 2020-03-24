@@ -6,6 +6,8 @@
 The Tor Installation Guide
 ==========================
 
+:author: linea, jozee, mojo
+
 This guide allows you to use the anonymous TOR network with most web browsers and command line tools such as :program:`wget`.
 Begin by installing TOR:
 

@@ -6,6 +6,8 @@
 Hard Disk Installation
 ======================
 
+:author: jozee, linea, gokhlayeh, seawolf, bellard
+
 
 Introduction
 ------------

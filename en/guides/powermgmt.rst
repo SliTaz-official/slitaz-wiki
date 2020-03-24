@@ -6,6 +6,8 @@
 ACPI (Advanced Configuration and Power Interface)
 =================================================
 
+:author: linea, kultex
+
 To install the :program:`acpi` daemon and modules:
 
 .. code-block:: console

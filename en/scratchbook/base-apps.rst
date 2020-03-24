@@ -6,6 +6,8 @@
 Base Applications
 =================
 
+:author: domcox
+
 Install and configure libraries and basic applications.
 
 

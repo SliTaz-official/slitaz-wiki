@@ -6,6 +6,8 @@
 SliTaz 4.0 Errata
 =================
 
+:author: pankso, linea, bellard, domcox, seacat
+
 * Xorg fails to start at the end of boot.
   Solution: Preselect your language at boot menu or from the command line with: ``slitaz lang= kmap=``
 * Upgrade from 3.0 to 4.0 can be a pain from the Package manager.

@@ -6,16 +6,18 @@
 Chroot
 ======
 
-This guide explain how to setup a chroot to cook packages in a separate environment.
-The chroot can be built on a USB or HDD device to save RAM when using a live session.
-There is also a script which removes any packages installed during cooking on exit in order to keep the chroot light and also checks the build_depends.
+:author: gokhlayeh, linea, jozee
+
+This guide explain how to setup a *chroot* to *cook* packages in a separate environment.
+The *chroot* can be built on a USB or HDD device to save RAM when using a live session.
+There is also a script which removes any packages installed during *cooking* on exit in order to keep the *chroot* light and also checks the ``build_depends``.
 
 
-With Tazdev
------------
+With :program:`Tazdev`
+----------------------
 
 Over time the SliTaz developers created tools for the automation of various tasks.
-The slitaz-dev-tools package provides the tazdev utility and its configuration file :file:`/etc/slitaz/tazdev.conf`; it can create a chroot to use:
+The :program:`slitaz-dev-tools` package provides the :program:`tazdev` utility and its configuration file :file:`/etc/slitaz/tazdev.conf`; it can create a *chroot* to use:
 
 .. code-block:: console
 
@@ -23,7 +25,7 @@ The slitaz-dev-tools package provides the tazdev utility and its configuration f
    # tazdev gen-chroot
    # tazdev chroot
 
-By default the chroot is created in :file:`/home/slitaz/cooking/chroot` and is slitaz-based.
+By default the *chroot* is created in :file:`/home/slitaz/cooking/chroot` and is slitaz-based.
 For more info and available commands you can use :command:`tazdev usage` and/or take a look at the configuration file.
 
 
@@ -74,13 +76,13 @@ Add a script file to automate some actions
    
    # chmod +x "/home/chroot/chroot_script.sh"
 
-Note, :command:`/bin/sh --login` logs you into the chrooted environment.
-The commands after that auto-remove any packages added when cooking on exit.
-You can hack this file to execute various automated actions when entering and exiting the chroot.
+Note, :command:`/bin/sh --login` logs you into the *chrooted* environment.
+The commands after that auto-remove any packages added when *cooking* on exit.
+You can hack this file to execute various automated actions when entering and exiting the *chroot*.
 
 
-Add a script to mount and umount chroot
----------------------------------------
+Add a script to mount and umount *chroot*
+-----------------------------------------
 
 .. code-block:: console
 
@@ -118,4 +120,4 @@ Add a script to mount and umount chroot
    
    chmod +x /usr/bin/tazchroot
 
-Note, this script mounts :file:`/home/slitaz` in your chroot, so you can use tazwok as if it was in your normal environment.
+Note, this script mounts :file:`/home/slitaz` in your *chroot*, so you can use :program:`tazwok` as if it was in your normal environment.

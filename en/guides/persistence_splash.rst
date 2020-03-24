@@ -6,6 +6,8 @@
 Persistence & splash
 ====================
 
+:author: linea, brianperry
+
 This document details how you can add persistence to your live SliTaz distro, and how you can modify the splash screen.
 There are different ways on how you can do add persistence (see `How to make Slitaz USB persistent <https://superuser.com/questions/123399/how-to-make-slitaz-usb-persistent>`_).
 Unless you decide not to keep the :program:`SLiM` login manager in SliTaz however, all methods first require you to have the live SliTaz distro placed on a media (USB stick, …) that is formatted in ext2 or ext3 (if you don't want to keep the :program:`SLiM` login manager, FAT32 can also be used instead).

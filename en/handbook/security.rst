@@ -6,6 +6,8 @@
 SliTaz and System Security
 ==========================
 
+:author: jozee, linea
+
 
 Security Policy
 ---------------

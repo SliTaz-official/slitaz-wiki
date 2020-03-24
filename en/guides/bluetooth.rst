@@ -6,6 +6,8 @@
 Bluetooth
 =========
 
+:author: ernia, linea, jozee
+
 
 Introduction
 ------------

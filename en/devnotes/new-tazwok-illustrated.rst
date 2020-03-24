@@ -6,6 +6,8 @@
 The new tazwok illustrated!
 ===========================
 
+:author: godane, gokhlayeh, linea, bellard
+
 .. note::
    This wiki tutorial is out of date, please refer to the :program:`cookutils` docs in `Mercurial <http://hg.slitaz.org/cookutils/raw-file/tip/doc/cookutils.en.html>`_ or `its backup <http://hg.tuxfamily.org/slitaz/cookutils/raw-file/tip/doc/cookutils.en.html>`_
 

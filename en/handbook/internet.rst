@@ -6,6 +6,8 @@
 Internet
 ========
 
+:author: jozee, linea, genesis
+
 
 Midori — Lightweight web browser
 --------------------------------

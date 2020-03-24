@@ -6,6 +6,8 @@
 A Program Doesn't Run or Quits Unexpectedly
 ===========================================
 
+:author: jozee, linea
+
 
 Symptoms
 --------

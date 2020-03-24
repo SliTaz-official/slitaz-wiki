@@ -6,6 +6,8 @@
 Server applications
 ===================
 
+:author: pankso, linea
+
 
 Dokuwiki
 --------

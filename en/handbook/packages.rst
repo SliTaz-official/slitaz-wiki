@@ -6,6 +6,8 @@
 Packages
 ========
 
+:author: jozee, linea, seawolf, genesis
+
 
 Tazpkg — Package manager
 ------------------------

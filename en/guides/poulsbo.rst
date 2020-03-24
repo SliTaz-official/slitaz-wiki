@@ -6,6 +6,8 @@
 Poulsbo (aka GMA500)
 ====================
 
+:author: o, llev, mojo
+
 This is a short guide on getting the Poulsbo graphics working nicely with SliTaz 4.0 or new rolling-core.
 
 Boot SliTaz and establish a working network connection.

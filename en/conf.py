@@ -47,7 +47,7 @@ master_doc = 'start'
 
 # General information about the project.
 project = u'SliTaz Docs'
-copyright = u'2013-2020, SliTaz.'
+copyright = u'2010-2020, SliTaz.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -86,6 +86,7 @@ exclude_patterns = ['_build']
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
 #show_authors = False
+show_authors = True
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -214,6 +215,7 @@ latex_elements = {
 'babel':     r"""\usepackage[english]{babel}""",
 'cmappkg':   r"""\usepackage{cmap}""",
 'utf8extra': r"""\DeclareUnicodeCharacter{00A0}{\nobreakspace} \DeclareUnicodeCharacter{21D2}{$\Rightarrow$} \DeclareUnicodeCharacter{21E9}{$\Downarrow$}""",
+'figure_align': r"""H""",
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -227,7 +229,7 @@ latex_documents = [
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 #latex_logo = None
-# --- latex_logo = '_static/logo-big.png'
+latex_logo = '_static/slitaz-logo.pdf'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

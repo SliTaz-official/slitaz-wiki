@@ -3,6 +3,8 @@
 Monthly Newsletter
 ==================
 
+:author: linea, draplater, seacat, godane
+
 .. toctree::
 
    14

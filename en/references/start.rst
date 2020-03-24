@@ -6,6 +6,8 @@
 References
 ==========
 
+:authoe: jozee, linea, seawolf, lexeii, mtas, hgt
+
 This category is to provide useful Linux references/articles/bookmarks.
 Please feel free to add any topic that you think may be useful for the community.
 

@@ -6,6 +6,8 @@
 Dropbear SSH
 ============
 
+:author: kultex, linea
+
 :program:`Dropbear` is a small SSH server and client written by Matt Johnston.
 
 https://matt.ucc.asn.au/dropbear/dropbear.html

@@ -6,6 +6,8 @@
 3G-UMTS
 =======
 
+:author: kultex, linea, jozee
+
 The ``#`` sign means that you do this command as root on your console:
 
 

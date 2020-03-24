@@ -6,6 +6,8 @@
 SliTaz Documentation Guidelines
 ===============================
 
+:author: domcox
+
 This document provides guidelines on writing a wiki article and the tasks to be performed to make SliTaz documentation up-to-date.
 
 

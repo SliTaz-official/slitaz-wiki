@@ -6,6 +6,8 @@
 Conspy: tiny screen or VNC
 ==========================
 
+:author: jozee, linea, bellard, t0n1, hgt
+
 SliTaz core provides the 10Kb :program:`conspy` to get remote control of Linux virtual consoles.
 See http://conspy.sourceforge.net/
 

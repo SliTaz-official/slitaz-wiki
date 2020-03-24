@@ -6,6 +6,8 @@
 QEMU
 ====
 
+:author: stork, linea
+
 
 Introduction
 ------------

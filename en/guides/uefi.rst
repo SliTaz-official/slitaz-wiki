@@ -6,6 +6,8 @@
 SliTaz and EFI computers
 ========================
 
+:author: ceel, linea
+
 
 HOWTO do a SliTaz LiveUSB for EFI computers
 -------------------------------------------

@@ -6,6 +6,8 @@
 Installing SliTaz to a MMC/SD-card
 ==================================
 
+:author: monz, linea, jozee
+
 SliTaz can be installed to a MMC/SD flash-memory card (the kind used in digital cameras) in either of two ways: in a LiveUSB version as used on a "memory-stick" (also called "thumb-drive", "flash-drive", or a variety of other names), or as a regular install as used on a hard-drive.
 There are advantages and disadvantages to both methods.
 

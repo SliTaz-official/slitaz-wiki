@@ -6,6 +6,8 @@
 HOWTO do a frugal installation on a computer in UEFI boot mode
 ==============================================================
 
+:author: ceel, linea
+
 
 Introduction
 ------------

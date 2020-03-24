@@ -6,6 +6,8 @@
 Testing Applications
 ====================
 
+:author: seawolf, jozee
+
 .. important::
    Not started yet — this is only a suggestion to discuss in the forum
 

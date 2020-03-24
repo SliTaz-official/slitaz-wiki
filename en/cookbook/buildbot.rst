@@ -6,4 +6,6 @@
 Build Bot — Cooker
 ==================
 
+:author: jozee, linea, pankso
+
 See Cookutils documentation and http://cook.slitaz.org/

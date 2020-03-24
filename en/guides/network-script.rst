@@ -6,6 +6,8 @@
 Secrets of :file:`/etc/init.d/network.sh`
 =========================================
 
+:author: pankso, linea, mojo
+
 
 Introduction
 ------------

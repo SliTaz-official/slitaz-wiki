@@ -6,6 +6,8 @@
 Contributing to SliTaz
 ======================
 
+:author: seawolf, claudinei, linea, pankso, domcox
+
 There are so many ways you can help out with the SliTaz community.
 If you have a little free time, anything from artwork to package testing would be greatly appreciated!
 

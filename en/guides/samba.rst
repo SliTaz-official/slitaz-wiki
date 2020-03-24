@@ -6,6 +6,8 @@
 Samba
 =====
 
+:author: emgi, linea
+
 
 What is Samba?
 --------------

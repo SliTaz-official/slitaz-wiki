@@ -6,6 +6,8 @@
 Wi-Fi, step by step
 ===================
 
+:author: linea, jozee
+
 
 Introduction
 ------------

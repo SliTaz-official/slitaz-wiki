@@ -6,6 +6,8 @@
 Boot time
 =========
 
+:author: jozee, linea
+
 SliTaz boots fast!
 But most likely you haven't turned super fast boot on yet.
 To do this, just edit your :file:`/etc/rcS.conf`:

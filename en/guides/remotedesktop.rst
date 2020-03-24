@@ -6,6 +6,8 @@
 Remote Desktop
 ==============
 
+:author: seawolf
+
 
 NoMachine (NX)
 --------------

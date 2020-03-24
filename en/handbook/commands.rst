@@ -6,6 +6,8 @@
 Command Line Reference
 ======================
 
+:author: jozee, linea, seawolf, naitsirhc, genesis, hgt
+
 
 Introduction to the commands
 ----------------------------

@@ -1,13 +1,12 @@
-.. meta::
-   :canonical: http://doc.slitaz.org/en:guides:hal-removal
-   :local: en/guides/hal-removal.txt
-   :last-modified: 2012-09-13 20:29
-   :modified-by: pankso
+.. http://doc.slitaz.org/en:guides:hal-removal
+.. en/guides/hal-removal.txt · Last modified: 2012-09-13 20:29 by pankso
 
 .. _hal removal:
 
 hal-removal for 5.0
 ===================
+
+:author: kultex, pankso
 
 just to avoid errors its good to plan and document this process
 

@@ -4,6 +4,8 @@
 Issue 29
 ========
 
+:author: linea
+
 * Written on 1st December 2012
 
 

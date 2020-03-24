@@ -6,6 +6,8 @@
 Desktop
 =======
 
+:author: jozee, linea, naitsirhc
+
 
 Introduction
 ------------

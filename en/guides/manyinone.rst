@@ -6,6 +6,8 @@
 Create many-in-1 flavors
 ========================
 
+:author: bellard, linea
+
 Slitaz LiveCDs run fully in RAM.
 The feature set depends on the available RAM size.
 You can build an auto adaptive LiveCD to ensure that the right feature set is launched according to the detected RAM size.

@@ -6,50 +6,52 @@
 Handbook
 ========
 
+:author: pankso, linea, oui, jozee, domcox, naitsirhc, brianperry, emgi
+
 .. rubric:: General
 
-* :ref:`LiveCD usage <handbook livecd>` — How to boot and set options at the command prompt.
-* :ref:`Desktop <handbook desktop>` — Configure the Desktop and Window Managers.
-* :ref:`Commands <handbook commands>` — List of useful commands.
-* :ref:`Installation <handbook installation>` — HD install instructions.
-* :ref:`Accessibility <handbook accessibility>` — Assistive technologies.
+* :ref:`handbook livecd` — How to boot and set options at the command prompt.
+* :ref:`handbook desktop` — Configure the Desktop and Window Managers.
+* :ref:`handbook commands` — List of useful commands.
+* :ref:`handbook installation` — HD install instructions.
+* :ref:`handbook accessibility` — Assistive technologies.
 
 
 .. rubric:: Desktop Applications
 
-* :ref:`Utilities <handbook utilities>` — Calculator, Text editor, Create CD/DVDs and ISOs.
-* :ref:`Office <handbook office>` — Word processor, Personal organizer and PDF reader.
-* :ref:`Internet <handbook internet>` — Web browsers, IRC chat client, mail client, BitTorrent and FTP.
-* :ref:`Graphics <handbook graphics>` — Computer graphics and Image management.
-* :ref:`Development <handbook development>` — SHell scripts, Perl, Python and Toolchain.
-* :ref:`Multimedia <handbook multimedia>` — Sound, music and video.
-* :ref:`System Tools <handbook systemtools>` — File & Disk managers and other tools.
-* :ref:`Window Managers <handbook wm>` — Openbox, Pekwm, JWM, Enlightenment, dwm and others.
+* :ref:`handbook utilities` — Calculator, Text editor, Create CD/DVDs and ISOs.
+* :ref:`handbook office` — Word processor, Personal organizer and PDF reader.
+* :ref:`handbook internet` — Web browsers, IRC chat client, mail client, BitTorrent and FTP.
+* :ref:`handbook graphics` — Computer graphics and Image management.
+* :ref:`handbook development` — SHell scripts, Perl, Python and Toolchain.
+* :ref:`handbook multimedia` — Sound, music and video.
+* :ref:`handbook systemtools` — File & Disk managers and other tools.
+* :ref:`handbook wm` — Openbox, Pekwm, JWM, Enlightenment, dwm and others.
 
 
 .. rubric:: System Administration
 
-* :ref:`Packages <handbook packages>` — Install more software, keep system up-to-date.
-* :ref:`Network configuration <handbook networkconf>` — Ethernet, DHCP, static IP or PPPoE ADSL connection, Firewall.
-* :ref:`Modem dialup <handbook pstn>` — Use the telephone network to establish a connection with PPP.
-* :ref:`System administration <handbook systemutils>` — Mount devices, NFS, manage users and groups, adjust system time.
-* :ref:`X Window System <handbook xwindow>` — Xorg server, Slim Login and Window managers.
-* :ref:`Security <handbook security>` — SliTaz and system security.
+* :ref:`handbook packages` — Install more software, keep system up-to-date.
+* :ref:`handbook networkconf` — Ethernet, DHCP, static IP or PPPoE ADSL connection, Firewall.
+* :ref:`handbook pstn` — Use the telephone network to establish a connection with PPP.
+* :ref:`handbook systemutils` — Mount devices, NFS, manage users and groups, adjust system time.
+* :ref:`handbook xwindow` — Xorg server, Slim Login and Window managers.
+* :ref:`handbook security` — SliTaz and system security.
 
 
 .. rubric:: Flavor
 
-* :ref:`Generate a customised LiveCD/LiveUSB flavor <handbook genlivecd>` — Generate your own flavor using :program:`Tazlito`.
-* :ref:`LiveUSB media <handbook liveusb>` — Create bootable USB media using :program:`TazUSB`.
-* :ref:`Hacking LiveCD <handbook hacklivecd>` — Manipulate and play with the ISO image of LiveCD.
-* :ref:`Chroot Environment <handbook chroot>` — Build a chroot to protect the host system.
+* :ref:`handbook genlivecd` — Generate your own flavor using :program:`Tazlito`.
+* :ref:`handbook liveusb` — Create bootable USB media using :program:`TazUSB`.
+* :ref:`handbook hacklivecd` — Manipulate and play with the ISO image of LiveCD.
+* :ref:`handbook chroot` — Build a chroot to protect the host system.
 
 
 .. rubric:: Server Applications
 
-* :ref:`Server applications <handbook server-apps>` — Install and config of CMS, Wiki, etc.
-* :ref:`Web server <handbook webserver>` — Configure and use the LightTPD web server.
-* :ref:`Secure SHell (SSH) <handbook ssh>` — Secure login using :program:`Dropbear` SSH client/server.
+* :ref:`handbook server-apps` — Install and config of CMS, Wiki, etc.
+* :ref:`handbook webserver` — Configure and use the LightTPD web server.
+* :ref:`handbook ssh` — Secure login using :program:`Dropbear` SSH client/server.
 
 
 .. rubric:: About this Handbook

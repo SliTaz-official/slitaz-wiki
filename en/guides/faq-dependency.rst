@@ -6,6 +6,8 @@
 An Application Cannot Find Libraries/Files
 ==========================================
 
+:author: jozee, linea
+
 
 Symptoms
 --------

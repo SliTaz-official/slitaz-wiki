@@ -6,6 +6,8 @@
 Winboot
 =======
 
+:author: jozee, linea, bellard, mojo
+
 
 Frugal install to Microsoft Windows partition
 ---------------------------------------------

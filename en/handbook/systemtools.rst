@@ -6,9 +6,11 @@
 System Tools
 ============
 
+:author: jozee, linea, genesis
 
-Clex — Command line File Manager
---------------------------------
+
+:program:`Clex` — Command line File Manager
+-------------------------------------------
 
 To navigate through your folders and directories you can use :command:`cd` on the command line or install the :program:`Clex` File Manager:
 
@@ -24,8 +26,8 @@ To start :program:`clex` from a terminal or console:
    $ clex
 
 
-PCManFM — File Manager
-----------------------
+:program:`PCManFM` — File Manager
+---------------------------------
 
 :program:`PCManFM` is a file manager providing many useful functions for daily tasks such as managing devices, opening terminals in the current directory, tabbed browsing, drag and drop, creating directories or managing file permissions.
 It contains bookmarks to allow you to browse faster, search functions and much more.
@@ -36,11 +38,11 @@ For a full list of options:
 
    $ pcmanfm --help-all
 
-PCManFM supports hotkeys (firefox) and the context menu (right click on file/directory) makes it easy to unpack .taz .gz archives, compress and create archives.
+:program:`PCManFM` supports hotkeys (firefox) and the context menu (right click on file/directory) makes it easy to unpack :file:`.tar.gz` archives, compress and create archives.
 
 
-Htop — View system processes
-----------------------------
+:program:`Htop` — View system processes
+---------------------------------------
 
 :program:`Htop` is a system process viewer that displays CPU load, memory state (RAM) and swap used.
 It can also display the number of tasks, uptime and PIDs of active processes.
@@ -53,26 +55,26 @@ Note :program:`htop` also functions via SSH and can be used to monitor a remote 
    # tazpkg get-install htop
 
 
-LXTask — Graphical system process viewer
-----------------------------------------
+:program:`LXTask` — Graphical system process viewer
+---------------------------------------------------
 
 :program:`LXTask` is the default process viewer in SliTaz.
 It offers the same functionality as :program:`Htop`, except for the ability to control it remotely.
 You can start it from the :menuselection:`System Tools Menu --> Task Manager`.
 
 
-Mountbox — Mount devices
-------------------------
+:program:`Mountbox` — Mount devices
+-----------------------------------
 
 :program:`Mountbox` is a small GTK+ application to quickly mount media such as a USB drive, hard drive or CD-ROM.
 :program:`Mountbox` can be launched from a terminal or via the :menuselection:`Tools` menu (:menuselection:`System Tools`).
-Simply specify the peripheral (:guilabel:`Device`) and the mount point, ie. the directory where you want to access the media in question.
+Simply specify the peripheral (:guilabel:`Device`) and the mount point, i.e. the directory where you want to access the media in question.
 Typically a CD is mounted on :file:`/media/cdrom`, a USB key on :file:`/media/flash` and disk drives on the local machine on :file:`/mnt`.
 Note the Handbook also contains more information.
 
 
-Gparted — Partition a hard drive
---------------------------------
+:program:`Gparted` — Partition a hard drive
+-------------------------------------------
 
 :program:`Gparted` is a graphical application making it possible to manage the partitions of a local hard drive or USB media.
 It allows you to reformat, resize or check a partition on a hard drive and is the tool of choice if you need to prepare a partition to install SliTaz.

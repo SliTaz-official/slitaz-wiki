@@ -6,6 +6,8 @@
 AT Codes for Country Select
 ===========================
 
+:author: domcox, linea
+
 Examples of country settings for some brands.
 
 =============== ============ ================== ============= ===========

@@ -6,6 +6,9 @@
 X Window System
 ===============
 
+:author: jozee, linea, jpeg
+
+
 X11 — X Window System
 ---------------------
 

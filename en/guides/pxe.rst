@@ -6,6 +6,8 @@
 PXE
 ===
 
+:author: jozee, linea, seawolf, bellard
+
 The *Preboot eXecution Environment* (or *PXE*, pronounced 'pixie') is the process of booting a computer from a network connection.
 It is comparable to booting a LiveCD from a remote CD drive.
 

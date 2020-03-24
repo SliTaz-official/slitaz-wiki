@@ -6,6 +6,8 @@
 Window Managers
 ===============
 
+:author: jozee, linea, seawolf, hgt
+
 
 Openbox
 -------

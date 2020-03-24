@@ -6,6 +6,8 @@
 LiveUSB media
 =============
 
+:author: jozee, linea, totoetsasoeur, ceel, mojo, brianperry
+
 
 Tazusb — Live USB Tool
 ----------------------

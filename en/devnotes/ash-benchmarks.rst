@@ -6,6 +6,8 @@
 ASH benchmarks
 ==============
 
+:author: gokhlayeh, linea
+
 Some tips to speed-up scripts…
 Add yours, and put the better ones on the top of the page :)
 

@@ -4,6 +4,8 @@
 Issue 28
 ========
 
+:author: linea
+
 * Written on 1st July 2012
 
 

@@ -6,6 +6,8 @@
 Hacking SliTaz LiveCD
 =====================
 
+:author: jozee, linea, brianperry
+
 
 Introduction
 ------------

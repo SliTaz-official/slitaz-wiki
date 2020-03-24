@@ -6,6 +6,8 @@
 Office
 ======
 
+:author: jozee, linea, genesis
+
 
 Abiword — Word Processor
 ------------------------

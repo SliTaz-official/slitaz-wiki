@@ -6,6 +6,8 @@
 Virtual Private Network
 =======================
 
+:author: jozee, linea, bellard
+
 A VPN binds isolated networks with tunnels over the Internet network.
 A tunnel encrypts and encapsulates network frames.
 

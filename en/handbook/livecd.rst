@@ -6,6 +6,8 @@
 Using the LiveCD
 ================
 
+:author: pankso, jozee, linea, seawolf, natty537, seacat, brianperry
+
 SliTaz can be used straight from a CD-ROM or USB memory stick, without being installed to a hard drive.
 There are a number of ways to use the Live media, with options to customise how it starts.
 

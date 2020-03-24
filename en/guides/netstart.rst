@@ -6,6 +6,8 @@
 Web start and possible immediate installation
 =============================================
 
+:author: linea
+
 
 Special figure in Slitaz!
 -------------------------
@@ -13,7 +15,7 @@ Special figure in Slitaz!
 Slitaz is one of the extremely rare OS's available fully prepared for the web start in live mode using a very small starting program.
 The starting program can be saved on a old floppy disk or very little special ISO burned on a CD-ROM.
 
-But each starting ISO of Slitaz with the live version of "base", "justX" or "stable" or "cooking" contains also this start program being used through the commando line options at starting time of the ISO.
+But each starting ISO of Slitaz with the live version of "base", "justX" or "stable" or "cooking" contains also this start program being used through the command line options at starting time of the ISO.
 
 The special advantage of this kind of start is to work with the most actual cooking version and not with the version of the CD.
 
@@ -31,13 +33,9 @@ Please read more here: http://boot.slitaz.org/
 Where can I find the small ISO for a small starting CD rom?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can use the little flavor version
+You can use the little flavor version `slitaz-2.0-base.iso`_ for that.
 
-http://mirror.slitaz.org/iso/2.0/flavors/slitaz-2.0-base.iso
-
-for that.
-
-Only enter please "web" as commando line option!
+Only enter please "web" as command line option!
 
 
 Starting from the net
@@ -45,7 +43,7 @@ Starting from the net
 
 The start from net don't differ from usual start from the CD.
 
-Only enter "web" as commando line option.
+Only enter "web" as command line option.
 The starting program don't follow the CD any more but search the more actual file on the web.
 
 
@@ -75,3 +73,6 @@ Prepare an adequate ISO for a own starting check card mini CD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 …
+
+
+.. _slitaz-2.0-base.iso: http://mirror.slitaz.org/iso/2.0/flavors/slitaz-2.0-base.iso

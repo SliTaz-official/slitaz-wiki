@@ -4,6 +4,8 @@
 Issue 21
 ========
 
+:author: linea
+
 * Written on 5th December 2010
 
 

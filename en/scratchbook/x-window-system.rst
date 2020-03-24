@@ -6,6 +6,8 @@
 X window system
 ===============
 
+:author: domcox
+
 Installation and basic configuration of the X window system.
 
 

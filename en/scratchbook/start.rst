@@ -6,6 +6,8 @@
 Scratchbook
 ===========
 
+:author: jozee, linea, domcox
+
 Index of documents, step by step construction of a mini GNU/LINUX LiveCD and installation instructions. 
 
 

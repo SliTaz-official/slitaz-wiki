@@ -6,6 +6,8 @@
 Cannot Login to Desktop
 =======================
 
+:author: jozee, linea, kultex, mojo
+
 
 Symptoms
 --------

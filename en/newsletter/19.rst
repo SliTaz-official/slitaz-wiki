@@ -4,6 +4,8 @@
 Issue 19
 ========
 
+:author: linea, godane
+
 * Written on 29th August 2010
 
 

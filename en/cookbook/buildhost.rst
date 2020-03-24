@@ -6,6 +6,8 @@
 SliTaz Build Host (tank)
 ========================
 
+:author: jozee, linea, pankso, mojo, bellard
+
 SliTaz build host info and howto.
 
 
@@ -34,7 +36,7 @@ Usage:
 Cooking official packages
 -------------------------
 
-Maintainers have root access and some have write access to the main mirror at mirror.slitaz.org, if you want to help in this task please contact one of the active developers (check hg repos).
+Maintainers have root access and some have write access to the main mirror at mirror.slitaz.org, if you want to help in this task please contact one of the active developers (check Hg repos).
 
 Everything is cooked in a chroot environment, the default path for the build wok is :file:`/home/slitaz/cooking/chroot`.
 No changes must be done in the chroot and don't install any packages to keep it clean.

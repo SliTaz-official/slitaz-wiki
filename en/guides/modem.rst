@@ -6,4 +6,6 @@
 Hardware Guides: Modems
 =======================
 
-:ref:`Cricket A600 Broadband Modem <cricket a600>` — How to install a Cricket a600 Broadband Modem
+:author: jozee
+
+:ref:`cricket a600` — How to install a Cricket a600 Broadband Modem

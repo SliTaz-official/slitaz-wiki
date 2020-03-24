@@ -6,6 +6,8 @@
 Making tazpackages
 ==================
 
+:author: brianperry, linea
+
 Before starting on making slitaz packages, we'll begin with a quick overview of how a package installs programs:
 
 When you click on a package to install (in :program:`tazweb`), you tell the system to automatically download the package to :file:`/var/lib/tazpkg/5.0/packages/`.

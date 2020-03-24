@@ -6,10 +6,12 @@
 Midori Tips & Tweaks
 ====================
 
+:author: rupp, jozee, linea, godane
+
 I am writing this guide since :program:`Midori` is the default browser in SliTaz 3.
 Your first thought may be to install :program:`Firefox` and not giving :program:`Midori` a try because it lacks features.
 I thought it lacked features or Addon's also until I dug around some.
-If you want to know the history of :program:`Midori` visit it's Wiki page: `Midori Wiki <http://en.wikipedia.org/wiki/Midori_(web_browser)>`_.
+If you want to know the history of :program:`Midori` visit it's Wiki page: `Midori Wiki`_.
 
 Things that I will cover:
 
@@ -77,13 +79,13 @@ Click add and fill it in to look like this:
 
 Once that is done go up to the URL bar in midori and type: "y slitaz linux" without the quotes.
 
-.. figure: http://img30.yfrog.com/img30/6048/yslitazlinux.png
+.. missing figure: http://img30.yfrog.com/img30/6048/yslitazlinux.png
 ..
 .. Example:y slitax linux.
 
 After pressing :kbd:`Enter` you should now see the Yahoo search results for *slitaz*.
 
-.. figure: http://img402.yfrog.com/img402/2932/yslitazresults.png
+.. missing figure: http://img402.yfrog.com/img402/2932/yslitazresults.png
 ..
 .. Yahoo Results
 
@@ -109,13 +111,13 @@ When I have a big URL I want to shorten, I go to the URL bar, go to the left of 
 Then press :kbd:`Space` then :kbd:`Enter` it takes me to that site and shortens the URL.
 Example:
 
-.. figure: http://img260.yfrog.com/img260/6982/shorten.png
+.. missing figure: http://img260.yfrog.com/img260/6982/shorten.png
 ..
 .. Shortening URL
 
 Result:
 
-.. figure: http://img30.yfrog.com/img30/6563/shortened.png
+.. missing figure: http://img30.yfrog.com/img30/6563/shortened.png
 ..
 .. Shortened URL
 
@@ -141,7 +143,7 @@ If you have a different user name then change accordingly.
 These pictures are kind of big so I am just linking to them.
 Example before FlashBlock:
 
-.. figure: http://img180.yfrog.com/img180/7269/blocked.png
+.. missing figure: http://img180.yfrog.com/img180/7269/blocked.png
 ..
 .. Flash Blocked
 
@@ -155,7 +157,7 @@ So if it isn't showing then just restart :guilabel:`Midori`.
 Now you should have flash blocked unless you click on it like the flashblocker addon for :program:`FireFox`.
 It should look like this:
 
-.. figure: http://img541.yfrog.com/img541/2801/notblocked.png
+.. missing figure: http://img541.yfrog.com/img541/2801/notblocked.png
 ..
 .. Flash Unblocked
 
@@ -247,3 +249,6 @@ Here is an example of some of my shortcuts:
 
 Just wanted to add that if you want to "disable" a shortcut.
 Pressing :kbd:`Backspace` in :guilabel:`New accelarator…` will disable it.
+
+
+.. _Midori Wiki: http://en.wikipedia.org/wiki/Midori_(web_browser)

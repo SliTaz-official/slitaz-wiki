@@ -6,6 +6,8 @@
 Rootcd
 ======
 
+:author: jozee, linea
+
 Descriptions of files contained on the CD-ROM.
 
 
@@ -16,7 +18,7 @@ Syslinux/isolinux
 Simple effective and configurable, :program:`isolinux` was installed during the creation of the base system.
 The binary is named :file:`isolinux.bin` and uses the configuration file :file:`isolinux.cfg`.
 Here's an example of an :file:`isolinux.cfg` using :file:`isolinux.msg` to post the splash image and displayable help files via :kbd:`F1`, :kbd:`F2`, :kbd:`F3` and :kbd:`F4`.
-You will find the files :file:`help.txt`, :file:`options.txt`, etc in :ref:`SliTaz tools <cookbook slitaztools>`.
+You will find the files :file:`help.txt`, :file:`options.txt`, etc in :ref:`cookbook slitaztools`.
 
 ::
 
@@ -42,7 +44,7 @@ This image has a particular format :file:`.lss`, suitable for :program:`Syslinux
 You can use the official logo, :program:`ppmforge`, :program:`imagemagick`, :program:`GIMP` or other tools to create your image.
 
 The :program:`Syslinux` file (:file:`sample/syslogo.lss`) provides an official logo which you can directly use by copying to the root of the CD-ROM.
-SliTaz provides a logo (:file:`rootcd/boot/isolinux/splash.lss`) which you can find in :ref:`SliTaz tools <cookbook slitaztools>`.
+SliTaz provides a logo (:file:`rootcd/boot/isolinux/splash.lss`) which you can find in :ref:`cookbook slitaztools`.
 To display a splash image when booting, it's necessary that the 'display' option calls the :file:`isolinux.msg` file which loads the :file:`*.lss` format image.
 Note that the :file:`isolinux.msg` file uses 24 ASCII characters.
 Example using :command:`echo` and an :file:`isolinux.msg` file incorporating a :file:`.lss` splash image:

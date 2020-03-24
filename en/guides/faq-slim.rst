@@ -6,6 +6,8 @@
 Halt, reboot or shutdown via slim
 =================================
 
+:author: hgt, linea
+
 
 Symptoms
 --------

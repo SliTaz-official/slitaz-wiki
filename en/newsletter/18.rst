@@ -4,6 +4,8 @@
 Issue 18
 ========
 
+:author: linea, godane
+
 * Written on 11th July 2010
 
 

@@ -4,6 +4,8 @@
 Issue 16
 ========
 
+:author: linea, godane
+
 * Written on 5th April 2010
 
 

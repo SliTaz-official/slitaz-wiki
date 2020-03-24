@@ -6,6 +6,8 @@
 Developers Corner
 =================
 
+:author: bellard, linea
+
 This page aims to list SliTaz tricks that you can't find in other distributions.
 
 
@@ -18,7 +20,7 @@ The different flavors (base, core64, loram...) are built in this format.
 Nowadays booting on a CD-ROM is not so fashionable.
 People prefer to boot their SliTaz from a USB key, a memory card or a hard disk.
 
-It's easy to create a USB key under Linux with the `dd_(Unix) <http://en.wikipedia.org/wiki/dd_(Unix)>`_ command.
+It's easy to create a USB key under Linux with the dd_ command.
 Some third party Windows tools aim to be able to create USB keys, but most of them don't support the SliTaz :ref:`many-in-one <manyinone>` format (also known as *russian dolls*).
 
 .. tip::
@@ -31,72 +33,76 @@ Some third party Windows tools aim to be able to create USB keys, but most of th
 People would like to add some personal data to the ISO image such as a *Wifi configuration* or *SSH keys*.
 But the ISO remastering is not an easy thing to do.
 
-SliTaz provides a linux tool `iso2exe <http://cook.slitaz.org/cooker.cgi?download=../wok/syslinux-extra/taz/syslinux-extra-4.06/fs/usr/bin/iso2exe>`_ and the DOS/Windows tool `isohybrid.exe <http://mirror.slitaz.org/boot/isohybrid.exe>`_ to add a custom initrd and some extra cmdline arguments.
+SliTaz provides a linux tool iso2exe_ and the DOS/Windows tool `isohybrid.exe`_ to add a custom initrd and some extra cmdline arguments.
 
 .. note::
    By the way, these tools add the DOS/Windows program to create USB keys.
 
-A linux usage can be::
+A Linux usage can be::
 
   iso2exe -a "rdinit=init.custom" -i initrd.gz slitaz.iso -f
 
-A DOS (16 bits) or Windows (32 bits) usage can be::
+A DOS (16 bits) or Windows (32 bits) usage can be:
 
-  C:\> isohybrid -a "rdinit=init.custom" -i initrd.gz slitaz.iso -f
+.. code-block:: doscon
+
+   C:\> isohybrid -a "rdinit=init.custom" -i initrd.gz slitaz.iso -f
 
 .. tip::
    The executable shell script :file:`/init.custom` in the :file:`initrd.gz` file installs the extra software in the boot scripts:
 
-   ::
+   .. code-block:: shell
 
-     #!/bin/sh
-     
-     # Add custom kernel modules
-     sed -i 's/LOAD_MODULES="/&amodule anothermodule/' /etc/rcS.conf
-     
-     # Start extra daemons
-     sed -i 's/RUN_DAEMONS="/&demon1 demon2/' /etc/rcS.conf
-     
-     # Custom boot commands
-     cat >> /etc/init.d/local.sh <<EOT
-     shell commands...
-     EOT
-     
-     # Continue normal boot sequence
-     exec /init
+      #!/bin/sh
+      
+      # Add custom kernel modules
+      sed -i 's/LOAD_MODULES="/&amodule anothermodule/' /etc/rcS.conf
+      
+      # Start extra daemons
+      sed -i 's/RUN_DAEMONS="/&demon1 demon2/' /etc/rcS.conf
+      
+      # Custom boot commands
+      cat >> /etc/init.d/local.sh <<EOT
+      shell commands...
+      EOT
+      
+      # Continue normal boot sequence
+      exec /init
 
 An iso9660 image file has three parts:
 
 * a 32Kb header filled with zeros
-* a `ISO_9660 <http://en.wikipedia.org/wiki/>`_ filesystem
+* a `ISO 9660`_ filesystem
 * a tail filled with zeros to round up the file size to the next megabyte
 
 
-.. rubric:: The ISO header: to create a USB key from DOS/Windows
+The ISO header: to create a USB key from DOS/Windows
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is a 3 in 1 header:
 
-* a `Master boot record <http://en.wikipedia.org/wiki/Master_boot_record>`_ from `isolinux <http://en.wikipedia.org/wiki/isolinux>`_ to boot from a USB key
-* a 16 bits DOS `.exe <http://en.wikipedia.org/wiki/.exe>`_ file to launch a Linux utility menu with a USB creation item
-* a 32 bits Windows `.exe <http://en.wikipedia.org/wiki/.exe>`_ file to create a USB key
+* a `Master boot record`_ from isolinux_ to boot from a USB key
+* a 16 bits DOS `.exe`_ file to launch a Linux utility menu with a USB creation item
+* a 32 bits Windows `.exe`_ file to create a USB key
 
 .. note::
-   The `El Torito <http://en.wikipedia.org/wiki/El_Torito_(CD-ROM_standard)>`_ boot is untouched (as a part of the ISO9660 filesystem)
+   The `El Torito`_ boot is untouched (as a part of the ISO9660 filesystem)
 
-It includes a iso9660 filesystem `md5sum <http://en.wikipedia.org/wiki/md5sum>`_ hash and its own checksum (in
-the `.exe <http://en.wikipedia.org/wiki/.exe>`_ file header).
-Design rational can be found in the `README file <http://hg.slitaz.org/wok/file/tip/syslinux/stuff/iso2exe/README#l1>`_
+It includes a iso9660 filesystem md5sum_ hash and its own checksum (in
+the `.exe`_ file header).
+Design rational can be found in the `README file`_
 
-The `taziso <http://cook.slitaz.org/cooker.cgi?download=../wok/syslinux-extra/taz/syslinux-extra-4.06/fs/usr/bin/taziso>`_ tool can both show and use the ISO header features.
+The taziso_ tool can both show and use the ISO header features.
 
 .. tip::
    A taziso graphical/web interface is available in the tazpanel utility under the :menuselection:`boot --> mine` menu item.
 
 .. tip::
-   Most of the ISO header features can be used with other live Linux distributions such as `Tiny Core Linux <http://en.wikipedia.org/wiki/Tiny_Core_Linux>`_, `Puppy Linux <http://en.wikipedia.org/wiki/Puppy_Linux>`_ or `KNOPPIX <http://en.wikipedia.org/wiki/KNOPPIX>`_ (i.e. you can use :program:`iso2exe` or :program:`isohybrid.exe` with these distributions too).
+   Most of the ISO header features can be used with other live Linux distributions such as `Tiny Core Linux`_, `Puppy Linux`_ or KNOPPIX_ (i.e. you can use :program:`iso2exe` or :program:`isohybrid.exe` with these distributions too).
 
 
-.. rubric:: The ISO tail: to store your configurations
+The ISO tail: to store your configurations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ISO tail has a magic string and its own md5 hash.
 The md5 can be checked by taziso and the ISO boot menu under DOS.
@@ -109,7 +115,7 @@ Small custom configurations should not change the ISO image size thanks to the m
 Larger configurations can extend the ISO image without limitation.
 
 .. tip::
-   Custom configurations help to test the `SliTaz weekly build <http://mirror.slitaz.org/iso/rolling/slitaz-rolling.iso>`_ with automatic wifi setups or SSH keys…
+   Custom configurations help to test the `SliTaz weekly build`_ with automatic wifi setups or SSH keys…
    You can add the following entry in your grub config, have a custom automatic setup and still test the real CD-ROM boot sequence.
 
    ::
@@ -128,7 +134,7 @@ Packages enhancements
 
 :program:`Dropbear` is a SSH2 client and server.
 The server side supports X11 forwarding but the client does not.
-SliTaz provides a tiny shell script named `sshx <http://hg.slitaz.org/wok/file/tip/dropbear/stuff/sshx#l1>`_ to restore this feature.
+SliTaz provides a tiny shell script named sshx_ to restore this feature.
 By the way 2 other scripts are given:
 
 * :program:`pppssh` a poor mans VPN.
@@ -139,7 +145,7 @@ By the way 2 other scripts are given:
 .. rubric:: sshfs-fuse
 
 :program:`Sshfs-fuse` can mount a remote filesystem on the local machine.
-SliTaz provides a tiny script named `rsshfs <http://hg.slitaz.org/wok/file/tip/sshfs-fuse/stuff/rsshfs#l1>`_ to mount a local filesystem on a remote machine.
+SliTaz provides a tiny script named rsshfs_ to mount a local filesystem on a remote machine.
 
 
 .. rubric:: cloop
@@ -147,14 +153,39 @@ SliTaz provides a tiny script named `rsshfs <http://hg.slitaz.org/wok/file/tip/s
 Cloop packages (:program:`fusecloop`, :program:`cloop-utils`…) are able to mount **any** cloop formats.
 The official software fails to mount earlier formats.
 
-They add a `new format <http://hg.slitaz.org/wok/file/tip/fusecloop/description.txt#l1>`_ to reduce the memory consumption during the compressed file creation.
+They add a `new format`_ to reduce the memory consumption during the compressed file creation.
 
 
 .. rubric:: ipxe
 
-This PXE has a `built in configuration <http://hg.slitaz.org/wok/file/tip/ipxe/stuff/ipxe.cmd#l1>`_ to boot from a SliTaz server and can be used without a local PXE server.
+This PXE has a `built in configuration`_ to boot from a SliTaz server and can be used without a local PXE server.
 
 
 .. rubric:: sane-backends
 
-The scanner drivers package adds a GUI in a `tazpanel module <http://hg.slitaz.org/wok/file/tip/sane-backends/stuff/tazpanel/sane.cgi#l1>`_.
+The scanner drivers package adds a GUI in a `tazpanel module`_.
+
+
+.. _iso2exe: http://cook.slitaz.org/cooker.cgi?download=../wok/syslinux-extra/taz/syslinux-extra-4.06/fs/usr/bin/iso2exe
+.. _taziso:  http://cook.slitaz.org/cooker.cgi?download=../wok/syslinux-extra/taz/syslinux-extra-4.06/fs/usr/bin/taziso
+
+.. _isohybrid.exe:          http://mirror.slitaz.org/boot/isohybrid.exe
+.. _SliTaz weekly build:    http://mirror.slitaz.org/iso/rolling/slitaz-rolling.iso
+
+.. _README file:            http://hg.slitaz.org/wok/file/tip/syslinux/stuff/iso2exe/README#l1
+.. _sshx:                   http://hg.slitaz.org/wok/file/tip/dropbear/stuff/sshx#l1
+.. _rsshfs:                 http://hg.slitaz.org/wok/file/tip/sshfs-fuse/stuff/rsshfs#l1
+.. _new format:             http://hg.slitaz.org/wok/file/tip/fusecloop/description.txt#l1
+.. _built in configuration: http://hg.slitaz.org/wok/file/tip/ipxe/stuff/ipxe.cmd#l1
+.. _tazpanel module:        http://hg.slitaz.org/wok/file/tip/sane-backends/stuff/tazpanel/sane.cgi#l1
+
+.. _dd:                     http://en.wikipedia.org/wiki/dd_(Unix)
+.. _ISO 9660:               http://en.wikipedia.org/wiki/ISO_9660
+.. _Master boot record:     http://en.wikipedia.org/wiki/Master_boot_record
+.. _isolinux:               http://en.wikipedia.org/wiki/isolinux
+.. _.exe:                   http://en.wikipedia.org/wiki/.exe
+.. _El Torito:              http://en.wikipedia.org/wiki/El_Torito_(CD-ROM_standard)
+.. _md5sum:                 http://en.wikipedia.org/wiki/md5sum
+.. _Tiny Core Linux:        http://en.wikipedia.org/wiki/Tiny_Core_Linux
+.. _Puppy Linux:            http://en.wikipedia.org/wiki/Puppy_Linux
+.. _KNOPPIX:                http://en.wikipedia.org/wiki/KNOPPIX

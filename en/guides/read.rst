@@ -6,6 +6,8 @@
 README
 ======
 
+:author: kultex, linea, seawolf, trixar_za, genesis
+
 Yes we love your questions, your problems are ours and SliTaz has a very good Support Team, **“but sometimes it's hard”** for us when you forget to use the search button or read the official `documentation <http://doc.slitaz.org/en:start>`_.
 
 Answering questions takes time, and to answer them well slightly longer.

@@ -6,6 +6,8 @@
 xorg-server-1.8
 ===============
 
+:author: gokhlayeh, linea
+
 
 Upgrade Xorg configuration
 --------------------------
@@ -51,4 +53,4 @@ Example:
 It overwrites the default one (:program:`evdev`).
 
 If you wish to modify this section manually, take care to rename the file with a lower number like :file:`31-MyDevices.conf`.
-And don't use a file named x5 or x0 to ensure that it will not be overwritten by an upgrade.
+And don't use a file named :file:`x5` or :file:`x0` to ensure that it will not be overwritten by an upgrade.

@@ -6,6 +6,8 @@
 Alsaequal
 =========
 
+:author: linea
+
 
 Installation
 ------------

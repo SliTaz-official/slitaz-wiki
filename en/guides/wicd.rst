@@ -3,10 +3,12 @@
 
 .. _wicd:
 
-WICD
+Wicd
 ====
 
-:ref:`Pankso's Openbox treat <network script>` is very close to :program:`WICD`, but if you want to set up SliTaz for not very experienced users it's recommended that you use :program:`WICD` for Wireless Internet Control.
+:author: kultex, linea
+
+:ref:`Pankso's Openbox treat <network script>` is very close to :program:`Wicd`, but if you want to set up SliTaz for not very experienced users it's recommended that you use :program:`Wicd` for Wireless Internet Control.
 
 Do as root:
 
@@ -32,4 +34,4 @@ And add to the end:
 
 Then remove the network-plugin from the LX Panel by right clicking on the network-plugin.
 
-Reboot — don't test before rebooting, because :file:`network.sh` is interfering with :program:`WICD` (even if you stop it by typing :command:`/etc/int.d/network.sh stop`).
+Reboot — don't test before rebooting, because :file:`network.sh` is interfering with :program:`Wicd` (even if you stop it by typing :command:`/etc/int.d/network.sh stop`).

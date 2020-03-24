@@ -6,4 +6,6 @@
 Forum posts
 ===========
 
+:author: linea, trixar_za
+
 `How to build your own kernel modules <http://vanilla.slitaz.org/index.php?p=/discussion/comment/5404/#Comment_5404>`_

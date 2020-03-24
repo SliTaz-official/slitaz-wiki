@@ -6,6 +6,8 @@
 Chroot environment
 ==================
 
+:author: jozee, linea, domcox
+
 This document describes the necessary steps to create a chrooted environment, in order to change the root of the system so that you can work.
 This makes it possible to compile, test and develop SliTaz without any risk to the host system you're working on.
 The host system can be SliTaz installed to a hard drive or any other GNU/Linux system such as Debian, Fedora, PCLinuxOS and so on.

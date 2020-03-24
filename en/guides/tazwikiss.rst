@@ -6,6 +6,8 @@
 TazWiKiss
 =========
 
+:author: hgt, linea
+
 
 Introduction
 ------------

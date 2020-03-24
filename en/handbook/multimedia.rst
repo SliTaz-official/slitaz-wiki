@@ -6,6 +6,8 @@
 Multimedia
 ==========
 
+:author: jozee, linea, genesis
+
 
 SliTaz sound and video
 ----------------------

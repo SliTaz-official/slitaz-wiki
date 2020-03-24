@@ -4,6 +4,8 @@
 Issue 14
 ========
 
+:author: linea, godane
+
 * Written on 16th January 2010
 
 

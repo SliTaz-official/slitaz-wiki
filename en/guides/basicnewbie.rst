@@ -6,6 +6,8 @@
 Daily used Linux commands
 =========================
 
+:author: oui,  linea
+
 After starting our SliTaz base (see :ref:`here <training>`) we logged on and can see now, following a Welcome message, a short command line prompt:
 
 .. code-block:: console
@@ -33,8 +35,8 @@ The *home* of users is a subdirectory in the main directory */home*!
 The path is as follows: :file:`/home/tux`
 
 tux can be defined differently at the installation if you don't want to be called tux!
-In such a case the path would be: **/home/SomeWhatYouWillBe**.
-Both the contents of home, as well as the contents of *SomeWhatYouWillBe* can also be contained in a separate partition.
+In such a case the path would be: :file:`/home/{SomeWhatYouWillBe}`.
+Both the contents of home, as well as the contents of :file:`{SomeWhatYouWillBe}` can also be contained in a separate partition.
 The automatic installer in the SliTaz Panel can help you to do that if you wish.
 
 We can enter now at the prompt our first command:

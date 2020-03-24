@@ -6,6 +6,8 @@
 How-to Xorg — Modular graphical server
 ======================================
 
+:author: domcox
+
 Note SliTaz uses the Xvesa server provided by XFree86 and Xorg libraries, this page describes the compilation of Xorg libraries used by SliTaz.
 This document is primarily aimed at developers and contributors to the project, but it may be useful to all those seeking to rebuild Xorg and Xlib libraries from source generating a minimum of dependencies.
 

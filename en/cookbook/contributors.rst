@@ -6,6 +6,8 @@
 Contributors
 ============
 
+:author: bellard
+
 (Work in progress...)
 
 

@@ -4,6 +4,8 @@
 Issue 17
 ========
 
+:author: linea, godane
+
 * Written on 9th May 2010
 
 

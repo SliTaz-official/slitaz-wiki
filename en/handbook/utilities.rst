@@ -6,6 +6,8 @@
 Utilities
 =========
 
+:author: jozee, linea
+
 
 Galculator
 ----------

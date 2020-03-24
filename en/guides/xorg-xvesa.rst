@@ -6,6 +6,8 @@
 Xorg & XVesa
 ============
 
+:author: kultex, jozee, linea, seawolf
+
 By default, SliTaz v3 uses Xorg 7.4 with the :program:`xorg-xf86-video-vesa` v2.0.0 driver.
 This basic driver can cause problems with certain hardware combinations and can sometimes result in a very low resolution.
 Occasionally, X does not start at all and instead falls back to the log-in screen or to a text-based prompt.

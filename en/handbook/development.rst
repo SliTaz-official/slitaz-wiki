@@ -6,6 +6,8 @@
 Development
 ===========
 
+:author: jozee, linea, genesis, hgt
+
 
 About Development
 -----------------

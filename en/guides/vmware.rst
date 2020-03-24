@@ -6,6 +6,8 @@
 VMWare
 ======
 
+:author: jozee, linea
+
 
 Test SliTaz GNU/Linux with VMware
 ---------------------------------

@@ -6,6 +6,9 @@
 Boot tree
 =========
 
+:author: linea, bellard
+
+
 From BIOS to :file:`/etc/init.d/rcS`
 ------------------------------------
 

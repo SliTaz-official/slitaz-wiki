@@ -6,6 +6,8 @@
 Base System
 ===========
 
+:author: domcox, lebardix
+
 Build a SliTaz GNU/Linux distro running in RAM and using BusyBox.
 
 

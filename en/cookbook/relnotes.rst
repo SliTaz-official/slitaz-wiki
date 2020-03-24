@@ -6,6 +6,8 @@
 5.0 SliTaz Release Notes (draft)
 ================================
 
+:author: pankso, domcox, bellard, trixar_za, linea, godane, paranor, mojo
+
 .. note::
    Can the developers and coders also add to these notes as they are probably the only ones fully aware of all the changes since 4.0.
    20140511 — Feel free to edit, modify and add new sections.
