@@ -38,3 +38,8 @@ kbd {
 .rst-content .guilabel {
 	white-space: nowrap;
 }
+
+code.file {
+	color: navy !important;
+	background-color: lavender;
+}
